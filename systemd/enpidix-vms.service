@@ -1,0 +1,26 @@
+[Unit]
+Description=Enpidix AI Surveillance VMS Server (Jetson Orin NX)
+After=network-online.target jtop.service
+Wants=network-online.target
+Requires=jtop.service
+
+[Service]
+Type=simple
+# Ganti sesuai lokasi project & user yang menjalankan (harus anggota grup jtop
+# supaya bisa baca statistik GPU -- lihat scripts/setup_jetson_orin_nx.sh)
+User=jetson
+WorkingDirectory=/home/jetson/enpidix-vms-server
+EnvironmentFile=/home/jetson/enpidix-vms-server/.env
+ExecStart=/usr/bin/python3 /home/jetson/enpidix-vms-server/server.py
+Restart=always
+RestartSec=5
+# Beri waktu proses AI/ffmpeg anak untuk berhenti rapi sebelum dipaksa kill
+TimeoutStopSec=20
+
+# Jetson kadang butuh clock GPU sudah stabil (jetson_clocks) sebelum inferensi
+# berat dimulai -- pastikan sudah dijalankan lewat setup script / cron @reboot,
+# bukan di dalam service ini (jetson_clocks butuh sudo, service ini idealnya
+# jalan sebagai user biasa untuk keamanan).
+
+[Install]
+WantedBy=multi-user.target

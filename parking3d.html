@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>ENPIDIX — Parking Analytics 3D</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* ===== Token identik dengan dashboard utama ENPIDIX ===== */
+  :root{
+    --bg:#eef1f7; --panel:#ffffff; --panel-2:#f7f9fd;
+    --line:#e2e7f2; --line-soft:#ebeef8;
+    --text:#1a2036; --text-dim:#5c6480; --text-mute:#8b93ab;
+    --blue:#3b6bff; --blue-glow:rgba(59,107,255,.20);
+    --red:#ff4757; --red-glow:rgba(255,71,87,.20);
+    --amber:#e5960a; --green:#12b58a; --violet:#7b5cff;
+    --radius:14px;
+    --shadow-sm:0 2px 10px rgba(41,54,92,.06);
+    --shadow-md:0 14px 34px rgba(41,54,92,.10);
+    --asphalt-1:#3a4152; --asphalt-2:#2d3341;
+    --s-free:#12b58a; --s-busy:#3b6bff; --s-over:#e5960a;
+    --s-illegal:#ff4757; --s-reserved:#7b5cff;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(59,107,255,.09), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(255,71,87,.06), transparent 55%),
+      var(--bg);
+    color:var(--text); font-family:'Inter',system-ui,sans-serif; min-height:100vh; overflow-x:hidden;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+  button,input,select{font-family:inherit;}
+  button{cursor:pointer;}
+
+  header{
+    position:sticky; top:0; z-index:60; display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+    padding:12px 20px; background:rgba(255,255,255,.88); backdrop-filter:blur(14px); border-bottom:1px solid var(--line);
+  }
+  .mark{width:36px; height:36px; border-radius:11px; flex:none; background:linear-gradient(135deg,var(--blue),#1c3fd6);
+    display:flex; align-items:center; justify-content:center; box-shadow:0 10px 22px var(--blue-glow);}
+  .mark svg{width:20px; height:20px;}
+  .titles h1{font-family:'Space Grotesk',sans-serif; font-size:16px; letter-spacing:.4px; font-weight:700;}
+  .titles p{font-size:11px; color:var(--text-mute); letter-spacing:.6px; text-transform:uppercase;}
+  .spacer{flex:1;}
+  .pill{display:inline-flex; align-items:center; gap:7px; height:32px; padding:0 12px; border:1px solid var(--line);
+    border-radius:999px; background:var(--panel); font-size:12px; color:var(--text-dim); box-shadow:var(--shadow-sm);}
+  .dot{width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 4px rgba(18,181,138,.15);}
+  .dot.demo{background:var(--amber); box-shadow:0 0 0 4px rgba(229,150,10,.18);}
+  .btn{height:32px; padding:0 13px; border-radius:9px; border:1px solid var(--line); background:var(--panel);
+    color:var(--text-dim); font-size:12px; font-weight:600; box-shadow:var(--shadow-sm); transition:.16s;}
+  .btn:hover{color:var(--text); border-color:#cfd8ee;}
+  .btn.on{background:var(--blue); border-color:var(--blue); color:#fff;}
+  .btn.warn{background:var(--amber); border-color:var(--amber); color:#fff;}
+  .btn.ghost{background:transparent; box-shadow:none;}
+  .btn.sm{height:27px; padding:0 10px; font-size:11px;}
+  .btn:focus-visible,.slot:focus-visible,.seg button:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+  .seg{display:inline-flex; background:var(--panel-2); border:1px solid var(--line); border-radius:10px; padding:3px; gap:2px;}
+  .seg button{border:0; background:transparent; color:var(--text-mute); font-size:12px; font-weight:600; padding:5px 12px; border-radius:7px;}
+  .seg button.active{background:var(--panel); color:var(--blue); box-shadow:var(--shadow-sm);}
+
+  main{padding:18px 20px 40px; max-width:1760px; margin:0 auto;}
+  .kpi-row{display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin-bottom:16px;}
+  .kpi{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:14px 16px;
+    box-shadow:var(--shadow-sm); position:relative; overflow:hidden;}
+  .kpi::after{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--accent,var(--blue));}
+  .k-label{font-size:10px; text-transform:uppercase; letter-spacing:1.1px; color:var(--text-mute); font-weight:600;}
+  .k-val{font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; line-height:1.15; margin-top:6px;}
+  .k-val small{font-size:13px; color:var(--text-mute); font-weight:500;}
+  .k-sub{font-size:11px; color:var(--text-dim); margin-top:3px;}
+
+  .cols{display:grid; grid-template-columns:minmax(0,1fr) 348px; gap:16px; align-items:start;}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow-sm); overflow:hidden;}
+  .card-head{display:flex; align-items:center; gap:10px; padding:12px 16px; border-bottom:1px solid var(--line-soft); flex-wrap:wrap;}
+  .card-head h2{font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:700;}
+  .card-head .hint{font-size:11px; color:var(--text-mute);}
+  .card-body{padding:14px 16px;}
+
+  /* ================= PANGGUNG 3D ================= */
+  .stage{position:relative; height:640px; overflow:hidden; cursor:grab; touch-action:none;
+    background:radial-gradient(900px 420px at 50% 6%, #fbfcff, transparent 70%), linear-gradient(180deg,#f4f6fc,#e8ecf7);
+    perspective:1600px; perspective-origin:50% 42%;}
+  .stage.dragging{cursor:grabbing;}
+  .stage.edit{cursor:crosshair;}
+  .world{position:absolute; left:50%; top:50%; transform-style:preserve-3d;
+    transform:translate(-50%,-50%) scale(var(--zoom,1)) rotateX(var(--rx,58deg)) rotateZ(var(--rz,-32deg));}
+  .floor{position:relative; transform-style:preserve-3d; border-radius:8px;
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px var(--gm,20px)),
+      repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px var(--gm,20px)),
+      linear-gradient(135deg, var(--asphalt-1), var(--asphalt-2));
+    box-shadow:0 0 0 6px #262c39, 0 0 90px rgba(26,32,54,.45);}
+  .floor::after{content:""; position:absolute; inset:-6px; border-radius:12px; z-index:-1;
+    background:rgba(26,32,54,.35); filter:blur(24px); transform:translateZ(-24px);}
+
+  .zone-paint{position:absolute; font-family:'Space Grotesk',sans-serif; font-weight:700; color:rgba(238,241,247,.13);
+    letter-spacing:6px; pointer-events:none; user-select:none; white-space:nowrap; transform:translate(-50%,-50%);}
+
+  .slot{position:absolute; border:2px solid rgba(238,241,247,.55); border-radius:2px; background:rgba(255,255,255,.03);
+    transform-style:preserve-3d; transform-origin:50% 50%; cursor:pointer; transition:background .25s, box-shadow .2s;}
+  .slot.free{background:rgba(18,181,138,.16); box-shadow:0 0 14px rgba(18,181,138,.26) inset;}
+  .slot.reserved{border-color:rgba(123,92,255,.85); background:rgba(123,92,255,.15);}
+  .slot.overstay{background:rgba(229,150,10,.16);}
+  .slot.illegal{border-color:var(--s-illegal); background:rgba(255,71,87,.2); animation:sp 1.4s ease-in-out infinite;}
+  @keyframes sp{50%{background:rgba(255,71,87,.42);}}
+  .slot.blind{border-style:dashed; border-color:#ff8f98; box-shadow:0 0 0 2px rgba(255,71,87,.25);}
+  .slot.sel{box-shadow:0 0 0 3px var(--blue), 0 0 26px var(--blue-glow);}
+  .slot .tag{position:absolute; left:2px; top:2px; font-family:'JetBrains Mono',monospace; font-size:8px;
+    color:rgba(238,241,247,.55); pointer-events:none;}
+  .stage.edit .slot{cursor:move;}
+
+  .car{position:absolute; transform-style:preserve-3d; pointer-events:none;}
+  .car .f{position:absolute; transform-origin:0 0; background:var(--c,#8892a6); backface-visibility:hidden;}
+  .car .top{background:linear-gradient(180deg, var(--c,#8892a6), rgba(0,0,0,.35)); border-radius:5px;}
+  .car .top::before{content:""; position:absolute; left:12%; right:12%; top:22%; height:44%;
+    background:linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.08)); border-radius:3px;}
+  .car.moto .top::before{display:none;}
+  .car .side{filter:brightness(.72);} .car .end{filter:brightness(.86);}
+  .car-shadow{position:absolute; background:rgba(0,0,0,.42); filter:blur(5px); border-radius:6px; transform:translateZ(1px);}
+
+  .gate{position:absolute; transform-style:preserve-3d; transform-origin:50% 50%;}
+  .gate .body{position:absolute; transform-origin:0 0;}
+  .gate.sel .body{outline:2px solid var(--blue);}
+  .stage.edit .gate{cursor:move;}
+  .billboard{position:absolute; transform-style:preserve-3d; pointer-events:none;
+    transform:translateZ(92px) rotateZ(calc(-1 * var(--rz,-32deg))) rotateX(calc(-1 * var(--rx,58deg)));}
+  .billboard .chip{transform:translate(-50%,-100%); background:var(--panel); border:1px solid var(--line);
+    border-radius:10px; padding:6px 11px; box-shadow:var(--shadow-md); text-align:center; white-space:nowrap;}
+  .billboard .chip b{font-family:'Space Grotesk',sans-serif; font-size:17px; display:block; line-height:1.1;}
+  .billboard .chip span{font-size:9px; text-transform:uppercase; letter-spacing:1px; color:var(--text-mute); font-weight:600;}
+  .stalk{position:absolute; left:-1px; bottom:0; width:2px; height:92px;
+    background:linear-gradient(180deg, rgba(59,107,255,.5), rgba(59,107,255,0));}
+
+  .cam-pin{position:absolute; transform-style:preserve-3d;}
+  .cam-pin .head{position:absolute; width:15px; height:15px; margin:-7.5px 0 0 -7.5px; border-radius:4px;
+    background:var(--blue); box-shadow:0 0 0 3px rgba(59,107,255,.25), 0 8px 14px rgba(0,0,0,.4);
+    transform:translateZ(var(--ch,56px)); cursor:pointer;}
+  .cam-pin.sel .head{background:#fff; box-shadow:0 0 0 3px var(--blue), 0 0 26px var(--blue-glow);}
+  .cam-pin .pole{position:absolute; width:2px; height:var(--ch,56px); margin-left:-1px;
+    background:linear-gradient(180deg,#aab4cc,#5b6478); transform-origin:0 100%;
+    transform:rotateX(90deg) translateY(calc(-1 * var(--ch,56px)));}
+  .cam-pin .fov{position:absolute; transform:translateZ(2px); pointer-events:none; overflow:visible;}
+  .stage.edit .cam-pin .head{cursor:move;}
+
+  .stage-tools{position:absolute; left:14px; top:14px; z-index:5; display:flex; gap:8px; flex-wrap:wrap; max-width:calc(100% - 28px);}
+  .stage-legend{position:absolute; left:14px; bottom:14px; z-index:5; display:flex; gap:13px; flex-wrap:wrap;
+    padding:9px 13px; background:rgba(255,255,255,.9); backdrop-filter:blur(10px); border:1px solid var(--line);
+    border-radius:11px; box-shadow:var(--shadow-sm); font-size:11px; color:var(--text-dim);}
+  .lg{display:flex; align-items:center; gap:6px;}
+  .lg i{width:11px; height:11px; border-radius:3px; display:block;}
+  .scale-bar{position:absolute; right:14px; bottom:14px; z-index:5; font-size:10px; color:var(--text-mute);
+    background:rgba(255,255,255,.9); border:1px solid var(--line); border-radius:8px; padding:5px 9px;}
+
+  .slot-detail{position:absolute; right:14px; top:14px; z-index:6; width:242px; background:var(--panel);
+    border:1px solid var(--line); border-radius:12px; box-shadow:var(--shadow-md); padding:14px; display:none;}
+  .slot-detail.show{display:block;}
+  .slot-detail h3{font-family:'Space Grotesk',sans-serif; font-size:15px; display:flex; align-items:center; gap:8px;}
+  .rows{margin-top:10px; display:grid; gap:7px;}
+  .r{display:flex; justify-content:space-between; font-size:12px; gap:10px;}
+  .r span:first-child{color:var(--text-mute);}
+  .r span:last-child{font-weight:600; text-align:right;}
+  .sd-close{position:absolute; right:9px; top:9px; border:0; background:transparent; color:var(--text-mute); font-size:15px;}
+  .status-chip{font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.8px; padding:3px 8px; border-radius:999px; color:#fff;}
+
+  /* ================= EDITOR ================= */
+  .editor{display:none; border-top:1px solid var(--line-soft); background:var(--panel-2);}
+  .editor.show{display:block;}
+  .ed-tabs{display:flex; gap:2px; padding:10px 16px 0;}
+  .ed-tabs button{border:0; background:transparent; font-size:12px; font-weight:600; color:var(--text-mute);
+    padding:7px 13px; border-radius:9px 9px 0 0;}
+  .ed-tabs button.active{background:var(--panel); color:var(--blue); box-shadow:var(--shadow-sm);}
+  .ed-pane{display:none; padding:16px; background:var(--panel);}
+  .ed-pane.active{display:block;}
+  .grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px;}
+  .field label{display:block; font-size:10px; text-transform:uppercase; letter-spacing:1px; color:var(--text-mute);
+    margin-bottom:5px; font-weight:600;}
+  .field input, .field select{width:100%; background:#f3f5fb; border:1px solid var(--line); color:var(--text);
+    border-radius:9px; padding:8px 10px; font-size:12.5px;}
+  .field input[type=range]{padding:0; background:transparent;}
+  .field .val{float:right; font-family:'JetBrains Mono',monospace; color:var(--text-dim); font-weight:600;}
+  .mode-seg{width:100%;}
+  .mode-seg button{flex:1;}
+  .field.off{opacity:.35; pointer-events:none;}
+  .ed-actions{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; padding-top:14px; border-top:1px solid var(--line-soft);}
+  .ed-note{font-size:11.5px; color:var(--text-dim); line-height:1.55; margin-top:10px;}
+  .ed-msg{font-size:12px; font-weight:600; margin-top:10px; display:none;}
+  .ed-msg.ok{color:var(--green); display:block;} .ed-msg.err{color:var(--red); display:block;}
+  .sel-empty{font-size:12px; color:var(--text-mute);}
+  .cov-warn{display:flex; align-items:center; gap:8px; font-size:12px; padding:9px 12px; border-radius:10px;
+    background:#fff2f3; border:1px solid #ffd4d8; color:#a3323d; margin-bottom:12px;}
+  .cov-ok{background:#eefaf5; border-color:#bfe9d9; color:#0d6f57;}
+
+  /* ================= editor ROI di atas gambar CCTV ================= */
+  .roi-wrap{display:grid; grid-template-columns:minmax(0,1fr) 240px; gap:14px;}
+  .roi-stage{position:relative; aspect-ratio:16/9; background:#171c2b; border-radius:12px; overflow:hidden;
+    border:1px solid var(--line); cursor:crosshair;}
+  .roi-stage img{width:100%; height:100%; object-fit:contain; display:block;}
+  .roi-svg{position:absolute; inset:0; width:100%; height:100%;}
+  .roi-off{position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    color:#8b93ab; font-size:12px; text-align:center; padding:0 24px;}
+  .roi-poly{fill:rgba(18,181,138,.20); stroke:#2fe6a6; stroke-width:.5; vector-effect:non-scaling-stroke;}
+  .roi-poly.busy{fill:rgba(59,107,255,.30); stroke:#7ea2ff;}
+  .roi-poly.active{fill:rgba(255,230,0,.22); stroke:#ffe600; stroke-width:1; stroke-dasharray:2 1.4;}
+  .roi-pt{fill:#ffe600; stroke:#1a2036; stroke-width:.4; vector-effect:non-scaling-stroke;}
+  .roi-label{fill:#fff; font-size:3px; font-family:'JetBrains Mono',monospace; paint-order:stroke;
+    stroke:rgba(0,0,0,.65); stroke-width:.9; text-anchor:middle;}
+  .roi-det{fill:none; stroke:#ffb020; stroke-width:.5; vector-effect:non-scaling-stroke;}
+  .roi-anchor{fill:#ffb020; stroke:#1a2036; stroke-width:.3; vector-effect:non-scaling-stroke;}
+  .roi-side{display:flex; flex-direction:column; gap:10px; min-width:0;}
+  .roi-stat{font-size:11.5px; color:var(--text-dim); background:var(--panel-2); border:1px solid var(--line);
+    border-radius:10px; padding:9px 11px; line-height:1.55;}
+  .roi-stat b{color:var(--text);}
+  .roi-list{display:flex; flex-direction:column; gap:5px; max-height:250px; overflow:auto; padding-right:2px;}
+  .roi-item{display:flex; align-items:center; gap:8px; padding:6px 9px; border:1px solid var(--line);
+    border-radius:9px; background:var(--panel); font-size:11.5px; cursor:pointer;}
+  .roi-item.active{border-color:var(--blue); box-shadow:0 0 0 2px var(--blue-glow);}
+  .roi-item .sid{font-family:'JetBrains Mono',monospace; font-weight:600; flex:1;}
+  .roi-item .st{width:9px; height:9px; border-radius:50%; flex:none; background:#c6cddd;}
+  .roi-item .st.drawn{background:var(--green);} .roi-item .st.busy{background:var(--blue);}
+  .health-banner{display:none; gap:9px; align-items:flex-start; font-size:12px; line-height:1.55;
+    border-radius:12px; padding:11px 14px; margin-bottom:14px;}
+  .health-banner.show{display:flex;}
+  .health-banner.bad{background:#fff2f3; border:1px solid #ffd4d8; color:#a3323d;}
+  .health-banner.good{background:#eefaf5; border:1px solid #bfe9d9; color:#0d6f57;}
+  .health-banner ul{margin:6px 0 0 16px;}
+  @media (max-width:820px){ .roi-wrap{grid-template-columns:1fr;} }
+
+  /* ================= panel kanan ================= */
+  .side{display:grid; gap:16px;}
+  .flow-chart{display:flex; align-items:flex-end; gap:3px; height:132px; padding-top:6px;}
+  .fc-col{flex:1; display:flex; flex-direction:column; justify-content:flex-end; gap:2px; min-width:0; position:relative;}
+  .fc-col .bin{background:linear-gradient(180deg,#5b83ff,var(--blue)); border-radius:3px 3px 0 0;}
+  .fc-col .bout{background:linear-gradient(180deg,#ffb3ba,var(--red)); border-radius:0 0 3px 3px;}
+  .fc-col .hr{font-size:8px; color:var(--text-mute); text-align:center; margin-top:4px; font-family:'JetBrains Mono',monospace;}
+  .zbar{margin-bottom:11px;}
+  .zt{display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px;}
+  .zt b{font-family:'JetBrains Mono',monospace; font-weight:600;}
+  .track{height:8px; border-radius:99px; background:var(--panel-2); border:1px solid var(--line-soft); overflow:hidden;}
+  .track i{display:block; height:100%; border-radius:99px; transition:width .5s cubic-bezier(.2,.8,.2,1);}
+  .evt{display:flex; gap:10px; align-items:center; padding:9px 0; border-bottom:1px solid var(--line-soft);}
+  .evt:last-child{border-bottom:0;}
+  .evt .ico{width:28px; height:28px; border-radius:9px; flex:none; display:flex; align-items:center; justify-content:center; font-size:13px;}
+  .evt .txt{flex:1; min-width:0;}
+  .plate{font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; border:1px solid var(--line);
+    border-radius:4px; padding:1px 5px; background:var(--panel-2);}
+  .evt .meta{font-size:10.5px; color:var(--text-mute); margin-top:3px;}
+  .evt .time{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--text-mute); flex:none;}
+
+  .cam-strip{display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:12px;}
+  .cam-card{border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--panel-2);}
+  .cam-card.placed{border-color:#bfd0ff;}
+  .cam-view{position:relative; aspect-ratio:16/9; background:#20263a; display:flex; align-items:center; justify-content:center;}
+  .cam-view img{width:100%; height:100%; object-fit:cover; display:block;}
+  .off-note{font-size:11px; color:#8b93ab; text-align:center; padding:0 12px;}
+  .cam-meta{padding:9px 11px; display:flex; align-items:center; gap:8px;}
+  .cam-meta .nm{font-size:12px; font-weight:600; flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .cnt{font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600;}
+  .cnt.in{color:var(--blue);} .cnt.out{color:var(--red);}
+  .cam-cov{padding:0 11px 9px; font-size:10.5px; color:var(--text-mute);}
+
+  .empty{font-size:12px; color:var(--text-mute); padding:16px 0; text-align:center;}
+  .banner{display:none; gap:10px; align-items:flex-start; background:#fff8e8; border:1px solid #f3dfae; color:#7a5a12;
+    border-radius:12px; padding:11px 14px; font-size:12px; margin-bottom:14px; line-height:1.5;}
+  .banner.show{display:flex;}
+
+  @media (max-width:1200px){ .kpi-row{grid-template-columns:repeat(3,1fr);} .cols{grid-template-columns:1fr;} .stage{height:520px;} }
+  @media (max-width:640px){
+    main{padding:14px 12px 30px;} .kpi-row{grid-template-columns:repeat(2,1fr); gap:9px;}
+    .k-val{font-size:22px;} .stage{height:400px;} .stage-legend{font-size:10px; gap:9px; padding:7px 10px;}
+  }
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mark">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8">
+      <circle cx="12" cy="12" r="8"/><path d="M12 1v5M12 18v5M1 12h5M18 12h5"/><circle cx="12" cy="12" r="2.2" fill="#fff" stroke="none"/>
+    </svg>
+  </div>
+  <div class="titles">
+    <h1>ENPIDIX · PARKING ANALYTICS</h1>
+    <p>Denah 3D · cakupan CCTV · perhitungan kendaraan</p>
+  </div>
+  <div class="spacer"></div>
+  <div class="pill"><span class="dot" id="connDot"></span><span id="connText">Menghubungkan…</span></div>
+  <div class="seg" id="levelSeg"></div>
+  <button class="btn" id="editBtn">Atur denah</button>
+  <button class="btn" onclick="location.href='/'">← Dashboard utama</button>
+</header>
+
+<main>
+  <div class="banner" id="demoBanner">
+    <span>⚠️</span>
+    <div><b>Mode contoh.</b> Endpoint <span class="mono">/api/parking/*</span> belum ada di server, jadi denah ini data simulasi.
+    Denah yang Anda atur tetap bisa disimpan lewat tombol <b>Unduh JSON</b> dan dipasang belakangan.</div>
+  </div>
+
+  <div class="health-banner" id="healthBanner"></div>
+
+  <div class="kpi-row">
+    <div class="kpi" style="--accent:var(--blue)"><div class="k-label">Kapasitas</div><div class="k-val" id="kCap">—</div><div class="k-sub" id="kCapSub">&nbsp;</div></div>
+    <div class="kpi" style="--accent:#5b83ff"><div class="k-label">Terisi</div><div class="k-val" id="kBusy">—</div><div class="k-sub" id="kBusySub">&nbsp;</div></div>
+    <div class="kpi" style="--accent:var(--green)"><div class="k-label">Kosong</div><div class="k-val" id="kFree">—</div><div class="k-sub" id="kFreeSub">&nbsp;</div></div>
+    <div class="kpi" style="--accent:var(--violet)"><div class="k-label">Okupansi</div><div class="k-val" id="kOcc">—</div><div class="k-sub" id="kOccSub">&nbsp;</div></div>
+    <div class="kpi" style="--accent:var(--blue)"><div class="k-label">Masuk hari ini</div><div class="k-val" id="kIn">—</div><div class="k-sub" id="kInSub">dari analitik kamera</div></div>
+    <div class="kpi" style="--accent:var(--red)"><div class="k-label">Keluar hari ini</div><div class="k-val" id="kOut">—</div><div class="k-sub" id="kOutSub">&nbsp;</div></div>
+  </div>
+
+  <div class="cols">
+    <div class="card">
+      <div class="card-head">
+        <h2>Denah 3D</h2>
+        <span class="hint" id="stageHint">Seret untuk memutar · scroll untuk zoom · klik slot untuk detail</span>
+      </div>
+
+      <div class="stage" id="stage">
+        <div class="stage-tools">
+          <button class="btn" id="resetViewBtn">Atur ulang tampilan</button>
+          <button class="btn" id="topBtn">Tampak atas</button>
+          <button class="btn" id="orbitBtn">Putar otomatis</button>
+          <button class="btn on" id="camPinBtn">Cakupan kamera</button>
+        </div>
+        <div class="world" id="world"><div class="floor" id="floor"></div></div>
+        <div class="stage-legend">
+          <div class="lg"><i style="background:var(--s-free)"></i>Kosong</div>
+          <div class="lg"><i style="background:var(--s-busy)"></i>Terisi</div>
+          <div class="lg"><i style="background:var(--s-over)"></i>Lewat batas</div>
+          <div class="lg"><i style="background:var(--s-illegal)"></i>Ilegal</div>
+          <div class="lg"><i style="background:var(--s-reserved)"></i>Khusus</div>
+          <div class="lg"><i style="border:2px dashed #ff8f98; background:transparent"></i>Tak terpantau</div>
+        </div>
+        <div class="scale-bar" id="scaleBar">—</div>
+
+        <div class="slot-detail" id="slotDetail">
+          <button class="sd-close" id="sdClose" aria-label="Tutup">✕</button>
+          <h3 id="sdTitle">—</h3>
+          <div class="rows" id="sdRows"></div>
+        </div>
+      </div>
+
+      <!-- ============ EDITOR ============ -->
+      <div class="editor" id="editor">
+        <div class="ed-tabs">
+          <button data-p="area" class="active">Area</button>
+          <button data-p="slot">Slot</button>
+          <button data-p="cam">Kamera</button>
+          <button data-p="gate">Gerbang</button>
+          <button data-p="roi">Pantauan CCTV</button>
+        </div>
+
+        <!-- AREA -->
+        <div class="ed-pane active" data-pane="area">
+          <div class="grid2">
+            <div class="field"><label>Nama lantai / area</label><input id="aName" type="text" placeholder="P1"></div>
+            <div class="field"><label>Lebar area (meter)</label><input id="aW" type="number" min="5" max="400" step="1"></div>
+            <div class="field"><label>Panjang area (meter)</label><input id="aL" type="number" min="5" max="400" step="1"></div>
+            <div class="field"><label>Kotak bantu (meter)<span class="val" id="aGridV">5</span></label>
+              <input id="aGrid" type="range" min="1" max="10" step="1"></div>
+          </div>
+          <div class="ed-actions">
+            <button class="btn" id="addLevelBtn">+ Lantai baru</button>
+            <button class="btn" id="delLevelBtn">Hapus lantai ini</button>
+          </div>
+          <div class="ed-note">Ukur area parkir sebenarnya, lalu isi lebar &amp; panjangnya. Semua posisi slot dan kamera disimpan dalam meter, jadi denah 3D ini berskala nyata — bukan gambar ilustrasi.</div>
+        </div>
+
+        <!-- SLOT -->
+        <div class="ed-pane" data-pane="slot">
+          <div class="field" style="margin-bottom:12px;">
+            <label>Pola parkir</label>
+            <div class="seg mode-seg" id="modeSeg">
+              <button data-m="perp" class="active">Tegak lurus</button>
+              <button data-m="parallel">Paralel</button>
+              <button data-m="angled">Miring</button>
+            </div>
+          </div>
+          <div class="grid2">
+            <div class="field"><label>Zona</label><input id="sZone" type="text" placeholder="A" maxlength="4"></div>
+            <div class="field"><label>Jenis</label><select id="sType">
+              <option value="car">Mobil</option><option value="moto">Motor</option>
+              <option value="disabled">Disabilitas</option><option value="reserved">Khusus / VIP</option></select></div>
+            <div class="field"><label>Jumlah slot per baris</label><input id="sCount" type="number" min="1" max="60" value="10"></div>
+            <div class="field" id="angleField"><label>Sudut miring<span class="val" id="sAngV">45°</span></label>
+              <input id="sAng" type="range" min="30" max="75" step="5" value="45"></div>
+            <div class="field"><label>Arah baris<span class="val" id="sDirV">90°</span></label>
+              <input id="sDir" type="range" min="0" max="355" step="5" value="90"></div>
+            <div class="field"><label>Arah hadap slot terpilih<span class="val" id="sRotV">0°</span></label>
+              <input id="sRot" type="range" min="0" max="355" step="5" value="0"></div>
+            <div class="field"><label>Lebar slot (m)</label><input id="sW" type="number" min="0.8" max="8" step="0.1"></div>
+            <div class="field"><label>Panjang slot (m)</label><input id="sL" type="number" min="1.5" max="15" step="0.1"></div>
+          </div>
+          <div class="ed-actions">
+            <button class="btn on" id="addRowBtn">+ Tambah baris slot</button>
+            <button class="btn" id="addOneBtn">+ 1 slot</button>
+            <button class="btn" id="dupZoneBtn">Gandakan zona</button>
+            <button class="btn warn" id="delSlotBtn">Hapus slot terpilih</button>
+          </div>
+          <div class="ed-actions" style="border-top:0; padding-top:0;">
+            <span style="font-size:11px; color:var(--text-mute); align-self:center; letter-spacing:.6px; text-transform:uppercase; font-weight:600;">Putar zona terpilih</span>
+            <button class="btn sm" data-rot="-90">⟲ 90°</button>
+            <button class="btn sm" data-rot="-15">⟲ 15°</button>
+            <button class="btn sm" data-rot="-5">⟲ 5°</button>
+            <button class="btn sm" data-rot="5">5° ⟳</button>
+            <button class="btn sm" data-rot="15">15° ⟳</button>
+            <button class="btn sm" data-rot="90">90° ⟳</button>
+            <button class="btn sm" id="flipZoneBtn">Balik arah hadap</button>
+          </div>
+          <div class="ed-note" id="slotSelInfo">Pilih pola parkir, atur arah baris, lalu <b>Tambah baris slot</b>. Klik satu slot untuk memilih zonanya — tombol putar akan memutar seluruh zona itu terhadap titik tengahnya.</div>
+        </div>
+
+        <!-- KAMERA -->
+        <div class="ed-pane" data-pane="cam">
+          <div class="grid2">
+            <div class="field"><label>Kamera</label><select id="cPick"></select></div>
+            <div class="field"><label>Arah pandang<span class="val" id="cRotV">0°</span></label>
+              <input id="cRot" type="range" min="0" max="355" step="5"></div>
+            <div class="field"><label>Sudut pandang (FOV)<span class="val" id="cFovV">90°</span></label>
+              <input id="cFov" type="range" min="20" max="180" step="5"></div>
+            <div class="field"><label>Jangkauan (meter)<span class="val" id="cRangeV">25</span></label>
+              <input id="cRange" type="range" min="3" max="120" step="1"></div>
+            <div class="field"><label>Tinggi pasang (meter)<span class="val" id="cHeightV">4</span></label>
+              <input id="cHeight" type="range" min="1" max="15" step="0.5"></div>
+          </div>
+          <div class="ed-actions">
+            <button class="btn on" id="addCamBtn">+ Pasang kamera di denah</button>
+            <button class="btn warn" id="delCamBtn">Lepas kamera terpilih</button>
+            <button class="btn" id="applyCovBtn">Terapkan cakupan ke slot</button>
+          </div>
+          <div class="ed-note" id="camSelInfo">Pilih kamera, klik <b>Pasang kamera</b>, lalu seret ikonnya ke titik tiang aslinya. Atur arah, sudut, dan jangkauan sampai kerucut biru menutupi slot yang memang terlihat di layar CCTV. Slot di luar semua kerucut ditandai garis merah putus-putus.</div>
+        </div>
+
+        <!-- GERBANG -->
+        <div class="ed-pane" data-pane="gate">
+          <div class="grid2">
+            <div class="field"><label>Gerbang</label><select id="gPick">
+              <option value="in">Gerbang masuk</option><option value="out">Gerbang keluar</option></select></div>
+            <div class="field"><label>Arah<span class="val" id="gRotV">0°</span></label>
+              <input id="gRot" type="range" min="0" max="350" step="10"></div>
+            <div class="field"><label>Kamera penghitung</label><select id="gCam"></select></div>
+          </div>
+          <div class="ed-note">Seret palang gerbang ke posisi sebenarnya. Angka melayang di atas gerbang diambil dari virtual line counting kamera yang dipilih — inilah sumber angka “masuk / keluar hari ini”.</div>
+        </div>
+
+        <!-- PANTAUAN CCTV -->
+        <div class="ed-pane" data-pane="roi">
+          <div class="grid2" style="margin-bottom:12px;">
+            <div class="field"><label>Kamera</label><select id="rCam"></select></div>
+            <div class="field"><label>Slot yang sedang digambar</label><select id="rSlot"></select></div>
+          </div>
+
+          <div class="roi-wrap">
+            <div class="roi-stage" id="roiStage">
+              <img id="roiFeed" alt="Gambar langsung kamera parkir">
+              <svg class="roi-svg" id="roiSvg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+              <div class="roi-off" id="roiOff">Pilih kamera untuk menampilkan gambar langsung.</div>
+            </div>
+            <div class="roi-side">
+              <div class="roi-stat" id="roiStat">—</div>
+              <div class="roi-list" id="roiList"></div>
+            </div>
+          </div>
+
+          <div class="ed-actions">
+            <button class="btn on" id="roiDrawBtn">Mulai menggambar</button>
+            <button class="btn" id="roiUndoBtn">Batalkan titik terakhir</button>
+            <button class="btn" id="roiBoxBtn">Kotak cepat</button>
+            <button class="btn warn" id="roiClearBtn">Hapus poligon slot ini</button>
+            <button class="btn on" id="roiSaveBtn">Simpan ke server</button>
+          </div>
+          <div class="ed-note">
+            Klik di gambar untuk menaruh titik sudut slot — ikuti garis cat parkir yang terlihat di layar,
+            minimal 3 titik. Titik kuning adalah jangkar kendaraan yang terdeteksi kamera saat ini;
+            slot dianggap terisi ketika titik itu masuk ke dalam poligonnya. Poligon yang sedang terisi
+            berubah biru secara langsung, jadi Anda bisa memastikan pembacaannya benar sebelum menyimpan.
+          </div>
+          <div class="ed-msg" id="roiMsg"></div>
+        </div>
+
+        <div style="padding:0 16px 16px; background:var(--panel);">
+          <div id="covBox"></div>
+          <div class="ed-actions" style="border-top:0; margin-top:0; padding-top:0;">
+            <button class="btn on" id="saveLayoutBtn">Simpan denah ke server</button>
+            <button class="btn" id="reloadLayoutBtn">Muat ulang dari server</button>
+            <button class="btn" id="exportBtn">Unduh JSON</button>
+            <button class="btn" id="importBtn">Muat dari JSON</button>
+            <input type="file" id="importFile" accept="application/json" style="display:none">
+          </div>
+          <div class="ed-msg" id="edMsg"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="side">
+      <div class="card">
+        <div class="card-head"><h2>Arus kendaraan per jam</h2><span class="hint" id="flowHint"></span></div>
+        <div class="card-body">
+          <div class="flow-chart" id="flowChart"></div>
+          <div style="display:flex; gap:16px; margin-top:10px; font-size:11px; color:var(--text-dim);">
+            <div class="lg"><i style="background:var(--blue); width:11px; height:11px; border-radius:3px; display:block;"></i>Masuk</div>
+            <div class="lg"><i style="background:var(--red); width:11px; height:11px; border-radius:3px; display:block;"></i>Keluar</div>
+          </div>
+        </div>
+      </div>
+      <div class="card"><div class="card-head"><h2>Okupansi per zona</h2></div><div class="card-body" id="zoneBars"></div></div>
+      <div class="card"><div class="card-head"><h2>Aktivitas terbaru</h2><span class="hint" id="evtHint"></span></div>
+        <div class="card-body" id="evtList"><div class="empty">Menunggu data…</div></div></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-head"><h2>Kamera analitik parkir</h2>
+      <span class="hint">Angka masuk/keluar dari virtual line counting tiap kamera</span>
+      <div class="spacer"></div>
+      <button class="btn sm" id="camViewBtn">Nyalakan pratinjau</button>
+    </div>
+    <div class="card-body"><div class="cam-strip" id="camStrip"><div class="empty">Memuat kamera…</div></div></div>
+  </div>
+</main>
+
+<script>
+/* ===========================================================================
+   ENPIDIX — Parking Analytics 3D + Editor Denah & Cakupan CCTV
+   Satu file, tanpa library eksternal. Render 3D pakai CSS transform (GPU).
+
+   Sistem koordinat: METER, origin di sudut kiri-atas area, sumbu Y ke bawah.
+   Arah 0° = menghadap ke atas denah, bertambah searah jarum jam.
+   Semua yang disimpan (slot & kamera) berskala nyata, jadi denah 3D ini
+   mencerminkan lapangan, bukan ilustrasi.
+
+   API (semua opsional, ada fallback):
+     GET/POST /api/parking/layout          → area, slot, kamera, gerbang
+     GET      /api/parking/overview        → status slot real-time
+     GET      /api/parking/flow?hours=24
+     GET      /api/parking/events?limit=18
+     GET      /api/cameras                        (endpoint existing)
+     GET      /api/cameras/{id}/counting/stats    (endpoint existing)
+   ========================================================================= */
+
+const API = "";
+const $  = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
+
+const PX_PER_M = 20;                    // 1 meter = 20 px di denah
+const M = v => v*PX_PER_M;
+const VEHICLE_CLASSES = ["car","motorcycle","motorbike","bus","truck","bicycle"];
+const CLASS_LABEL = {car:"Mobil", motorcycle:"Motor", motorbike:"Motor", bus:"Bus", truck:"Truk", bicycle:"Sepeda"};
+/* Ukuran baku slot (meter) menurut jenis kendaraan DAN pola parkir.
+   Slot paralel dibuat lebih panjang karena mobil butuh ruang manuver maju-mundur. */
+const BASE_SIZE = {
+  car:      {perp:{w:2.4,l:5.0}, parallel:{w:2.4,l:6.0}, angled:{w:2.4,l:5.0}},
+  moto:     {perp:{w:1.1,l:2.2}, parallel:{w:1.1,l:2.6}, angled:{w:1.1,l:2.2}},
+  disabled: {perp:{w:3.6,l:5.0}, parallel:{w:3.6,l:6.5}, angled:{w:3.6,l:5.0}},
+  reserved: {perp:{w:2.4,l:5.0}, parallel:{w:2.4,l:6.0}, angled:{w:2.4,l:5.0}},
+};
+const TYPE_LABEL = {car:"Mobil", moto:"Motor", disabled:"Disabilitas", reserved:"Khusus / VIP"};
+const MODE_LABEL = {perp:"Tegak lurus", parallel:"Paralel", angled:"Miring"};
+const baseSize = (type, mode) => (BASE_SIZE[type]||BASE_SIZE.car)[mode||"perp"] || BASE_SIZE.car.perp;
+
+let state = {
+  demo:false, dirty:false, edit:false, level:null,
+  areas:[],        // [{name,width_m,length_m,grid_m,gates:{in:{x,y,rot,camera_id},out:{...}}}]
+  slots:[],        // [{id,level,zone,type,x,y,rot,camera_id,status,plate,since}]
+  cams:[],         // [{camera_id,level,x,y,rot,fov,range,height}]
+  cameras:[], counting:{}, flow:[], events:[], totals:{in:0,out:0,byClass:{}},
+  sel:null,        // {kind:'slot'|'cam'|'gate', id}
+  showCams:true, showPreview:false, orbit:false,
+};
+let view = {rx:58, rz:-32, zoom:1};
+
+/* ============================ util ============================ */
+async function api(path, opt){
+  const res = await fetch(API+path, Object.assign({credentials:"include"}, opt||{}));
+  if(!res.ok) throw new Error("HTTP "+res.status);
+  return res.json();
+}
+const pad2 = n => String(n).padStart(2,"0");
+const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+const rad = d => d*Math.PI/180;
+function hashInt(s){ let h=0; for(let i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))|0; return Math.abs(h); }
+function fmtDur(ms){ if(ms==null||isNaN(ms)) return "—"; const m=Math.max(0,Math.floor(ms/60000));
+  return m<60 ? m+" mnt" : Math.floor(m/60)+" j "+pad2(m%60)+" m"; }
+function fmtClock(iso){ const d=new Date(iso); return isNaN(d)?"—":pad2(d.getHours())+":"+pad2(d.getMinutes()); }
+const CAR_COLORS = ["#8d97ab","#e8ebf2","#2f3646","#3b6bff","#c0392b","#5c6480","#1f9d76","#d9d2c5"];
+const carColor = id => CAR_COLORS[hashInt(id)%CAR_COLORS.length];
+const STATUS_META = {
+  free:{label:"Kosong",color:"var(--s-free)"}, occupied:{label:"Terisi",color:"var(--s-busy)"},
+  overstay:{label:"Lewat batas",color:"var(--s-over)"}, illegal:{label:"Parkir ilegal",color:"var(--s-illegal)"},
+  reserved:{label:"Khusus",color:"var(--s-reserved)"},
+};
+const area = () => state.areas.find(a=>a.name===state.level) || state.areas[0];
+const slotsHere = () => state.slots.filter(s=>s.level===state.level);
+const camsHere  = () => state.cams.filter(c=>c.level===state.level);
+function slotSize(s){
+  const b = baseSize(s.type, s.mode);
+  return {w: s.w || b.w, l: s.l || b.l};
+}
+const slotCenter = s => { const z = slotSize(s); return {x: s.x + z.w/2, y: s.y + z.l/2}; };
+function setSlotCenter(s, cx, cy){ const z = slotSize(s); s.x = cx - z.w/2; s.y = cy - z.l/2; }
+
+/* ============================ muat data ============================ */
+async function loadLayout(){
+  try{
+    const d = await api("/api/parking/layout");
+    if(!d.areas || !d.areas.length) throw new Error("kosong");
+    state.areas = d.areas; state.slots = d.slots||[]; state.cams = d.cameras||[];
+    state.demo = false;
+  }catch(e){
+    state.demo = true;
+    if(!state.areas.length) Object.assign(state, demoLayout());
+  }
+  if(!state.level || !state.areas.some(a=>a.name===state.level)) state.level = state.areas[0].name;
+  $("#demoBanner").classList.toggle("show", state.demo);
+  renderLevelSeg(); syncAreaForm(); computeCoverage(); renderDeck(); renderKPI(); renderZoneBars();
+}
+
+async function loadStatus(){
+  if(state.edit) return;                       // jangan tabrakan dengan pengeditan
+  try{
+    const d = await api("/api/parking/overview");
+    const map = {}; (d.slots||[]).forEach(s=>map[s.id]=s);
+    state.slots.forEach(s=>{ const u=map[s.id]; if(u){ s.status=u.status; s.plate=u.plate; s.since=u.since; } });
+    state.demo = false;
+  }catch(e){ if(state.demo) mutateDemoStatus(); }
+  $("#connDot").className = "dot"+(state.demo?" demo":"");
+  $("#connText").textContent = state.demo ? "Mode contoh" : state.slots.length+" slot terpantau";
+  renderDeck(); renderKPI(); renderZoneBars();
+}
+
+async function loadFlow(){
+  try{ state.flow = (await api("/api/parking/flow?hours=24")).hours||[]; }
+  catch(e){ if(!state.flow.length) state.flow = demoFlow(); }
+  renderFlow();
+}
+async function loadEvents(){
+  try{ state.events = (await api("/api/parking/events?limit=18")).events||[]; }
+  catch(e){ if(!state.events.length) state.events = demoEvents(); }
+  renderEvents();
+}
+const isParkingCam = c => !!c.ai_vehicle_counting || /park/i.test(c.name||"");
+async function loadCameras(){
+  try{
+    const all = (await api("/api/cameras")).cameras||[];
+    const picked = all.filter(isParkingCam);
+    state.cameras = picked.length ? picked : all;
+  }catch(e){ if(!state.cameras.length) state.cameras = demoCameras(); }
+  fillCamSelects(); renderCamStrip(); loadCounting();
+}
+async function loadCounting(){
+  const byClass = {};
+  for(const c of state.cameras){
+    try{
+      const d = await api(`/api/cameras/${c.id}/counting/stats`);
+      let ci=0, co=0;
+      for(const k of Object.keys(d.counts||{})){
+        if(!VEHICLE_CLASSES.includes(k)) continue;
+        ci += d.counts[k].in||0; co += d.counts[k].out||0;
+        const b = byClass[k] || (byClass[k]={in:0,out:0});
+        b.in += d.counts[k].in||0; b.out += d.counts[k].out||0;
+      }
+      state.counting[c.id] = {in:ci, out:co};
+    }catch(e){ state.counting[c.id] ||= {in:0,out:0}; }
+  }
+  const vals = Object.values(state.counting);
+  let tin = vals.reduce((a,b)=>a+b.in,0), tout = vals.reduce((a,b)=>a+b.out,0);
+  if(state.demo && !tin && !tout){
+    const f = state.flow.length?state.flow:demoFlow();
+    tin = f.reduce((a,r)=>a+(r.in||0),0); tout = f.reduce((a,r)=>a+(r.out||0),0);
+  }
+  state.totals = {in:tin, out:tout, byClass};
+  renderKPI(); renderCamStrip(); renderDeck();
+}
+
+/* ==================== cakupan kamera ==================== */
+/* Slot dianggap terpantau bila titik tengahnya ada di dalam kerucut FOV kamera:
+   jarak <= jangkauan DAN selisih sudut <= FOV/2. Sederhana, tapi cukup untuk
+   memetakan slot ke kamera dan menemukan titik buta sebelum tiang dipasang. */
+function angleTo(cx, cy, x, y){
+  const a = Math.atan2(x-cx, -(y-cy))*180/Math.PI;   // 0° = ke atas denah
+  return (a+360)%360;
+}
+function angleDiff(a,b){ let d=Math.abs(a-b)%360; return d>180?360-d:d; }
+
+function coversSlot(cam, s){
+  const sz = slotSize(s);
+  const cx = s.x + sz.w/2, cy = s.y + sz.l/2;
+  const dist = Math.hypot(cx-cam.x, cy-cam.y);
+  if(dist > cam.range) return false;
+  if(dist < 0.4) return true;
+  return angleDiff(angleTo(cam.x, cam.y, cx, cy), cam.rot) <= cam.fov/2;
+}
+function computeCoverage(){
+  const cams = camsHere();
+  slotsHere().forEach(s=>{
+    let best=null, bestD=Infinity;
+    cams.forEach(c=>{
+      if(!coversSlot(c,s)) return;
+      const sz=slotSize(s), d=Math.hypot(s.x+sz.w/2-c.x, s.y+sz.l/2-c.y);
+      if(d<bestD){ bestD=d; best=c; }
+    });
+    s.covered = !!best;
+    if(best) s.camera_id = best.camera_id;
+  });
+  renderCoverageBox();
+}
+function renderCoverageBox(){
+  const box = $("#covBox"); if(!box) return;
+  const list = slotsHere();
+  const blind = list.filter(s=>!s.covered).length;
+  const cams = camsHere().length;
+  if(!cams){
+    box.innerHTML = `<div class="cov-warn">⚠️ Belum ada kamera dipasang di denah ${state.level}. Seluruh ${list.length} slot belum terpantau.</div>`;
+  } else if(blind){
+    box.innerHTML = `<div class="cov-warn">⚠️ ${blind} dari ${list.length} slot di luar jangkauan ${cams} kamera. Geser atau lebarkan sudut kamera sampai angka ini nol.</div>`;
+  } else {
+    box.innerHTML = `<div class="cov-warn cov-ok">✅ Seluruh ${list.length} slot di ${state.level} terpantau ${cams} kamera.</div>`;
+  }
+}
+
+/* ============================ render denah ============================ */
+function renderLevelSeg(){
+  $("#levelSeg").innerHTML = state.areas.map(a=>
+    `<button data-l="${a.name}" class="${a.name===state.level?'active':''}">${a.name}</button>`).join("");
+  $$("#levelSeg button").forEach(b=>b.addEventListener("click", ()=>{
+    state.level = b.dataset.l; state.sel = null;
+    renderLevelSeg(); syncAreaForm(); computeCoverage(); renderDeck(); renderZoneBars(); closeDetail(); fitZoom();
+  }));
+}
+
+function renderDeck(){
+  const a = area(); if(!a) return;
+  const floor = $("#floor");
+  floor.style.width  = M(a.width_m)+"px";
+  floor.style.height = M(a.length_m)+"px";
+  floor.style.setProperty("--gm", M(a.grid_m||5)+"px");
+  $("#scaleBar").textContent = `${a.width_m} × ${a.length_m} m · kotak ${a.grid_m||5} m`;
+
+  let html = "";
+
+  /* huruf zona dicat di aspal, di titik tengah tiap zona */
+  const zb = {};
+  slotsHere().forEach(s=>{
+    const z = zb[s.zone] || (zb[s.zone]={x1:1e9,y1:1e9,x2:-1e9,y2:-1e9});
+    const sz = slotSize(s);
+    z.x1=Math.min(z.x1,s.x); z.y1=Math.min(z.y1,s.y);
+    z.x2=Math.max(z.x2,s.x+sz.w); z.y2=Math.max(z.y2,s.y+sz.l);
+  });
+  Object.keys(zb).forEach(z=>{
+    const b = zb[z];
+    html += `<div class="zone-paint" style="left:${M((b.x1+b.x2)/2)}px; top:${M((b.y1+b.y2)/2)}px; font-size:${clamp(M(b.x2-b.x1)/6,18,64)}px;">ZONA ${z}</div>`;
+  });
+
+  /* slot */
+  slotsHere().forEach(s=>{
+    const sz = slotSize(s), st = s.status||"free";
+    const cls = [st==="occupied"?"":st, s.covered===false?"blind":"",
+                 (state.sel&&state.sel.kind==="slot"&&state.sel.id===s.id)?"sel":""].filter(Boolean).join(" ");
+    const busy = ["occupied","overstay","illegal"].includes(st);
+    html += `<div class="slot ${cls}" tabindex="0" role="button" data-slot="${s.id}"
+      style="left:${M(s.x)}px; top:${M(s.y)}px; width:${M(sz.w)}px; height:${M(sz.l)}px; transform:rotate(${s.rot||0}deg);">
+      <span class="tag">${s.id}</span>${busy?carHTML(s,sz):""}</div>`;
+  });
+
+  /* kamera + kerucut FOV */
+  if(state.showCams){
+    camsHere().forEach(c=>{
+      const cam = state.cameras.find(x=>String(x.id)===String(c.camera_id));
+      const selCls = (state.sel&&state.sel.kind==="cam"&&state.sel.id===c.camera_id)?"sel":"";
+      html += `<div class="cam-pin ${selCls}" data-cam="${c.camera_id}" title="${cam?cam.name:'Kamera '+c.camera_id}"
+        style="left:${M(c.x)}px; top:${M(c.y)}px; --ch:${M(c.height)}px;">
+        ${fovSVG(c)}<div class="pole"></div><div class="head"></div></div>`;
+    });
+  }
+
+  /* gerbang */
+  ["in","out"].forEach(k=>{
+    const g = (a.gates||{})[k]; if(!g) return;
+    const val = g.camera_id!=null && state.counting[g.camera_id]
+      ? (k==="in" ? state.counting[g.camera_id].in : state.counting[g.camera_id].out)
+      : (k==="in" ? state.totals.in : state.totals.out);
+    html += gateHTML(k, g, val);
+  });
+
+  floor.innerHTML = html;
+  bindDeckEvents();
+  applyView();
+}
+
+function fovSVG(c){
+  const R = M(c.range);
+  const half = c.fov/2;
+  const a1 = rad(c.rot-half-90), a2 = rad(c.rot+half-90);   // -90: 0°=atas
+  const p1 = [R + R*Math.cos(a1), R + R*Math.sin(a1)];
+  const p2 = [R + R*Math.cos(a2), R + R*Math.sin(a2)];
+  const large = c.fov > 180 ? 1 : 0;
+  const gid = "g"+c.camera_id;
+  return `<svg class="fov" width="${R*2}" height="${R*2}" viewBox="0 0 ${R*2} ${R*2}"
+      style="left:${-R}px; top:${-R}px;">
+      <defs><radialGradient id="${gid}">
+        <stop offset="0%" stop-color="#3b6bff" stop-opacity=".42"/>
+        <stop offset="100%" stop-color="#3b6bff" stop-opacity=".04"/>
+      </radialGradient></defs>
+      <path d="M ${R} ${R} L ${p1[0].toFixed(1)} ${p1[1].toFixed(1)}
+               A ${R} ${R} 0 ${large} 1 ${p2[0].toFixed(1)} ${p2[1].toFixed(1)} Z"
+        fill="url(#${gid})" stroke="rgba(59,107,255,.55)" stroke-width="1.5"/>
+    </svg>`;
+}
+
+function carHTML(s, sz){
+  const moto = s.type==="moto";
+  const w = M(sz.w) - (moto?6:12), l = M(sz.l) - (moto?8:16), h = moto?14:26;
+  const c = s.status==="illegal" ? "#ff4757" : carColor(s.id);
+  const ox = (M(sz.w)-w)/2, oy = (M(sz.l)-l)/2;
+  return `<div class="car ${moto?'moto':''}" style="--c:${c}; left:${ox}px; top:${oy}px; width:${w}px; height:${l}px;">
+    <div class="car-shadow" style="left:-3px; top:-2px; width:${w+6}px; height:${l+4}px;"></div>
+    <div class="f top"  style="width:${w}px; height:${l}px; transform:translateZ(${h}px);"></div>
+    <div class="f end"  style="width:${w}px; height:${h}px; transform:rotateX(90deg);"></div>
+    <div class="f end"  style="width:${w}px; height:${h}px; transform:translateY(${l}px) rotateX(90deg);"></div>
+    <div class="f side" style="width:${h}px; height:${l}px; transform:rotateY(-90deg);"></div>
+    <div class="f side" style="width:${h}px; height:${l}px; transform:translateX(${w}px) rotateY(-90deg);"></div>
+  </div>`;
+}
+
+function gateHTML(kind, g, value){
+  const masuk = kind==="in";
+  const col = masuk ? "#3b6bff" : "#ff4757";
+  const w = M(4), d = M(1.2), h = 46;
+  const sel = (state.sel&&state.sel.kind==="gate"&&state.sel.id===kind)?"sel":"";
+  return `<div class="gate ${sel}" data-gate="${kind}"
+      style="left:${M(g.x)}px; top:${M(g.y)}px; width:${w}px; height:${d}px; transform:rotate(${g.rot||0}deg);">
+    <div class="body" style="width:${w}px; height:${d}px; background:#20263a; border-radius:4px; transform:translateZ(${h}px);"></div>
+    <div class="body" style="width:${w}px; height:${h}px; background:${col}; filter:brightness(.8); transform:translateY(${d}px) rotateX(90deg);"></div>
+    <div class="body" style="width:${h}px; height:${d}px; background:${col}; filter:brightness(.6); transform:rotateY(-90deg);"></div>
+    <div class="billboard" style="left:${w/2}px; top:${d/2}px;">
+      <div class="stalk"></div>
+      <div class="chip"><b>${value||0}</b><span>${masuk?"Kendaraan masuk":"Kendaraan keluar"}</span></div>
+    </div></div>`;
+}
+
+/* ==================== interaksi denah ==================== */
+function bindDeckEvents(){
+  const floor = $("#floor");
+  $$(".slot", floor).forEach(el=>{
+    el.addEventListener("pointerdown", e=>onItemDown(e, "slot", el.dataset.slot));
+    el.addEventListener("click", e=>{ e.stopPropagation(); select("slot", el.dataset.slot); });
+    el.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); select("slot", el.dataset.slot); } });
+  });
+  $$(".cam-pin .head", floor).forEach(el=>{
+    const id = el.parentElement.dataset.cam;
+    el.addEventListener("pointerdown", e=>onItemDown(e, "cam", id));
+    el.addEventListener("click", e=>{ e.stopPropagation(); select("cam", id); });
+  });
+  $$(".gate", floor).forEach(el=>{
+    el.addEventListener("pointerdown", e=>onItemDown(e, "gate", el.dataset.gate));
+    el.addEventListener("click", e=>{ e.stopPropagation(); select("gate", el.dataset.gate); });
+  });
+}
+
+function select(kind, id){
+  if(kind==="slot" && !state.edit){ openDetail(id); return; }
+  state.sel = {kind, id: kind==="cam" ? (isNaN(+id)?id:+id) : id};
+  syncSelForms(); renderDeck();
+}
+
+/* geser objek: delta layar → delta meter (invers rotateZ + rotateX) */
+function screenToFloor(dx, dy){
+  const z = view.zoom, cx = Math.cos(rad(view.rz)), sx = Math.sin(rad(view.rz));
+  const cosRx = Math.max(0.12, Math.cos(rad(view.rx)));
+  const x1 = dx/z, y1 = (dy/z)/cosRx;
+  return { dx:(x1*cx + y1*sx)/PX_PER_M, dy:(-x1*sx + y1*cx)/PX_PER_M };
+}
+
+let itemDrag = null;
+function onItemDown(e, kind, id){
+  if(!state.edit) return;
+  e.stopPropagation();
+  select(kind, id);
+  const obj = getSelObj();
+  if(!obj) return;
+  itemDrag = {sx:e.clientX, sy:e.clientY, ox:obj.x, oy:obj.y, obj};
+  $("#stage").setPointerCapture(e.pointerId);
+}
+function getSelObj(){
+  if(!state.sel) return null;
+  if(state.sel.kind==="slot") return state.slots.find(s=>s.id===state.sel.id && s.level===state.level);
+  if(state.sel.kind==="cam")  return state.cams.find(c=>String(c.camera_id)===String(state.sel.id) && c.level===state.level);
+  if(state.sel.kind==="gate") return (area().gates||{})[state.sel.id];
+  return null;
+}
+
+/* ==================== kamera 3D (putar/zoom) ==================== */
+const stage = $("#stage");
+let camDrag = null;
+stage.addEventListener("pointerdown", e=>{
+  if(itemDrag) return;
+  if(e.target.closest(".stage-tools, .slot-detail, .stage-legend, .scale-bar")) return;
+  if(e.target.closest(".slot, .cam-pin, .gate")) return;
+  camDrag = {x:e.clientX, y:e.clientY, rx:view.rx, rz:view.rz};
+  stage.classList.add("dragging"); stage.setPointerCapture(e.pointerId);
+  if(state.edit){ state.sel=null; syncSelForms(); renderDeck(); } else closeDetail();
+});
+stage.addEventListener("pointermove", e=>{
+  if(itemDrag){
+    const a = area();
+    const d = screenToFloor(e.clientX-itemDrag.sx, e.clientY-itemDrag.sy);
+    const step = 0.1;
+    itemDrag.obj.x = clamp(Math.round((itemDrag.ox+d.dx)/step)*step, 0, a.width_m);
+    itemDrag.obj.y = clamp(Math.round((itemDrag.oy+d.dy)/step)*step, 0, a.length_m);
+    state.dirty = true;
+    computeCoverage(); renderDeck();
+    return;
+  }
+  if(!camDrag) return;
+  view.rz = camDrag.rz + (e.clientX-camDrag.x)*0.32;
+  view.rx = clamp(camDrag.rx - (e.clientY-camDrag.y)*0.26, 6, 88);
+  applyView();
+});
+["pointerup","pointercancel","pointerleave"].forEach(ev=> stage.addEventListener(ev, ()=>{
+  itemDrag=null; camDrag=null; stage.classList.remove("dragging");
+}));
+stage.addEventListener("wheel", e=>{
+  e.preventDefault();
+  view.zoom = clamp(view.zoom*(e.deltaY>0?0.92:1.08), 0.08, 3);
+  applyView();
+}, {passive:false});
+
+function applyView(){
+  const w = $("#world");
+  w.style.setProperty("--rx", view.rx+"deg");
+  w.style.setProperty("--rz", view.rz+"deg");
+  w.style.setProperty("--zoom", view.zoom);
+}
+function fitZoom(){
+  const fl = $("#floor");
+  if(!fl.offsetWidth) return;
+  view.zoom = clamp(Math.min(stage.clientWidth/(fl.offsetWidth*1.2), stage.clientHeight/(fl.offsetHeight*0.78)), 0.08, 1.6);
+  applyView();
+}
+$("#resetViewBtn").addEventListener("click", ()=>{ view.rx=58; view.rz=-32; fitZoom(); });
+$("#topBtn").addEventListener("click", ()=>{ view.rx=88; view.rz=0; fitZoom(); });
+$("#camPinBtn").addEventListener("click", e=>{ state.showCams=!state.showCams; e.currentTarget.classList.toggle("on", state.showCams); renderDeck(); });
+let orbitTimer=null;
+$("#orbitBtn").addEventListener("click", e=>{
+  state.orbit=!state.orbit; e.currentTarget.classList.toggle("on", state.orbit);
+  clearInterval(orbitTimer);
+  if(state.orbit) orbitTimer=setInterval(()=>{ view.rz=(view.rz+0.25)%360; applyView(); }, 50);
+});
+
+/* ==================== detail slot (mode pantau) ==================== */
+function openDetail(id){
+  const s = state.slots.find(x=>x.id===id); if(!s) return;
+  state.sel = {kind:"slot", id};
+  const meta = STATUS_META[s.status] || STATUS_META.free;
+  const cam = state.cameras.find(c=>String(c.id)===String(s.camera_id));
+  const since = s.since ? new Date(s.since) : null;
+  $("#sdTitle").innerHTML = `${s.id} <span class="status-chip" style="background:${meta.color}">${meta.label}</span>`;
+  $("#sdRows").innerHTML = `
+    <div class="r"><span>Zona</span><span>${s.zone} · ${s.level}</span></div>
+    <div class="r"><span>Jenis</span><span>${TYPE_LABEL[s.type]||s.type}</span></div>
+    <div class="r"><span>Pola</span><span>${MODE_LABEL[s.mode||"perp"]}</span></div>
+    <div class="r"><span>Plat</span><span>${s.plate?`<span class="mono">${s.plate}</span>`:"—"}</span></div>
+    <div class="r"><span>Sejak</span><span>${since?fmtClock(s.since):"—"}</span></div>
+    <div class="r"><span>Durasi</span><span>${since?fmtDur(Date.now()-since.getTime()):"—"}</span></div>
+    <div class="r"><span>Dipantau</span><span>${cam?cam.name:(s.covered===false?"— tidak terpantau":"—")}</span></div>`;
+  $("#slotDetail").classList.add("show");
+  renderDeck();
+}
+function closeDetail(){ $("#slotDetail").classList.remove("show"); state.sel=null; }
+$("#sdClose").addEventListener("click", ()=>{ closeDetail(); renderDeck(); });
+
+/* ==================== EDITOR ==================== */
+$("#editBtn").addEventListener("click", e=>{
+  state.edit = !state.edit;
+  e.currentTarget.classList.toggle("on", state.edit);
+  e.currentTarget.textContent = state.edit ? "Selesai mengatur" : "Atur denah";
+  $("#editor").classList.toggle("show", state.edit);
+  stage.classList.toggle("edit", state.edit);
+  $("#stageHint").textContent = state.edit
+    ? "Mode atur: seret slot / kamera / gerbang ke posisi sebenarnya"
+    : "Seret untuk memutar · scroll untuk zoom · klik slot untuk detail";
+  closeDetail(); state.sel=null; renderDeck();
+  if(state.edit){ view.rx=76; applyView(); }
+  else if(roi.timer){                       // lepas stream MJPEG supaya CPU tidak terpakai sia-sia
+    clearInterval(roi.timer); roi.timer=null; roi.camId=null; $("#roiFeed").removeAttribute("src");
+  }
+});
+$$(".ed-tabs button").forEach(b=>b.addEventListener("click", ()=>{
+  $$(".ed-tabs button").forEach(x=>x.classList.remove("active"));
+  $$(".ed-pane").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");
+  $(`.ed-pane[data-pane="${b.dataset.p}"]`).classList.add("active");
+  if(b.dataset.p === "roi"){
+    if(!roi.camId) openRoiCamera($("#rCam").value);
+  } else if(roi.timer){
+    clearInterval(roi.timer); roi.timer = null; $("#roiFeed").removeAttribute("src"); roi.camId = null;
+  }
+}));
+function edMsg(ok, txt){
+  const el = $("#edMsg"); el.className = "ed-msg "+(ok?"ok":"err"); el.textContent = txt;
+  setTimeout(()=>{ el.className="ed-msg"; }, 4000);
+}
+
+/* --- Area --- */
+function syncAreaForm(){
+  const a = area(); if(!a) return;
+  $("#aName").value = a.name; $("#aW").value = a.width_m; $("#aL").value = a.length_m;
+  $("#aGrid").value = a.grid_m||5; $("#aGridV").textContent = a.grid_m||5;
+  const g = a.gates||{};
+  $("#gRot").value = (g[$("#gPick").value]||{}).rot||0;
+  $("#gRotV").textContent = $("#gRot").value+"°";
+}
+$("#aName").addEventListener("change", ()=>{
+  const a=area(), old=a.name, nw=$("#aName").value.trim()||old;
+  a.name=nw; state.slots.forEach(s=>{ if(s.level===old) s.level=nw; });
+  state.cams.forEach(c=>{ if(c.level===old) c.level=nw; });
+  state.level=nw; state.dirty=true; renderLevelSeg(); renderDeck();
+});
+["aW","aL"].forEach(id=>$("#"+id).addEventListener("input", ()=>{
+  const a=area();
+  a.width_m = clamp(+$("#aW").value||40, 5, 400);
+  a.length_m = clamp(+$("#aL").value||30, 5, 400);
+  state.dirty=true; renderDeck(); fitZoom();
+}));
+$("#aGrid").addEventListener("input", ()=>{
+  area().grid_m = +$("#aGrid").value; $("#aGridV").textContent = $("#aGrid").value;
+  state.dirty=true; renderDeck();
+});
+$("#addLevelBtn").addEventListener("click", ()=>{
+  const name = "P"+(state.areas.length+1);
+  state.areas.push({name, width_m:40, length_m:30, grid_m:5,
+    gates:{in:{x:2,y:1,rot:0,camera_id:null}, out:{x:32,y:1,rot:0,camera_id:null}}});
+  state.level = name; state.dirty=true;
+  renderLevelSeg(); syncAreaForm(); renderDeck(); fitZoom();
+});
+$("#delLevelBtn").addEventListener("click", ()=>{
+  if(state.areas.length<2) return edMsg(false,"Minimal harus ada satu area.");
+  if(!confirm(`Hapus area ${state.level} beserta seluruh slot dan kameranya?`)) return;
+  const n = state.level;
+  state.areas = state.areas.filter(a=>a.name!==n);
+  state.slots = state.slots.filter(s=>s.level!==n);
+  state.cams  = state.cams.filter(c=>c.level!==n);
+  state.level = state.areas[0].name; state.dirty=true;
+  renderLevelSeg(); syncAreaForm(); computeCoverage(); renderDeck(); fitZoom();
+});
+
+/* --- Slot --- */
+/* --- pola parkir --- */
+let tool = {mode:"perp", angle:45, dir:90};
+$$("#modeSeg button").forEach(b=>b.addEventListener("click", ()=>{
+  $$("#modeSeg button").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");
+  tool.mode = b.dataset.m;
+  $("#angleField").classList.toggle("off", tool.mode!=="angled");
+  const o = getSelObj();
+  if(state.sel && state.sel.kind==="slot" && o){        // ubah pola slot terpilih
+    const b2 = baseSize(o.type, tool.mode);
+    o.mode = tool.mode; o.w = b2.w; o.l = b2.l;
+    state.dirty=true; computeCoverage(); renderDeck(); syncSelForms();
+  } else { syncSizeFields(); }
+}));
+$("#sAng").addEventListener("input", ()=>{ tool.angle=+$("#sAng").value; $("#sAngV").textContent=tool.angle+"°"; });
+$("#sDir").addEventListener("input", ()=>{ tool.dir=+$("#sDir").value; $("#sDirV").textContent=tool.dir+"°"; });
+$("#sType").addEventListener("change", ()=>{
+  const o = getSelObj();
+  if(state.sel && state.sel.kind==="slot" && o){
+    const b = baseSize($("#sType").value, o.mode);
+    o.type = $("#sType").value; o.w = b.w; o.l = b.l;
+    state.dirty=true; computeCoverage(); renderDeck();
+  }
+  syncSizeFields();
+});
+function syncSizeFields(){
+  const o = (state.sel && state.sel.kind==="slot") ? getSelObj() : null;
+  const b = o ? slotSize(o) : baseSize($("#sType").value, tool.mode);
+  $("#sW").value = b.w; $("#sL").value = b.l;
+}
+["sW","sL"].forEach(id=>$("#"+id).addEventListener("input", ()=>{
+  const o = getSelObj();
+  if(state.sel && state.sel.kind==="slot" && o){
+    const c = slotCenter(o);
+    o.w = clamp(+$("#sW").value||o.w, 0.8, 8);
+    o.l = clamp(+$("#sL").value||o.l, 1.5, 15);
+    setSlotCenter(o, c.x, c.y);                          // ubah ukuran dari titik tengah
+    state.dirty=true; computeCoverage(); renderDeck();
+  }
+}));
+$("#sRot").addEventListener("input", ()=>{
+  $("#sRotV").textContent = $("#sRot").value+"°";
+  const o = getSelObj();
+  if(state.sel && state.sel.kind==="slot" && o){ o.rot = +$("#sRot").value; state.dirty=true; renderDeck(); }
+});
+
+function nextSlotId(zone){
+  let n = 1;
+  const used = new Set(state.slots.filter(s=>s.zone===zone).map(s=>s.id));
+  while(used.has(`${zone}-${pad2(n)}`)) n++;
+  return `${zone}-${pad2(n)}`;
+}
+function freeSpotY(){
+  const list = slotsHere();
+  if(!list.length) return 3;
+  return clamp(Math.max(...list.map(s=>s.y+slotSize(s).l)) + 2, 0, area().length_m-5);
+}
+
+/* Geometri baris:
+   - Tegak lurus : mobil 90° terhadap sumbu baris, jarak antar slot = lebar slot
+   - Paralel     : mobil sejajar sumbu baris, jarak = panjang slot + ruang manuver
+   - Miring      : mobil pada sudut α, jarak = lebar slot / sin α  (rumus baku
+                   parkir herringbone — makin landai sudutnya, makin rapat slotnya) */
+function rowGeometry(type, mode, angle){
+  const b = baseSize(type, mode);
+  if(mode==="parallel") return {size:b, pitch:b.l+0.6, headingOffset:0};
+  if(mode==="angled")   return {size:b, pitch:b.w/Math.sin(rad(angle)), headingOffset:angle};
+  return {size:b, pitch:b.w, headingOffset:90};
+}
+
+$("#addRowBtn").addEventListener("click", ()=>{
+  const zone = ($("#sZone").value.trim()||"A").toUpperCase();
+  const type = $("#sType").value;
+  const n = clamp(+$("#sCount").value||10, 1, 60);
+  const a = area();
+  const {size, pitch, headingOffset} = rowGeometry(type, tool.mode, tool.angle);
+  const heading = (tool.dir + headingOffset) % 360;
+  const ux = Math.sin(rad(tool.dir)), uy = -Math.cos(rad(tool.dir));   // arah sumbu baris
+  const x0 = 2 + size.w/2, y0 = freeSpotY() + size.l/2;
+
+  for(let i=0;i<n;i++){
+    const s = {id:nextSlotId(zone), level:state.level, zone, type, mode:tool.mode,
+               w:size.w, l:size.l, rot:heading, status:"free", covered:false, x:0, y:0};
+    setSlotCenter(s, clamp(x0+ux*pitch*i, 0, a.width_m), clamp(y0+uy*pitch*i, 0, a.length_m));
+    state.slots.push(s);
+  }
+  state.dirty=true; computeCoverage(); renderDeck(); renderZoneBars(); renderKPI();
+  edMsg(true, `${n} slot ${MODE_LABEL[tool.mode].toLowerCase()} zona ${zone} dibuat — seret ke posisi sebenarnya.`);
+});
+
+$("#addOneBtn").addEventListener("click", ()=>{
+  const zone = ($("#sZone").value.trim()||"A").toUpperCase();
+  const type = $("#sType").value;
+  const {size, headingOffset} = rowGeometry(type, tool.mode, tool.angle);
+  const s = {id:nextSlotId(zone), level:state.level, zone, type, mode:tool.mode,
+             w:size.w, l:size.l, rot:(tool.dir+headingOffset)%360, status:"free", covered:false, x:0, y:0};
+  setSlotCenter(s, 2+size.w/2, freeSpotY()+size.l/2);
+  state.slots.push(s);
+  state.dirty=true; computeCoverage(); renderDeck();
+});
+
+$("#dupZoneBtn").addEventListener("click", ()=>{
+  const g = selectedZoneSlots();
+  if(!g) return edMsg(false,"Pilih dulu satu slot dari zona yang mau digandakan.");
+  const src = g[0];
+  const newZone = String.fromCharCode(Math.min(90, src.zone.charCodeAt(0)+1));
+  const dy = Math.max(...g.map(s=>s.y+slotSize(s).l)) - Math.min(...g.map(s=>s.y)) + 6;
+  g.forEach(s=> state.slots.push({...s, id:nextSlotId(newZone), zone:newZone,
+    y: clamp(s.y+dy, 0, area().length_m-slotSize(s).l), status:"free", covered:false}));
+  state.dirty=true; computeCoverage(); renderDeck(); renderZoneBars();
+  edMsg(true, `Zona ${newZone} dibuat dari ${g.length} slot zona ${src.zone}.`);
+});
+
+/* --- rotasi zona: putar posisi terhadap titik tengah zona, sekaligus arah hadap --- */
+function selectedZoneSlots(){
+  if(!state.sel || state.sel.kind!=="slot") return null;
+  const src = state.slots.find(s=>s.id===state.sel.id);
+  if(!src) return null;
+  return state.slots.filter(s=>s.level===state.level && s.zone===src.zone);
+}
+function rotateZone(deg){
+  const g = selectedZoneSlots();
+  if(!g) return edMsg(false,"Pilih dulu satu slot dari zona yang mau diputar.");
+  const a = area();
+  const cs = g.map(slotCenter);
+  const px = cs.reduce((t,c)=>t+c.x,0)/cs.length;
+  const py = cs.reduce((t,c)=>t+c.y,0)/cs.length;
+  const co = Math.cos(rad(deg)), si = Math.sin(rad(deg));
+  g.forEach((s,i)=>{
+    const dx = cs[i].x-px, dy = cs[i].y-py;
+    setSlotCenter(s, clamp(px + dx*co - dy*si, 0, a.width_m),
+                     clamp(py + dx*si + dy*co, 0, a.length_m));
+    s.rot = ((s.rot||0) + deg + 360) % 360;
+  });
+  state.dirty=true; computeCoverage(); renderDeck(); syncSelForms();
+  edMsg(true, `Zona ${g[0].zone} diputar ${deg>0?"+":""}${deg}°.`);
+}
+$$("[data-rot]").forEach(b=>b.addEventListener("click", ()=>rotateZone(+b.dataset.rot)));
+$("#flipZoneBtn").addEventListener("click", ()=>{
+  const g = selectedZoneSlots();
+  if(!g) return edMsg(false,"Pilih dulu satu slot dari zona yang mau dibalik.");
+  g.forEach(s=> s.rot = ((s.rot||0)+180)%360);
+  state.dirty=true; renderDeck(); syncSelForms();
+  edMsg(true, `Arah hadap zona ${g[0].zone} dibalik 180°.`);
+});
+$("#delSlotBtn").addEventListener("click", ()=>{
+  if(!state.sel || state.sel.kind!=="slot") return edMsg(false,"Pilih dulu slot yang mau dihapus.");
+  state.slots = state.slots.filter(s=>s.id!==state.sel.id);
+  state.sel=null; state.dirty=true; computeCoverage(); renderDeck(); renderZoneBars(); renderKPI();
+});
+
+/* --- Kamera --- */
+function fillCamSelects(){
+  const opts = state.cameras.map(c=>`<option value="${c.id}">${c.name}</option>`).join("");
+  $("#cPick").innerHTML = opts || `<option value="">(tidak ada kamera)</option>`;
+  $("#gCam").innerHTML = `<option value="">— tidak dipilih —</option>`+opts;
+  fillRoiCamSelect();
+}
+["cRot","cFov","cRange","cHeight"].forEach(id=>$("#"+id).addEventListener("input", ()=>{
+  $("#cRotV").textContent = $("#cRot").value+"°";
+  $("#cFovV").textContent = $("#cFov").value+"°";
+  $("#cRangeV").textContent = $("#cRange").value;
+  $("#cHeightV").textContent = $("#cHeight").value;
+  if(state.sel && state.sel.kind==="cam"){
+    const c = getSelObj(); if(!c) return;
+    c.rot=+$("#cRot").value; c.fov=+$("#cFov").value; c.range=+$("#cRange").value; c.height=+$("#cHeight").value;
+    state.dirty=true; computeCoverage(); renderDeck();
+  }
+}));
+$("#addCamBtn").addEventListener("click", ()=>{
+  const id = $("#cPick").value; if(!id) return edMsg(false,"Tidak ada kamera untuk dipasang.");
+  if(state.cams.some(c=>String(c.camera_id)===String(id) && c.level===state.level))
+    return edMsg(false,"Kamera ini sudah dipasang di area ini.");
+  const a = area();
+  state.cams.push({camera_id:isNaN(+id)?id:+id, level:state.level,
+    x:a.width_m/2, y:a.length_m-2, rot:0, fov:90, range:Math.round(a.length_m*0.8), height:4});
+  state.sel = {kind:"cam", id:isNaN(+id)?id:+id};
+  state.dirty=true; syncSelForms(); computeCoverage(); renderDeck(); renderCamStrip();
+  edMsg(true, "Kamera dipasang — seret ikonnya ke titik tiang aslinya.");
+});
+$("#delCamBtn").addEventListener("click", ()=>{
+  if(!state.sel || state.sel.kind!=="cam") return edMsg(false,"Pilih dulu kamera di denah.");
+  state.cams = state.cams.filter(c=>!(String(c.camera_id)===String(state.sel.id) && c.level===state.level));
+  state.sel=null; state.dirty=true; computeCoverage(); renderDeck(); renderCamStrip();
+});
+$("#applyCovBtn").addEventListener("click", ()=>{
+  computeCoverage(); renderDeck(); renderCamStrip();
+  const blind = slotsHere().filter(s=>!s.covered).length;
+  edMsg(blind===0, blind===0 ? "Semua slot sudah dipetakan ke kamera." : `${blind} slot masih di luar jangkauan.`);
+});
+
+/* --- Gerbang --- */
+$("#gPick").addEventListener("change", ()=>{
+  state.sel = {kind:"gate", id:$("#gPick").value}; syncSelForms(); renderDeck();
+});
+$("#gRot").addEventListener("input", ()=>{
+  $("#gRotV").textContent = $("#gRot").value+"°";
+  const g = (area().gates||{})[$("#gPick").value];
+  if(g){ g.rot = +$("#gRot").value; state.dirty=true; renderDeck(); }
+});
+$("#gCam").addEventListener("change", ()=>{
+  const g = (area().gates||{})[$("#gPick").value];
+  if(g){ g.camera_id = $("#gCam").value ? +$("#gCam").value : null; state.dirty=true; renderDeck(); }
+});
+
+function syncSelForms(){
+  const sel = state.sel;
+  if(sel && sel.kind==="slot"){
+    const s = state.slots.find(x=>x.id===sel.id);
+    if(s){
+      $("#sZone").value=s.zone; $("#sType").value=s.type;
+      $("#sRot").value=Math.round(s.rot||0); $("#sRotV").textContent=Math.round(s.rot||0)+"°";
+      $$("#modeSeg button").forEach(x=>x.classList.toggle("active", x.dataset.m===(s.mode||"perp")));
+      $("#angleField").classList.toggle("off", (s.mode||"perp")!=="angled");
+      syncSizeFields();
+      const z = slotSize(s);
+      $("#slotSelInfo").innerHTML =
+        `Terpilih <b>${s.id}</b> · ${TYPE_LABEL[s.type]} · pola <b>${MODE_LABEL[s.mode||"perp"]}</b> · `+
+        `${z.w}×${z.l} m · hadap ${Math.round(s.rot||0)}° · posisi ${s.x.toFixed(1)}, ${s.y.toFixed(1)} m · `+
+        (s.covered?"terpantau":"<b style='color:#c0392b'>belum terpantau</b>")+
+        `. Seret untuk memindahkan; tombol putar di bawah memutar seluruh zona ${s.zone}.`;
+    }
+  } else {
+    $("#slotSelInfo").innerHTML = "Pilih pola parkir, atur arah baris, lalu <b>Tambah baris slot</b>. Klik satu slot untuk memilih zonanya.";
+    syncSizeFields();
+  }
+  if(sel && sel.kind==="cam"){
+    const c = getSelObj();
+    if(c){
+      $("#cPick").value = c.camera_id;
+      $("#cRot").value=c.rot; $("#cRotV").textContent=c.rot+"°";
+      $("#cFov").value=c.fov; $("#cFovV").textContent=c.fov+"°";
+      $("#cRange").value=c.range; $("#cRangeV").textContent=c.range;
+      $("#cHeight").value=c.height; $("#cHeightV").textContent=c.height;
+      const cam = state.cameras.find(x=>String(x.id)===String(c.camera_id));
+      const n = slotsHere().filter(s=>coversSlot(c,s)).length;
+      $("#camSelInfo").innerHTML = `<b>${cam?cam.name:"Kamera "+c.camera_id}</b> di ${c.x.toFixed(1)} m, ${c.y.toFixed(1)} m — menutupi <b>${n} slot</b>. Seret ikon kamera untuk memindahkan tiang.`;
+    }
+  }
+  if(sel && sel.kind==="gate"){
+    const g = getSelObj();
+    if(g){ $("#gPick").value=sel.id; $("#gRot").value=g.rot||0; $("#gRotV").textContent=(g.rot||0)+"°";
+      $("#gCam").value = g.camera_id!=null ? g.camera_id : ""; }
+  }
+}
+
+/* --- simpan / muat --- */
+function layoutPayload(){
+  return {
+    areas: state.areas,
+    slots: state.slots.map(s=>{ const z = slotSize(s); return {
+      id:s.id, level:s.level, zone:s.zone, type:s.type, mode:s.mode||"perp",
+      x:+s.x.toFixed(2), y:+s.y.toFixed(2), w:+z.w.toFixed(2), l:+z.l.toFixed(2),
+      rot:+(s.rot||0).toFixed(1), camera_id:s.camera_id??null}; }),
+    cameras: state.cams.map(c=>({camera_id:c.camera_id, level:c.level, x:+c.x.toFixed(2), y:+c.y.toFixed(2),
+      rot:c.rot, fov:c.fov, range:c.range, height:c.height})),
+  };
+}
+$("#saveLayoutBtn").addEventListener("click", async ()=>{
+  computeCoverage();
+  try{
+    await api("/api/parking/layout", {method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify(layoutPayload())});
+    state.dirty=false; edMsg(true, "Denah tersimpan & langsung dipakai analitik.");
+  }catch(e){
+    edMsg(false, "Server belum punya endpoint /api/parking/layout. Pakai Unduh JSON untuk menyimpan sementara.");
+  }
+});
+$("#reloadLayoutBtn").addEventListener("click", async ()=>{
+  if(state.dirty && !confirm("Perubahan yang belum disimpan akan hilang. Lanjutkan?")) return;
+  state.areas=[]; await loadLayout(); fitZoom(); edMsg(true,"Denah dimuat ulang dari server.");
+});
+$("#exportBtn").addEventListener("click", ()=>{
+  computeCoverage();
+  const blob = new Blob([JSON.stringify(layoutPayload(), null, 2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "enpidix-parking-layout.json";
+  a.click(); URL.revokeObjectURL(a.href);
+});
+$("#importBtn").addEventListener("click", ()=> $("#importFile").click());
+$("#importFile").addEventListener("change", e=>{
+  const f = e.target.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try{
+      const d = JSON.parse(r.result);
+      if(!d.areas || !d.areas.length) throw new Error("format salah");
+      state.areas=d.areas; state.slots=(d.slots||[]).map(s=>({status:"free", ...s}));
+      state.cams=d.cameras||[]; state.level=state.areas[0].name; state.dirty=true;
+      renderLevelSeg(); syncAreaForm(); computeCoverage(); renderDeck(); renderZoneBars(); renderKPI(); fitZoom();
+      edMsg(true, "Denah dimuat dari file.");
+    }catch(err){ edMsg(false, "File tidak dikenali: "+err.message); }
+  };
+  r.readAsText(f); e.target.value="";
+});
+
+/* =========================================================================
+   PANTAUAN CCTV — menggambar slot di atas gambar kamera
+   Poligon disimpan dalam koordinat 0-1 relatif frame, sama seperti counting
+   polygon yang sudah dipakai server.py, jadi tetap sahih di resolusi apa pun.
+   ======================================================================= */
+let roi = {camId:null, slots:[], active:null, drawing:false, live:null, timer:null};
+
+function roiMsg(ok, txt){
+  const el = $("#roiMsg"); el.className = "ed-msg "+(ok?"ok":"err"); el.textContent = txt;
+  setTimeout(()=>{ el.className="ed-msg"; }, 4000);
+}
+function fillRoiCamSelect(){
+  $("#rCam").innerHTML = state.cameras.map(c=>`<option value="${c.id}">${c.name}</option>`).join("")
+    || `<option value="">(tidak ada kamera)</option>`;
+}
+async function openRoiCamera(camId){
+  roi.camId = camId ? +camId : null;
+  roi.active = null; roi.drawing = false;
+  $("#roiDrawBtn").classList.remove("on");
+  $("#roiDrawBtn").textContent = "Mulai menggambar";
+  if(!roi.camId){ $("#roiOff").style.display="flex"; return; }
+
+  $("#roiFeed").src = `${API}/video_feed/${roi.camId}`;
+  $("#roiOff").style.display = "none";
+
+  try{
+    const d = await api(`/api/parking/cameras/${roi.camId}/rois`);
+    roi.slots = d.slots || [];
+  }catch(e){
+    // backend belum ada → pakai slot dari denah yang dipetakan ke kamera ini
+    roi.slots = state.slots.filter(s=>String(s.camera_id)===String(roi.camId))
+                  .map(s=>({id:s.id, zone:s.zone, type:s.type, polygon:s.polygon||null, status:s.status}));
+  }
+  if(roi.slots.length) roi.active = roi.slots[0].id;
+  renderRoi(); pollRoiLive();
+  clearInterval(roi.timer);
+  roi.timer = setInterval(pollRoiLive, 1500);
+}
+async function pollRoiLive(){
+  if(!roi.camId || !state.edit){ return; }
+  try{ roi.live = await api(`/api/parking/cameras/${roi.camId}/live`); }
+  catch(e){
+    try{ const d = await api(`/api/cameras/${roi.camId}/detections`);
+      const veh = (d.boxes||[]).filter(b=>/^count_(car|motorcycle|motorbike|bus|truck)$/.test(b.type));
+      roi.live = {boxes:veh, anchors:veh.map(b=>[(b.x1+b.x2)/2, b.y1+(b.y2-b.y1)*0.75]),
+                  slots:[], vehicle_count:veh.length, worker_active:true, vehicle_counting:veh.length>0};
+    }catch(err){ roi.live = null; }
+  }
+  renderRoi();
+}
+function roiPointInPoly(px, py, poly){
+  let inside=false;
+  for(let i=0, j=poly.length-1; i<poly.length; j=i++){
+    const [xi,yi]=poly[i], [xj,yj]=poly[j];
+    if((yi>py)!==(yj>py) && px < (xj-xi)*(py-yi)/((yj-yi)||1e-9)+xi) inside=!inside;
+  }
+  return inside;
+}
+function renderRoi(){
+  const svg = $("#roiSvg");
+  const live = roi.live;
+  const anchors = live ? (live.anchors||[]) : [];
+  let h = "";
+
+  roi.slots.forEach(s=>{
+    if(!s.polygon || s.polygon.length<3) return;
+    const pts = s.polygon.map(p=>`${(p[0]*100).toFixed(2)},${(p[1]*100).toFixed(2)}`).join(" ");
+    const hit = anchors.some(a=>roiPointInPoly(a[0], a[1], s.polygon));
+    const cls = [s.id===roi.active ? "active" : "", hit ? "busy" : ""].filter(Boolean).join(" ");
+    const cx = s.polygon.reduce((a,p)=>a+p[0],0)/s.polygon.length*100;
+    const cy = s.polygon.reduce((a,p)=>a+p[1],0)/s.polygon.length*100;
+    h += `<polygon class="roi-poly ${cls}" points="${pts}"></polygon>
+          <text class="roi-label" x="${cx.toFixed(1)}" y="${(cy+1).toFixed(1)}">${s.id}</text>`;
+    if(s.id===roi.active) s.polygon.forEach(p=>{
+      h += `<circle class="roi-pt" cx="${(p[0]*100).toFixed(2)}" cy="${(p[1]*100).toFixed(2)}" r="1.1"></circle>`;
+    });
+  });
+
+  (live && live.boxes ? live.boxes : []).forEach(b=>{
+    h += `<rect class="roi-det" x="${(b.x1*100).toFixed(1)}" y="${(b.y1*100).toFixed(1)}"
+      width="${((b.x2-b.x1)*100).toFixed(1)}" height="${((b.y2-b.y1)*100).toFixed(1)}" rx="1"></rect>`;
+  });
+  anchors.forEach(a=>{
+    h += `<circle class="roi-anchor" cx="${(a[0]*100).toFixed(2)}" cy="${(a[1]*100).toFixed(2)}" r="1.3"></circle>`;
+  });
+
+  svg.innerHTML = h;
+
+  const drawn = roi.slots.filter(s=>s.polygon && s.polygon.length>=3).length;
+  const busy = roi.slots.filter(s=>s.polygon && anchors.some(a=>roiPointInPoly(a[0],a[1],s.polygon))).length;
+  const cam = state.cameras.find(c=>String(c.id)===String(roi.camId));
+  let warn = "";
+  if(live && live.worker_active === false) warn = `<br><b style="color:#c0392b">Kamera tidak aktif di server.</b>`;
+  else if(live && live.vehicle_counting === false)
+    warn = `<br><b style="color:#c0392b">Vehicle Counting mati</b> — nyalakan di dashboard utama agar kendaraan terbaca.`;
+  $("#roiStat").innerHTML = `<b>${cam?cam.name:"—"}</b><br>
+    ${drawn} dari ${roi.slots.length} slot sudah digambar<br>
+    Kendaraan terdeteksi sekarang: <b>${anchors.length}</b><br>
+    Slot terbaca terisi: <b>${busy}</b>${warn}`;
+
+  $("#roiList").innerHTML = roi.slots.map(s=>{
+    const has = s.polygon && s.polygon.length>=3;
+    const hit = has && anchors.some(a=>roiPointInPoly(a[0],a[1],s.polygon));
+    return `<div class="roi-item ${s.id===roi.active?'active':''}" data-sid="${s.id}">
+      <span class="st ${hit?'busy':(has?'drawn':'')}"></span>
+      <span class="sid">${s.id}</span>
+      <span style="color:var(--text-mute)">${has?(hit?"terisi":"kosong"):"belum digambar"}</span></div>`;
+  }).join("") || `<div class="sel-empty">Belum ada slot yang dipetakan ke kamera ini. Atur posisi kamera di tab Kamera dulu.</div>`;
+  $$("#roiList .roi-item").forEach(el=>el.addEventListener("click", ()=>{
+    roi.active = el.dataset.sid; syncRoiSlotSelect(); renderRoi();
+  }));
+  syncRoiSlotSelect();
+}
+function syncRoiSlotSelect(){
+  const sel = $("#rSlot");
+  const want = roi.active;
+  sel.innerHTML = roi.slots.map(s=>`<option value="${s.id}">${s.id}${s.polygon?" ✓":""}</option>`).join("")
+    || `<option value="">(tidak ada slot)</option>`;
+  if(want) sel.value = want;
+}
+$("#rCam").addEventListener("change", e=>openRoiCamera(e.target.value));
+$("#rSlot").addEventListener("change", e=>{ roi.active = e.target.value; renderRoi(); });
+
+$("#roiStage").addEventListener("click", e=>{
+  if(!roi.drawing || !roi.active) return;
+  const s = roi.slots.find(x=>x.id===roi.active); if(!s) return;
+  const r = $("#roiStage").getBoundingClientRect();
+  const px = clamp((e.clientX-r.left)/r.width, 0, 1);
+  const py = clamp((e.clientY-r.top)/r.height, 0, 1);
+  s.polygon = s.polygon || [];
+  if(s.polygon.length>=16) return roiMsg(false, "Maksimal 16 titik untuk satu slot.");
+  s.polygon.push([+px.toFixed(4), +py.toFixed(4)]);
+  renderRoi();
+});
+$("#roiDrawBtn").addEventListener("click", e=>{
+  if(!roi.active) return roiMsg(false, "Pilih slot yang mau digambar dulu.");
+  roi.drawing = !roi.drawing;
+  e.currentTarget.classList.toggle("on", roi.drawing);
+  e.currentTarget.textContent = roi.drawing ? "Selesai menggambar" : "Mulai menggambar";
+  if(!roi.drawing){
+    const s = roi.slots.find(x=>x.id===roi.active);
+    if(s && s.polygon && s.polygon.length<3){ s.polygon=null; roiMsg(false,"Poligon butuh minimal 3 titik — dibatalkan."); }
+    // lanjut otomatis ke slot berikutnya yang belum digambar
+    const next = roi.slots.find(x=>!x.polygon);
+    if(next){ roi.active = next.id; roiMsg(true, `Lanjut ke slot ${next.id}.`); }
+    renderRoi();
+  }
+});
+$("#roiUndoBtn").addEventListener("click", ()=>{
+  const s = roi.slots.find(x=>x.id===roi.active);
+  if(s && s.polygon && s.polygon.length){ s.polygon.pop(); if(!s.polygon.length) s.polygon=null; renderRoi(); }
+});
+$("#roiBoxBtn").addEventListener("click", ()=>{
+  const s = roi.slots.find(x=>x.id===roi.active);
+  if(!s) return roiMsg(false, "Pilih slot dulu.");
+  s.polygon = [[.40,.45],[.60,.45],[.60,.72],[.40,.72]];
+  roi.drawing = false; $("#roiDrawBtn").classList.remove("on"); $("#roiDrawBtn").textContent="Mulai menggambar";
+  renderRoi();
+  roiMsg(true, "Kotak awal dibuat di tengah gambar — geser titiknya dengan menggambar ulang bila perlu.");
+});
+$("#roiClearBtn").addEventListener("click", ()=>{
+  const s = roi.slots.find(x=>x.id===roi.active);
+  if(s){ s.polygon = null; renderRoi(); }
+});
+$("#roiSaveBtn").addEventListener("click", async ()=>{
+  if(!roi.camId) return roiMsg(false, "Pilih kamera dulu.");
+  const bad = roi.slots.find(s=>s.polygon && s.polygon.length<3);
+  if(bad) return roiMsg(false, `Slot ${bad.id} punya poligon kurang dari 3 titik.`);
+  try{
+    const res = await api(`/api/parking/cameras/${roi.camId}/rois`, {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({rois: roi.slots.map(s=>({slot_id:s.id, polygon:s.polygon||null}))})});
+    roiMsg(true, `${res.saved} slot tersimpan — pemantau langsung membacanya dari kamera ini.`);
+    roi.slots.forEach(s=>{ const t = state.slots.find(x=>x.id===s.id); if(t) t.polygon = s.polygon; });
+    loadHealth();
+  }catch(e){
+    roiMsg(false, "Server belum punya endpoint /api/parking/cameras/{id}/rois. Pasang parking_api.py dulu.");
+  }
+});
+
+/* ==================== kesiapan sistem ==================== */
+async function loadHealth(){
+  const el = $("#healthBanner");
+  try{
+    const h = await api("/api/parking/health");
+    state.health = h;
+    const bad = (h.cameras||[]).filter(c=>c.problems && c.problems.length);
+    if(!h.cameras || !h.cameras.length){
+      el.className = "health-banner bad show";
+      el.innerHTML = `<span>⚠️</span><div>Belum ada kamera yang dipetakan ke slot parkir. Buka <b>Atur denah → Kamera</b> untuk memasang kamera, lalu <b>Pantauan CCTV</b> untuk menggambar slotnya.</div>`;
+    } else if(bad.length){
+      el.className = "health-banner bad show";
+      el.innerHTML = `<span>⚠️</span><div><b>Sistem belum membaca seluruh kamera.</b>
+        <ul>${bad.map(c=>`<li><b>${c.name}</b> — ${c.problems.join(" ")}</li>`).join("")}</ul></div>`;
+    } else {
+      const tot = h.cameras.reduce((a,c)=>a+c.slots_drawn,0);
+      const veh = h.cameras.reduce((a,c)=>a+c.vehicles_now,0);
+      el.className = "health-banner good show";
+      el.innerHTML = `<span>✅</span><div>Pembacaan langsung dari CCTV berjalan: <b>${tot} slot</b> dipantau
+        ${h.cameras.length} kamera, <b>${veh} kendaraan</b> terdeteksi saat ini.
+        Perubahan status dikonfirmasi setelah ${h.confirm_cycles} siklus (${(h.confirm_cycles*h.poll_sec).toFixed(0)} detik).</div>`;
+    }
+  }catch(e){
+    el.className = "health-banner bad show";
+    el.innerHTML = `<span>⚠️</span><div><b>Modul parkir belum terpasang di server.</b> Salin <span class="mono">parking_api.py</span> ke folder server, lalu tambahkan <span class="mono">parking_api.init(get_conn, nx_alert=lapor_deteksi_nx, camera_manager=camera_manager)</span> dan <span class="mono">app.include_router(parking_api.router)</span> di <span class="mono">server.py</span>. Selama itu belum dilakukan, denah di bawah memakai data contoh.</div>`;
+  }
+}
+
+/* ==================== panel ringkasan ==================== */
+function renderKPI(){
+  const all = state.slots;
+  const busy = all.filter(s=>["occupied","overstay"].includes(s.status)).length;
+  const free = all.filter(s=>s.status==="free").length;
+  const over = all.filter(s=>s.status==="overstay").length;
+  const illegal = all.filter(s=>s.status==="illegal").length;
+  const blind = all.filter(s=>s.covered===false).length;
+  const occ = all.length ? Math.round(busy/all.length*100) : 0;
+
+  $("#kCap").textContent = all.length||"—";
+  $("#kCapSub").textContent = `${state.areas.length} area · ${new Set(all.map(s=>s.zone)).size} zona`;
+  $("#kBusy").textContent = busy;
+  $("#kBusySub").textContent = over ? `${over} lewat batas waktu` : "semua dalam batas";
+  $("#kFree").innerHTML = free + (illegal?` <small>· ${illegal} ilegal</small>`:"");
+  $("#kFreeSub").textContent = blind ? `${blind} slot belum terpantau kamera` : "seluruh slot terpantau";
+  $("#kOcc").innerHTML = occ+`<small>%</small>`;
+  $("#kOccSub").textContent = occ>=90?"hampir penuh":occ>=70?"ramai":"lengang";
+  $("#kIn").textContent = state.totals.in||0;
+  $("#kOut").textContent = state.totals.out||0;
+  const cls = Object.keys(state.totals.byClass||{});
+  $("#kInSub").textContent = cls.length ? cls.map(k=>`${CLASS_LABEL[k]||k} ${state.totals.byClass[k].in}`).join(" · ") : "dari analitik kamera";
+  $("#kOutSub").textContent = `${state.cameras.length} kamera counting`;
+}
+function renderZoneBars(){
+  const wrap = $("#zoneBars"), z = {};
+  state.slots.forEach(s=>{
+    const k = `${s.level} · Zona ${s.zone}`;
+    const b = z[k] || (z[k]={cap:0,busy:0,blind:0});
+    b.cap++; if(["occupied","overstay"].includes(s.status)) b.busy++;
+    if(s.covered===false) b.blind++;
+  });
+  const keys = Object.keys(z).sort();
+  if(!keys.length){ wrap.innerHTML = `<div class="empty">Belum ada slot. Buka “Atur denah” untuk membuatnya.</div>`; return; }
+  wrap.innerHTML = keys.map(k=>{
+    const b=z[k], pct=Math.round(b.busy/b.cap*100);
+    const col = pct>=90?"var(--red)":pct>=70?"var(--amber)":"var(--green)";
+    return `<div class="zbar"><div class="zt"><span>${k}${b.blind?` <span style="color:var(--red)">· ${b.blind} tak terpantau</span>`:""}</span>
+      <b>${b.busy}/${b.cap} · ${pct}%</b></div>
+      <div class="track"><i style="width:${pct}%; background:${col}"></i></div></div>`;
+  }).join("");
+}
+function renderFlow(){
+  const wrap = $("#flowChart"), rows = state.flow;
+  if(!rows.length){ wrap.innerHTML = `<div class="empty">Belum ada data arus.</div>`; return; }
+  const max = Math.max(1, ...rows.map(r=>Math.max(r.in||0, r.out||0)));
+  wrap.innerHTML = rows.map(r=>`<div class="fc-col" title="${pad2(r.hour)}:00 — masuk ${r.in||0}, keluar ${r.out||0}">
+    <div class="bin" style="height:${Math.round((r.in||0)/max*58)}px"></div>
+    <div class="bout" style="height:${Math.round((r.out||0)/max*58)}px"></div>
+    <div class="hr">${r.hour%3===0?pad2(r.hour):""}</div></div>`).join("");
+  $("#flowHint").textContent = `${rows.reduce((a,r)=>a+(r.in||0),0)} masuk / ${rows.reduce((a,r)=>a+(r.out||0),0)} keluar`;
+}
+function renderEvents(){
+  const wrap = $("#evtList");
+  if(!state.events.length){ wrap.innerHTML = `<div class="empty">Belum ada kendaraan tercatat.</div>`; return; }
+  wrap.innerHTML = state.events.map(e=>{
+    const masuk = e.direction==="in"||e.direction==="masuk";
+    const col = masuk?"var(--blue)":"var(--red)", bg = masuk?"rgba(59,107,255,.10)":"rgba(255,71,87,.10)";
+    return `<div class="evt"><div class="ico" style="background:${bg}; color:${col}">${masuk?"▲":"▼"}</div>
+      <div class="txt">${e.plate?`<span class="plate">${e.plate}</span>`:`<b style="font-size:12px">${CLASS_LABEL[e.vehicle_class]||"Kendaraan"}</b>`}
+      <div class="meta">${masuk?"Masuk":"Keluar"} · ${e.gate||e.camera_name||"gerbang"}${e.slot_id?` · slot ${e.slot_id}`:""}</div></div>
+      <div class="time">${fmtClock(e.at)}</div></div>`;
+  }).join("");
+  $("#evtHint").textContent = state.events.length+" terakhir";
+}
+function renderCamStrip(){
+  const wrap = $("#camStrip");
+  if(!state.cameras.length){ wrap.innerHTML = `<div class="empty">Tidak ada kamera dengan vehicle counting aktif.</div>`; return; }
+  wrap.innerHTML = state.cameras.map(c=>{
+    const cnt = state.counting[c.id]||{in:0,out:0};
+    const placed = state.cams.find(x=>String(x.camera_id)===String(c.id));
+    const nSlot = placed ? state.slots.filter(s=>s.level===placed.level && coversSlot(placed,s)).length : 0;
+    const online = !c.live_status || c.live_status.open;
+    const v = (state.showPreview && online)
+      ? `<img src="${API}/video_feed/${c.id}" alt="Pratinjau ${c.name}" loading="lazy">`
+      : `<div class="off-note">${online?"Pratinjau dimatikan untuk hemat CPU":"Kamera offline"}</div>`;
+    return `<div class="cam-card ${placed?'placed':''}"><div class="cam-view">${v}</div>
+      <div class="cam-meta"><span class="nm">${c.name}</span>
+        <span class="cnt in">▲${cnt.in}</span><span class="cnt out">▼${cnt.out}</span></div>
+      <div class="cam-cov">${placed?`Dipasang di ${placed.level} · memantau ${nSlot} slot`:"Belum dipasang di denah"}</div></div>`;
+  }).join("");
+}
+$("#camViewBtn").addEventListener("click", e=>{
+  state.showPreview=!state.showPreview;
+  e.currentTarget.classList.toggle("on", state.showPreview);
+  e.currentTarget.textContent = state.showPreview?"Matikan pratinjau":"Nyalakan pratinjau";
+  renderCamStrip();
+});
+
+/* ==================== data contoh ==================== */
+function demoLayout(){
+  const areas = [{name:"P1", width_m:46, length_m:34, grid_m:5,
+    gates:{in:{x:3,y:1,rot:0,camera_id:4}, out:{x:38,y:1,rot:0,camera_id:4}}}];
+  const slots = [];
+  /* tiga pola sekaligus supaya perbedaannya langsung kelihatan */
+  const bays = [
+    {zone:"A", n:12, type:"car",  mode:"perp",     dir:90, cx:5,  cy:8},
+    {zone:"B", n:10, type:"car",  mode:"angled",   dir:90, cx:5,  cy:17, ang:45},
+    {zone:"C", n:5,  type:"car",  mode:"parallel", dir:90, cx:5,  cy:25},
+    {zone:"D", n:16, type:"moto", mode:"perp",     dir:90, cx:5,  cy:31},
+  ];
+  const plates = ["B 1247 KZR","D 8891 QA","B 3320 SNM","F 1102 WJ","B 7745 CDE","B 9021 KLM"];
+  bays.forEach(b=>{
+    const {size, pitch, headingOffset} = rowGeometry(b.type, b.mode, b.ang||45);
+    const ux = Math.sin(rad(b.dir)), uy = -Math.cos(rad(b.dir));
+    for(let i=0;i<b.n;i++){
+      const id = `${b.zone}-${pad2(i+1)}`, r = (hashInt(id)%100)/100;
+      let status = r<0.6 ? "occupied" : "free";
+      if(r>0.93) status = "overstay";
+      if(id==="B-07") status = "illegal";
+      if(b.zone==="A" && i<2) status = "reserved";
+      const s = {id, level:"P1", zone:b.zone, type:b.type, mode:b.mode, w:size.w, l:size.l,
+        rot:(b.dir+headingOffset)%360, status,
+        plate:["occupied","overstay"].includes(status)?plates[hashInt(id)%plates.length]:null,
+        since: status==="free"?null:new Date(Date.now()-(hashInt(id)%400)*60000).toISOString(), x:0, y:0};
+      setSlotCenter(s, b.cx+ux*pitch*i, b.cy+uy*pitch*i);
+      slots.push(s);
+    }
+  });
+  const cams = [
+    {camera_id:1, level:"P1", x:23, y:2,  rot:180, fov:100, range:26, height:5},
+    {camera_id:2, level:"P1", x:2,  y:20, rot:90,  fov:90,  range:30, height:5},
+    {camera_id:3, level:"P1", x:23, y:33, rot:0,   fov:100, range:18, height:4},
+  ];
+  return {areas, slots, cams};
+}
+function mutateDemoStatus(){
+  const list = slotsHere();
+  for(let k=0;k<2;k++){
+    const s = list[Math.floor(Math.random()*list.length)];
+    if(!s || ["reserved","illegal"].includes(s.status)) continue;
+    if(s.status==="free"){ s.status="occupied"; s.since=new Date().toISOString();
+      s.plate = "B "+(1000+Math.floor(Math.random()*8999))+" ENP"; }
+    else { s.status="free"; s.since=null; s.plate=null; }
+  }
+}
+function demoFlow(){
+  const now = new Date().getHours(), rows=[];
+  for(let h=0; h<=now; h++){
+    const peak = (h>=7&&h<=9)?3 : (h>=16&&h<=19)?2.4 : 1;
+    rows.push({hour:h, in:Math.round((4+hashInt("i"+h)%9)*peak), out:Math.round((3+hashInt("o"+h)%8)*peak)});
+  }
+  return rows;
+}
+function demoEvents(){
+  return ["B 1247 KZR","D 8891 QA","B 3320 SNM","F 1102 WJ","B 7745 CDE"].map((p,i)=>({
+    plate:p, direction:i%2?"out":"in", gate:i%2?"Gerbang Keluar":"Gerbang Masuk",
+    vehicle_class:"car", slot_id:i%2?null:"A-"+pad2(i+3), at:new Date(Date.now()-i*7*60000).toISOString()}));
+}
+function demoCameras(){
+  return [
+    {id:1, name:"Parkir Zona A", ai_vehicle_counting:true, live_status:{open:false}},
+    {id:2, name:"Parkir Zona B", ai_vehicle_counting:true, live_status:{open:false}},
+    {id:3, name:"Parkir Motor",  ai_vehicle_counting:true, live_status:{open:false}},
+    {id:4, name:"Gerbang Utama", ai_vehicle_counting:true, live_status:{open:false}},
+  ];
+}
+
+/* ==================== boot ==================== */
+let timers=[];
+function startPolling(){
+  stopPolling();
+  timers.push(setInterval(loadStatus, 4000));
+  timers.push(setInterval(loadCounting, 6000));
+  timers.push(setInterval(loadEvents, 8000));
+  timers.push(setInterval(loadFlow, 30000));
+  timers.push(setInterval(loadCameras, 30000));
+  timers.push(setInterval(loadHealth, 15000));
+}
+function stopPolling(){ timers.forEach(clearInterval); timers=[]; }
+
+window.addEventListener("beforeunload", e=>{
+  if(state.dirty){ e.preventDefault(); e.returnValue = ""; }
+});
+
+async function boot(){
+  $("#angleField").classList.add("off");
+  syncSizeFields();
+  await loadLayout();
+  await loadCameras();
+  await Promise.all([loadStatus(), loadFlow(), loadEvents(), loadHealth()]);
+  fitZoom(); startPolling();
+  document.addEventListener("visibilitychange", ()=>{
+    if(document.hidden) stopPolling();
+    else { loadStatus(); loadCounting(); startPolling(); }
+  });
+  window.addEventListener("resize", fitZoom);
+}
+boot();
+</script>
+</body>
+</html>

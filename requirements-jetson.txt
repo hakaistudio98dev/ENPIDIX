@@ -1,0 +1,22 @@
+# Dependency Python untuk AI Surveillance VMS Server di Jetson Orin NX.
+# CATATAN: torch & torchvision SENGAJA TIDAK ada di sini -- wheel PyPI biasa
+# tidak punya dukungan CUDA untuk Jetson. Wheel-nya dipasang terpisah oleh
+# scripts/setup_jetson_orin_nx.sh lewat index khusus Jetson.
+
+fastapi>=0.110
+uvicorn[standard]>=0.27
+python-multipart>=0.0.9
+starlette>=0.36
+pydantic>=2.6
+
+opencv-python-headless>=4.9   # headless: tidak butuh GUI/X11 di server
+ultralytics>=8.1               # YOLOv8 + export ke TensorRT (yolo export ...)
+numpy>=1.24,<2.0                # ultralytics/opencv Jetson lebih stabil di numpy 1.x
+
+requests>=2.31
+psutil>=5.9
+onvif-zeep>=0.2.12              # kontrol PTZ via ONVIF (dipakai onvif_ptz.py)
+
+# opsional tapi sangat disarankan di Jetson (dipasang terpisah lewat sudo pip3
+# oleh setup script, BUKAN lewat file ini, karena butuh akses system-wide):
+#   jetson-stats   -> GPU load / suhu / power draw (pengganti GPUtil/nvidia-smi)

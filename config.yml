@@ -1,0 +1,34 @@
+# ============================================================
+# Cloudflare Tunnel — ENPIDIX
+# Tunnel ID: 480d806d-407c-4a46-9274-31c0bfd2a11e
+# Satu tunnel untuk semua service di PC ini
+# ============================================================
+
+tunnel: 480d806d-407c-4a46-9274-31c0bfd2a11e
+credentials-file: /Users/user/.cloudflared/480d806d-407c-4a46-9274-31c0bfd2a11e.json
+
+ingress:
+  # Dashboard VMS — bisa diakses dari mana saja
+  - hostname: vms.ytexcorp.com
+    service: http://localhost:8000
+    originRequest:
+      connectTimeout: 30s
+      # PENTING: stream MJPEG butuh keepAliveTimeout panjang
+      # Cloudflare free plan timeout 100 detik per request
+      # Gunakan snapshot polling di dashboard untuk video stabil
+      keepAliveTimeout: 90s
+      keepAliveConnections: 10
+
+  # Site agent kamera lokal (opsional, jika site_agent.py juga jalan)
+  - hostname: site-a.ytexcorp.com
+    service: http://localhost:8001
+    originRequest:
+      connectTimeout: 10s
+
+  # Fallback wajib ada di paling bawah
+  - service: http_status:404
+
+protocol: auto
+retries: 10
+grace-period: 30s
+loglevel: info

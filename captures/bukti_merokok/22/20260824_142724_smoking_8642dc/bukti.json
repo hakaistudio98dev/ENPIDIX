@@ -1,0 +1,25 @@
+{
+  "event_id": "20260824_142724_smoking_8642dc",
+  "tipe": "smoking",
+  "skor": 0.575,
+  "bukti": {
+    "gestur_siklik": 0.5,
+    "isapan": 1,
+    "dwell_terakhir": 2.5,
+    "dwell_berjalan": 0.0,
+    "kepulan_asap": 1.0,
+    "bara": 0.0,
+    "penyangkal_terlihat": 0.0,
+    "sumber_gestur": "perkiraan_gerakan"
+  },
+  "camera_id": 22,
+  "camera_name": "cam ptz",
+  "box_orang": [
+    210,
+    144,
+    318,
+    268
+  ],
+  "waktu": "2026-08-24T14:27:24.630237",
+  "pra_kejadian_detik": 8.0
+}

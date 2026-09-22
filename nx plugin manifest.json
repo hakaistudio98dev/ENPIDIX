@@ -1,0 +1,93 @@
+{
+  "_comment": "Manifest ini digunakan jika Anda membangun Analytics Plugin C++ via NX Server SDK.",
+  "_comment2": "Untuk integrasi Python-only (Generic Events + REST API), file ini tidak wajib.",
+
+  "id": "ai.surveillance.plugin",
+  "name": "AI Surveillance Plugin",
+  "description": "Plugin integrasi AI Server (YOLO + Face Recognition) dengan NX Witness",
+  "version": "1.0.0",
+  "vendor": "AI Surveillance",
+  "engineSettingsModel": {
+    "type": "Settings",
+    "items": [
+      {
+        "type": "TextField",
+        "name": "aiServerUrl",
+        "caption": "URL AI Server",
+        "defaultValue": "http://127.0.0.1:8000",
+        "description": "URL FastAPI AI Server (contoh: http://192.168.1.5:8000)"
+      }
+    ]
+  },
+  "deviceAgentSettingsModel": {
+    "type": "Settings",
+    "items": [
+      {
+        "type": "CheckBox",
+        "name": "enableFaceRecognition",
+        "caption": "Aktifkan Face Recognition",
+        "defaultValue": false
+      },
+      {
+        "type": "CheckBox",
+        "name": "enableSmokingDetection",
+        "caption": "Aktifkan Smoking Detection",
+        "defaultValue": false
+      },
+      {
+        "type": "CheckBox",
+        "name": "enableFireDetection",
+        "caption": "Aktifkan Fire Detection",
+        "defaultValue": false
+      },
+      {
+        "type": "CheckBox",
+        "name": "enableBehaviorDetection",
+        "caption": "Aktifkan Behavior/Fall Detection",
+        "defaultValue": false
+      }
+    ]
+  },
+  "typeLibrary": {
+    "objectTypes": [
+      {
+        "id": "ai.face.object",
+        "name": "Wajah Terdeteksi",
+        "icon": "person"
+      },
+      {
+        "id": "ai.smoking.object",
+        "name": "Aktivitas Merokok",
+        "icon": "warning"
+      },
+      {
+        "id": "ai.fire.object",
+        "name": "Indikasi Api / Asap",
+        "icon": "warning"
+      },
+      {
+        "id": "ai.fall.object",
+        "name": "Orang Terjatuh",
+        "icon": "warning"
+      }
+    ],
+    "eventTypes": [
+      {
+        "id": "ai.face.recognized.event",
+        "name": "Wajah Dikenali"
+      },
+      {
+        "id": "ai.smoking.event",
+        "name": "Merokok Terdeteksi"
+      },
+      {
+        "id": "ai.fire.event",
+        "name": "Kebakaran Terdeteksi"
+      },
+      {
+        "id": "ai.fall.event",
+        "name": "Orang Terjatuh"
+      }
+    ]
+  }
+}

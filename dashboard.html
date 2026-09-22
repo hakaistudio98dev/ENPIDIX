@@ -1,0 +1,2566 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENPIDIX VMS</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e1114; --panel:#12161a; --deep:#0b0e11; --sel:#171d22;
+  --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.12);
+  --txt:#e6eaee; --muted:rgba(255,255,255,.45); --muted2:rgba(255,255,255,.6);
+  --acc:#4fc3ce; --acc-bright:#02CBE2; --acc-ink:#06232a;
+  --ok:#5bd6a0; --warn:#e8b96d; --bad:#e8836d;
+  --sans:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --rail:132px; --side:400px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--txt);font:400 14px/1.45 var(--sans);overflow:hidden;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font-family:inherit;color:inherit}
+button{cursor:pointer;background:none;border:none}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-thumb{background:#232a30;border-radius:5px}
+::-webkit-scrollbar-track{background:transparent}
+.mono{font-family:var(--mono)}
+.muted{color:var(--muted)}
+.hidden{display:none!important}
+.grow{flex:1}
+
+/* ---------- SHELL ---------- */
+#shell{display:flex;height:100vh;overflow:hidden}
+.rail{width:var(--rail);flex:none;background:var(--deep);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:20px 0 12px;gap:2px}
+.rail .brand{display:flex;justify-content:center;align-items:center;padding:0 0 22px;flex-direction:column;gap:8px}
+.rail .brand img{width:52px;height:52px;object-fit:contain;display:block}
+.rail .brand span{font:500 10px var(--mono);letter-spacing:.16em;color:var(--acc-bright)}
+.navbtn{background:none;border:none;border-left:2px solid transparent;text-align:left;padding:13px 18px;color:var(--txt);font:500 13px var(--sans);transition:background .12s}
+.navbtn:hover{background:rgba(255,255,255,.04)}
+.navbtn.on{background:var(--sel);border-left-color:var(--acc)}
+.navbtn.out{color:var(--muted)}
+
+.main{flex:1;display:flex;flex-direction:column;min-width:0}
+.topbar{height:72px;flex:none;display:flex;align-items:center;gap:18px;padding:0 24px;background:var(--panel);border-bottom:1px solid var(--line)}
+.wordmark{font:200 19px var(--mono);letter-spacing:.05em;color:var(--acc-bright);text-transform:uppercase;white-space:nowrap}
+.wordmark b{font-weight:600}
+#pageTitle{font:500 15px var(--sans);color:rgba(255,255,255,.75);white-space:nowrap}
+.pill{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:8px 13px;white-space:nowrap}
+.pill .k{font-size:12px;color:var(--muted)}
+.pill .v{font:500 13px var(--sans)}
+.pill .v.mono{font-family:var(--mono)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
+.dot.warn{background:var(--warn)} .dot.bad{background:var(--bad)} .dot.acc{background:var(--acc)}
+.who{display:flex;align-items:center;gap:10px;padding-left:4px}
+.avatar{width:32px;height:32px;border-radius:50%;background:#1c2429;display:flex;align-items:center;justify-content:center;font:600 12px var(--sans);color:var(--acc)}
+
+.view{flex:1;display:none;min-height:0;overflow:hidden}
+.view.on{display:flex}
+.pad{padding:20px 24px;gap:16px;display:flex;flex-direction:column;min-height:0}
+.side{width:var(--side);flex:none;background:var(--panel);border-left:1px solid var(--line);padding:20px 22px;display:flex;flex-direction:column;gap:16px;overflow-y:auto}
+.h1{font:600 16px var(--sans)}
+.h2{font:600 15px var(--sans)}
+.h3{font:600 14px var(--sans)}
+.eyebrow{font-size:12px;color:var(--muted);letter-spacing:.04em}
+.row{display:flex;align-items:center;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.seg{display:flex;border:1px solid var(--line2);border-radius:6px;overflow:hidden;flex:none}
+.seg button{padding:9px 15px;color:var(--txt);font:500 12px var(--sans);border-left:1px solid var(--line2)}
+.seg button:first-child{border-left:none}
+.seg button.on{background:var(--sel)}
+.btn{background:var(--bg);border:1px solid var(--line2);border-radius:5px;padding:9px 15px;color:var(--txt);font:500 12px var(--sans);transition:border-color .12s}
+.btn:hover{border-color:var(--acc)}
+.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:600}
+.btn.primary:hover{background:#7fd8e0}
+.btn.danger{color:var(--bad);border-color:rgba(232,131,109,.4)}
+.btn.danger:hover{border-color:var(--bad)}
+.btn.sm{padding:6px 11px;font-size:11px}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.chip{background:var(--bg);border:1px solid var(--line2);border-radius:20px;padding:6px 14px;font:500 12px var(--sans);color:var(--muted2)}
+.chip.on{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
+input[type=text],input[type=number],input[type=password],select,textarea{background:var(--deep);border:1px solid var(--line2);border-radius:6px;padding:10px 12px;color:var(--txt);font:400 13px var(--sans);width:100%;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--acc)}
+input[type=range]{width:100%;accent-color:var(--acc)}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--muted)}
+
+/* ---------- CAMERA TILES ---------- */
+.wall{flex:1;display:grid;gap:10px;min-height:0}
+.wall.g9{grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr)}
+.wall.g4{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr)}
+.wall.gfocus{display:flex}
+.wall.gfocus>.tile:first-child{flex:1}
+.wall.gfocus>.strip{width:300px;flex:none;display:grid;grid-template-rows:repeat(5,1fr);gap:10px}
+.tile{position:relative;background:var(--deep);border:1px solid rgba(255,255,255,.08);border-radius:6px;overflow:hidden;min-height:0}
+.tile.live{border-color:rgba(79,195,206,.35)}
+.tile .stripes{position:absolute;inset:0;background:repeating-linear-gradient(115deg,#14191d 0 12px,#0f1417 12px 24px)}
+.tile .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:400 11px var(--mono);color:rgba(255,255,255,.22);text-align:center;padding:8px}
+.tile img.feed{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+.tile .ov{position:absolute;inset:0;pointer-events:none}
+.tile .bar{position:absolute;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;font:500 11px var(--mono)}
+.tile .bar.t{top:0;background:linear-gradient(#0b0e11cc,#0b0e1100)}
+.tile .bar.b{bottom:0;background:linear-gradient(#0b0e1100,#0b0e11cc);color:var(--muted);font-weight:400;font-size:10px}
+.tile .liveTag{display:flex;align-items:center;gap:5px;color:var(--bad);font:500 10px var(--mono)}
+.tile .liveTag i{width:6px;height:6px;border-radius:50%;background:var(--bad);display:block;animation:blink 1.6s infinite}
+.tile.offline .liveTag{color:var(--muted)} .tile.offline .liveTag i{background:var(--muted);animation:none}
+@keyframes blink{0%,60%{opacity:1}80%{opacity:.25}100%{opacity:1}}
+.box{position:absolute;border:2px solid var(--acc);border-radius:2px;transition:left .18s linear,top .18s linear,width .18s linear,height .18s linear}
+.box>b{position:absolute;top:-17px;left:-2px;background:var(--acc);color:var(--acc-ink);font:500 9px var(--mono);padding:1px 4px;white-space:nowrap;font-weight:500}
+.box.fire{border-color:var(--bad)} .box.fire>b{background:var(--bad)}
+.box.smoking{border-color:var(--warn)} .box.smoking>b{background:var(--warn)}
+.box.behavior_fall{border-color:var(--bad)} .box.behavior_fall>b{background:var(--bad)}
+.box.pending{border-style:dashed;opacity:.7}
+.tile .clickzone{position:absolute;inset:0;cursor:pointer}
+
+/* ---------- PTZ CONTROL PAD (overlay di atas siaran langsung) ---------- */
+.ptzPad{position:absolute;right:12px;bottom:44px;z-index:5;background:rgba(11,14,17,.82);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:8px;backdrop-filter:blur(4px);width:186px}
+.ptzPad.hidden{display:none}
+.ptzGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.ptzGrid button{aspect-ratio:1;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:var(--txt);border-radius:6px;font-size:15px;cursor:pointer;user-select:none;touch-action:none}
+.ptzGrid button:active,.ptzGrid button.active{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+.ptzZoom{display:flex;gap:4px}
+.ptzZoom button{flex:1;padding:6px 0;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:var(--txt);border-radius:6px;font:500 11px var(--mono);cursor:pointer;touch-action:none}
+.ptzZoom button:active{background:var(--acc);color:var(--acc-ink)}
+.ptzPresets{display:flex;flex-direction:column;gap:5px}
+.ptzPresets select{width:100%;font-size:11px;padding:5px 6px;background:var(--bg);color:var(--txt);border:1px solid var(--line);border-radius:5px}
+.ptzPresets .row2{display:flex;gap:4px}
+.ptzPresets .row2 .btn{flex:1;padding:5px 0;font-size:11px}
+
+/* ---------- LIST / TABLE ---------- */
+.thead,.trow{display:flex;align-items:center;gap:10px}
+.thead{padding:15px 0;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted);letter-spacing:.03em}
+.trow{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px}
+.trow:hover{background:rgba(255,255,255,.02)}
+.scrolly{overflow-y:auto;min-height:0;flex:1}
+.thumb{width:76px;height:46px;border-radius:4px;background:repeating-linear-gradient(115deg,#181e22 0 8px,#12171a 8px 16px);flex:none;object-fit:cover}
+.alertItem{background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:5px;padding:11px 13px;display:flex;gap:11px;align-items:center;cursor:pointer}
+.alertItem:hover{border-color:var(--line2)}
+.alertItem .tt{font:500 13px var(--sans)} .alertItem .mm{font-size:11px;color:rgba(255,255,255,.42);margin-top:3px}
+.sev{font:500 11px var(--mono);color:var(--muted2);background:var(--bg);border:1px solid var(--line2);border-radius:4px;padding:4px 9px;white-space:nowrap}
+.bar-t{height:5px;background:var(--deep);border-radius:3px;overflow:hidden}
+.bar-t>i{display:block;height:5px;background:var(--acc);border-radius:3px;transition:width .4s}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 18px}
+.kpi .l{font-size:12px;color:var(--muted)} .kpi .v{font:500 28px var(--mono);margin:7px 0 3px} .kpi .d{font-size:12px;color:var(--muted)}
+.empty{padding:28px;text-align:center;color:var(--muted);font-size:13px;border:1px dashed var(--line2);border-radius:8px}
+
+/* ---------- EDITOR GARIS COUNTING ---------- */
+#ceWrap{position:relative;width:100%;aspect-ratio:16/9;background:var(--deep);border:1px solid var(--line2);
+  border-radius:6px;overflow:hidden;touch-action:none;cursor:crosshair}
+#ceWrap .stripes{position:absolute;inset:0;background:repeating-linear-gradient(115deg,#14191d 0 14px,#0f1417 14px 28px)}
+#ceWrap .ceOff{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font:400 12px var(--mono);color:rgba(255,255,255,.3);text-align:center;padding:16px}
+#ceFeed{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;background:#000}
+#ceSvg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#ceHandles{position:absolute;inset:0}
+.ceH{position:absolute;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;
+  background:rgba(18,22,26,.9);border:2px solid var(--acc);color:var(--acc);
+  display:flex;align-items:center;justify-content:center;font:600 11px var(--mono);
+  cursor:grab;touch-action:none;box-shadow:0 0 0 3px rgba(79,195,206,.14)}
+.ceH:active{cursor:grabbing;background:var(--acc);color:var(--acc-ink)}
+#ceTools,#peTools{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+#peWrap{position:relative;width:100%;aspect-ratio:16/9;background:var(--deep);border:1px solid var(--line2);
+  border-radius:6px;overflow:hidden;touch-action:none;cursor:crosshair}
+#peWrap .stripes{position:absolute;inset:0;background:repeating-linear-gradient(115deg,#14191d 0 14px,#0f1417 14px 28px)}
+#peWrap .ceOff{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font:400 12px var(--mono);color:rgba(255,255,255,.3);text-align:center;padding:16px}
+#peFeed{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;background:#000}
+#peSvg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#peHandles{position:absolute;inset:0}
+#peList{display:flex;flex-direction:column;gap:7px}
+.peRow{display:flex;align-items:center;gap:9px;padding:8px 10px;border:1px solid var(--line);
+  border-radius:6px;background:var(--bg);cursor:pointer}
+.peRow.on{border-color:var(--acc);background:var(--sel)}
+#peHint{font-size:12px;color:var(--muted);line-height:1.5}
+.secOff{padding:16px;border:1px dashed var(--line2);border-radius:8px;font-size:13px;color:var(--muted);line-height:1.55}
+#ceRead{font:400 12px var(--mono);color:var(--muted)}
+#ceHint{font-size:12px;color:var(--muted);line-height:1.5}
+.sheet.wide{width:min(940px,100%)}
+
+/* ---------- MODAL / TOAST ---------- */
+#modal{position:fixed;inset:0;background:rgba(6,10,13,.72);display:none;align-items:center;justify-content:center;z-index:80;padding:24px;backdrop-filter:blur(3px)}
+#modal.on{display:flex}
+.sheet{background:var(--panel);border:1px solid var(--line2);border-radius:10px;width:min(760px,100%);max-height:88vh;display:flex;flex-direction:column;overflow:hidden}
+.sheet header{display:flex;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--line)}
+.sheet .body{padding:20px 22px;overflow-y:auto;display:flex;flex-direction:column;gap:16px}
+.sheet footer{display:flex;gap:10px;justify-content:flex-end;padding:16px 22px;border-top:1px solid var(--line)}
+#toasts{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:8px;z-index:90}
+.toast{background:var(--panel);border:1px solid var(--line2);border-left:3px solid var(--acc);border-radius:6px;padding:12px 16px;font-size:13px;max-width:360px;animation:slide .2s}
+.toast.err{border-left-color:var(--bad)} .toast.ok{border-left-color:var(--ok)}
+@keyframes slide{from{transform:translateX(12px);opacity:0}}
+.sw{width:42px;height:24px;border-radius:12px;background:#1c2429;position:relative;flex:none;transition:background .15s}
+.sw>i{position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.5);transition:.15s}
+.sw.on{background:var(--acc)} .sw.on>i{left:21px;background:var(--acc-ink)}
+.toggleRow{display:flex;align-items:center;justify-content:space-between;gap:14px;cursor:pointer}
+.toggleRow .tl{font-size:13px} .toggleRow .ts{font-size:11px;color:var(--muted);margin-top:3px}
+
+/* ---------- MAP ---------- */
+#mapStage{flex:1;position:relative;background:var(--deep);border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden}
+#mapGrid{position:absolute;inset:0;background:repeating-linear-gradient(90deg,#101519 0 1px,#0b0e11 1px 60px),repeating-linear-gradient(0deg,#101519 0 1px,#0b0e11 1px 60px)}
+#mapPlan{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.pin{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:7px;background:#12161ae6;border:1px solid var(--ok);border-radius:20px;padding:6px 11px;font:500 11px var(--mono);cursor:grab;user-select:none;white-space:nowrap}
+.pin.drag{cursor:grabbing;border-color:var(--acc)}
+
+/* ---------- SETTINGS ---------- */
+.setnav{width:230px;flex:none;background:#0f1317;border-right:1px solid var(--line);padding:20px 0;display:flex;flex-direction:column;gap:2px;overflow-y:auto}
+.setnav .t{padding:0 22px 12px;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.setnav button{padding:12px 22px;text-align:left;font:400 13px var(--sans);color:var(--muted2);border-left:2px solid transparent}
+.setnav button.on{background:var(--sel);color:var(--txt);font-weight:500;border-left-color:var(--acc)}
+.setpane{flex:1;padding:20px 24px;display:flex;flex-direction:column;gap:16px;overflow-y:auto;min-width:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pad18{padding:18px}
+.stack{display:flex;flex-direction:column;gap:14px}
+.stack8{display:flex;flex-direction:column;gap:8px}
+
+@media (max-width:1280px){
+  :root{--side:330px;--rail:112px}
+  .grid4{grid-template-columns:repeat(2,1fr)}
+  .grid3{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:980px){
+  .side{display:none}
+  .grid2,.grid3,.grid4{grid-template-columns:1fr}
+  .wall.gfocus{flex-direction:column}
+  .wall.gfocus>.strip{width:auto;grid-template-rows:none;grid-template-columns:repeat(5,1fr);height:88px}
+  .topbar{overflow-x:auto}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div id="shell">
+  <!-- ======================= RAIL ======================= -->
+  <aside class="rail">
+    <div class="brand">
+      <img src="data:image/png;base64,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" alt="ENPIDIX">
+      <span>ENPIDIX</span>
+    </div>
+    <button class="navbtn on" data-nav="beranda">Beranda</button>
+    <button class="navbtn" data-nav="kamera">Kamera</button>
+    <button class="navbtn" data-nav="peringatan">Peringatan</button>
+    <button class="navbtn" data-nav="analitik">Analitik</button>
+    <button class="navbtn" data-nav="perangkat">Perangkat</button>
+    <button class="navbtn" data-nav="peta">Peta</button>
+    <button class="navbtn" data-nav="pengaturan">Pengaturan</button>
+    <div class="grow"></div>
+    <a class="navbtn out" href="/logout" style="text-decoration:none;display:block">Keluar</a>
+  </aside>
+
+  <div class="main">
+    <!-- ======================= TOPBAR ======================= -->
+    <header class="topbar">
+      <div class="row" style="align-items:baseline;gap:12px">
+        <div class="wordmark"><b>Video Management System</b></div>
+        <div id="pageTitle">Beranda</div>
+      </div>
+      <div class="grow"></div>
+      <div class="row" style="gap:9px">
+        <div class="pill"><span class="dot" id="sysDot"></span><span class="k">Sistem</span><span class="v" id="sysState">Memuat…</span></div>
+        <div class="pill"><span class="k">Kamera</span><span class="v mono" id="camCount">—</span></div>
+        <div class="pill"><span class="k">CPU</span><span class="v mono" id="cpuVal">—</span></div>
+        <div class="pill"><span class="k">Peringatan</span><span class="v mono" id="alertCount" style="color:var(--bad)">0</span></div>
+        <div class="pill"><span class="v mono" id="clock">--:--:--</span></div>
+        <div class="who"><div class="avatar" id="avatarIni">OP</div>
+          <div style="font-size:13px">Operator<div style="font-size:11px;color:var(--muted)" id="hostLabel">—</div></div></div>
+      </div>
+    </header>
+
+    <!-- ======================= BERANDA ======================= -->
+    <section class="view on" id="v-beranda">
+      <div class="pad grow" style="min-width:0">
+        <div class="row">
+          <div class="h1">Dinding kamera</div>
+          <div class="muted" style="font-size:12px" id="wallMeta">—</div>
+          <div class="grow"></div>
+          <button class="btn sm" id="wallPrev">‹ Sebelumnya</button>
+          <span class="mono muted" style="font-size:12px" id="wallPage">1/1</span>
+          <button class="btn sm" id="wallNext">Berikutnya ›</button>
+          <div class="seg" id="gridSeg">
+            <button data-grid="9" class="on">Grid 3×3</button>
+            <button data-grid="focus">Fokus 1+5</button>
+            <button data-grid="4">Besar 2×2</button>
+          </div>
+        </div>
+        <div class="wall g9" id="wall"></div>
+      </div>
+      <aside class="side">
+        <div class="h2">Panel operasi</div>
+        <div class="grid2" style="gap:10px">
+          <div class="kpi" style="padding:13px"><div class="l">Orang masuk</div><div class="v" style="font-size:23px" id="opPeople">0</div></div>
+          <div class="kpi" style="padding:13px"><div class="l">Kendaraan masuk</div><div class="v" style="font-size:23px" id="opVehicle">0</div></div>
+        </div>
+        <div class="stack" style="gap:11px">
+          <div class="eyebrow">STATUS ANALITIK</div>
+          <div id="aiBars" class="stack" style="gap:11px"></div>
+        </div>
+        <div style="height:1px;background:var(--line)"></div>
+        <div class="row"><div class="eyebrow">PERINGATAN TERBARU</div><div class="grow"></div>
+          <button class="btn sm" data-nav="peringatan" style="border:none;color:var(--acc);padding:0">Lihat semua</button></div>
+        <div class="stack8" id="homeAlerts"></div>
+      </aside>
+    </section>
+
+    <!-- ======================= KAMERA ======================= -->
+    <section class="view" id="v-kamera">
+      <div class="pad grow" style="min-width:0">
+        <div class="row">
+          <select id="camPick" style="width:250px"></select>
+          <div class="muted" style="font-size:12px" id="camMeta">—</div>
+          <div class="grow"></div>
+          <button class="btn" id="btnRecToggle">Mulai rekam</button>
+          <button class="btn" id="btnResetCount">Reset hitungan</button>
+          <button class="btn primary" id="btnCamSettings">Atur kamera</button>
+        </div>
+        <div class="tile live" id="bigTile" style="flex:1;min-height:0">
+          <div class="stripes"></div><div class="ph">Pilih kamera untuk melihat siaran langsung</div>
+          <div class="ov"></div>
+          <div class="bar t"><span id="bigName">—</span><span class="liveTag"><i></i>LIVE</span></div>
+          <div class="bar b"><span id="bigCounts">—</span><span id="bigFps">—</span></div>
+          <div class="ptzPad hidden" id="ptzPad">
+            <div class="ptzGrid">
+              <button data-ptz="nw" title="Kiri atas">↖</button><button data-ptz="n" title="Atas">↑</button><button data-ptz="ne" title="Kanan atas">↗</button>
+              <button data-ptz="w" title="Kiri">←</button><button data-ptz="home" title="Posisi home">⌂</button><button data-ptz="e" title="Kanan">→</button>
+              <button data-ptz="sw" title="Kiri bawah">↙</button><button data-ptz="s" title="Bawah">↓</button><button data-ptz="se" title="Kanan bawah">↘</button>
+            </div>
+            <div class="ptzZoom">
+              <button data-ptzzoom="in">Zoom +</button>
+              <button data-ptzzoom="out">Zoom −</button>
+            </div>
+            <div class="ptzPresets">
+              <select id="ptzPresetSel"><option value="">Preset tersimpan…</option></select>
+              <div class="row2">
+                <button class="btn sm" id="ptzGotoBtn" type="button">Ke preset</button>
+                <button class="btn sm" id="ptzSaveBtn" type="button">+ Simpan</button>
+                <button class="btn sm danger" id="ptzDelBtn" type="button">Hapus</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="padding:14px 16px;display:flex;flex-direction:column;gap:12px">
+          <div class="row">
+            <div class="h3">Rekaman tersimpan</div>
+            <div class="muted mono" style="font-size:12px" id="recMeta">—</div>
+            <div class="grow"></div>
+            <div class="muted" style="font-size:12px">Penanda di garis waktu = kejadian AI 24 jam terakhir</div>
+          </div>
+          <div style="position:relative;height:44px;background:var(--deep);border-radius:5px;overflow:hidden" id="timeline">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 1px,transparent 1px 60px)"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font:400 11px var(--mono);color:rgba(255,255,255,.35)">
+            <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div>
+          <div class="scrolly" id="recList" style="max-height:190px"></div>
+        </div>
+      </div>
+      <aside class="side">
+        <div class="h2">Kejadian di kamera ini</div>
+        <div class="row" style="flex-wrap:wrap;gap:7px" id="camTypeChips"></div>
+        <div class="stack8 scrolly" id="camEvents"></div>
+      </aside>
+    </section>
+
+    <!-- ======================= PERINGATAN ======================= -->
+    <section class="view" id="v-peringatan">
+      <div class="pad grow" style="min-width:0">
+        <div class="row">
+          <div class="h1">Kotak masuk peringatan</div>
+          <div class="muted" style="font-size:12px" id="alertMeta">—</div>
+          <div class="grow"></div>
+          <div class="seg" id="alertSeg"><button data-av="list" class="on">Tampilan daftar</button><button data-av="board">Papan triase</button></div>
+        </div>
+        <div class="row" style="flex-wrap:wrap;gap:7px" id="alertChips"></div>
+        <div class="grow" style="display:flex;gap:14px;min-height:0" id="alertListWrap">
+          <div class="card scrolly" style="flex:1;padding:0 16px"><div id="alertRows"></div></div>
+          <div class="card" style="width:380px;flex:none;padding:18px;display:flex;flex-direction:column;gap:14px;overflow-y:auto" id="alertDetail"></div>
+        </div>
+        <div class="grow grid3 hidden" style="min-height:0" id="alertBoard"></div>
+      </div>
+    </section>
+
+    <!-- ======================= ANALITIK ======================= -->
+    <section class="view" id="v-analitik">
+      <div class="pad grow" style="min-width:0;overflow-y:auto">
+        <div class="row">
+          <div class="h1">Analitik</div>
+          <div class="muted" style="font-size:12px" id="anMeta">—</div>
+          <div class="grow"></div>
+          <button class="btn" id="btnCsv">Unduh CSV</button>
+          <button class="btn" id="btnResetAll">Reset semua hitungan</button>
+        </div>
+        <div class="grid4" id="anKpis"></div>
+        <div style="display:grid;grid-template-columns:1.45fr 1fr;gap:14px">
+          <div class="card pad18 stack">
+            <div class="row"><div class="h3">Beban sistem</div><div class="grow"></div>
+              <div class="mono muted" style="font-size:12px">CPU % &amp; FPS AI · beberapa menit terakhir</div></div>
+            <div style="height:210px" id="chartHost"></div>
+          </div>
+          <div class="card pad18 stack">
+            <div class="h3">Klasifikasi objek terhitung</div>
+            <div style="flex:1;display:flex;align-items:stretch;gap:18px;padding:0 4px;min-height:190px" id="chartBars"></div>
+          </div>
+        </div>
+        <div class="card" style="padding:0 18px 6px">
+          <div class="thead"><div style="flex:2">KAMERA</div><div style="flex:1">ORANG</div><div style="flex:1">KENDARAAN</div><div style="flex:1">HEWAN</div><div style="flex:1">KEJADIAN</div><div style="flex:1">FPS</div></div>
+          <div id="anRows"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= PERANGKAT ======================= -->
+    <section class="view" id="v-perangkat">
+      <div class="pad grow" style="min-width:0">
+        <div class="row">
+          <div class="h1">Perangkat kamera</div>
+          <div class="muted" style="font-size:12px" id="devMeta">—</div>
+          <div class="grow"></div>
+          <input type="text" id="devSearch" placeholder="Cari nama atau alamat kamera…" style="width:260px">
+          <button class="btn primary" id="btnAddCam">Tambah kamera</button>
+        </div>
+        <div class="grid4" id="devStats"></div>
+        <div class="card scrolly" style="padding:0 18px">
+          <div class="thead"><div style="width:130px">STATUS</div><div style="flex:1.4">NAMA</div><div style="flex:1.3">ALAMAT</div><div style="width:80px">FPS</div><div style="flex:1.4">ANALITIK AKTIF</div><div style="width:180px;text-align:right">AKSI</div></div>
+          <div id="devRows"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= PETA ======================= -->
+    <section class="view" id="v-peta">
+      <div class="pad grow" style="min-width:0">
+        <div class="row">
+          <div class="h1">Peta lokasi</div>
+          <div class="muted" style="font-size:12px">Seret penanda untuk memindahkan posisi kamera. Tata letak disimpan di peramban ini.</div>
+          <div class="grow"></div>
+          <button class="btn" id="btnMapPlan">Ganti denah</button>
+          <button class="btn" id="btnMapReset">Susun ulang</button>
+        </div>
+        <div id="mapStage">
+          <div id="mapGrid"></div>
+          <img id="mapPlan" class="hidden" alt="Denah lokasi">
+          <div class="ph" id="mapHint" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:400 12px var(--mono);color:rgba(255,255,255,.25)">Belum ada denah — klik “Ganti denah” untuk menempelkan URL gambar denah</div>
+        </div>
+      </div>
+      <aside class="side">
+        <div class="h2">Kamera di peta</div>
+        <div class="stack8" id="mapCams"></div>
+      </aside>
+    </section>
+
+    <!-- ======================= PENGATURAN ======================= -->
+    <section class="view" id="v-pengaturan">
+      <nav class="setnav">
+        <div class="t">PENGATURAN</div>
+        <button data-set="ai" class="on">Aturan analitik</button>
+        <button data-set="rekaman">Perekaman &amp; retensi</button>
+        <button data-set="storage">Penyimpanan</button>
+        <button data-set="wajah">Wajah terdaftar</button>
+        <button data-set="nx">Integrasi NX</button>
+        <button data-set="fleet">Fleet &amp; Regional</button>
+        <button data-set="sistem">Sistem &amp; jaringan</button>
+      </nav>
+      <div class="setpane" id="setPane"></div>
+    </section>
+  </div>
+</div>
+
+<div id="modal"><div class="sheet"><header><div class="h2" id="modalTitle">—</div><div class="grow"></div>
+  <button class="btn sm" id="modalX">Tutup</button></header>
+  <div class="body" id="modalBody"></div><footer id="modalFoot"></footer></div></div>
+<div id="toasts"></div>
+
+<script>
+/* ==========================================================================
+   ENPIDIX VMS — dashboard client
+   Semua data diambil dari endpoint yang sudah ada di server.py.
+   ========================================================================== */
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+/* ---------------------------- HTTP ---------------------------- */
+const api = {
+  async req(url, opts = {}) {
+    const r = await fetch(url, { credentials: 'same-origin', ...opts });
+    if (r.status === 401) { location.href = '/login'; throw new Error('Sesi berakhir'); }
+    if (!r.ok) {
+      let msg = r.status + ' ' + r.statusText;
+      try { const d = await r.json(); if (d && d.detail) msg = typeof d.detail === 'string' ? d.detail : JSON.stringify(d.detail); } catch (e) {}
+      throw new Error(msg);
+    }
+    const ct = r.headers.get('content-type') || '';
+    return ct.includes('json') ? r.json() : r.text();
+  },
+  get(u) { return this.req(u); },
+  post(u, body) {
+    return this.req(u, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body === undefined ? null : JSON.stringify(body) });
+  },
+  form(u, fd) { return this.req(u, { method: 'POST', body: fd }); },
+  del(u) { return this.req(u, { method: 'DELETE' }); },
+};
+
+/* ---------------------------- UTIL ---------------------------- */
+const TYPE_META = {
+  face:          { label: 'Wajah dikenali',   sev: 'RENDAH', color: 'var(--acc)' },
+  smoking:       { label: 'Merokok',          sev: 'SEDANG', color: 'var(--warn)' },
+  fire:          { label: 'Api / asap',       sev: 'KRITIS', color: 'var(--bad)' },
+  behavior_fall: { label: 'Orang terjatuh',   sev: 'KRITIS', color: 'var(--bad)' },
+  counting:      { label: 'Objek terhitung',  sev: 'INFO',   color: 'var(--ok)' },
+  parking:       { label: 'Perubahan parkir', sev: 'INFO',   color: 'var(--ok)' },
+};
+const AI_LABELS = {
+  face_recognition: 'Pengenalan wajah', smoking_detection: 'Deteksi merokok',
+  fire_detection: 'Deteksi api/asap', behavior_detection: 'Deteksi jatuh',
+  people_counting: 'Hitung orang', vehicle_counting: 'Hitung kendaraan',
+  animal_counting: 'Hitung hewan', parking_detection: 'Deteksi parkir',
+};
+const meta = t => TYPE_META[t] || { label: t || 'Kejadian', sev: 'INFO', color: 'var(--acc)' };
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const nf  = n => (n == null || isNaN(n)) ? '—' : Number(n).toLocaleString('id-ID');
+const jam = iso => { if (!iso) return '—'; const d = new Date(iso); return isNaN(d) ? '—' : d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }); };
+const tgl = iso => { if (!iso) return '—'; const d = new Date(iso); return isNaN(d) ? '—' : d.toLocaleString('id-ID', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }); };
+const hostOf = url => { try { return new URL(String(url).replace(/^rtsp:/, 'http:')).hostname || '—'; } catch (e) { return String(url || '').slice(0, 28) || '—'; } };
+
+function toast(msg, kind) {
+  const el = document.createElement('div');
+  el.className = 'toast ' + (kind || '');
+  el.textContent = msg;
+  $('#toasts').appendChild(el);
+  setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity .3s'; setTimeout(() => el.remove(), 300); }, 4200);
+}
+const fail = e => toast(e && e.message ? e.message : String(e), 'err');
+
+/* ---------------------------- STATE ---------------------------- */
+const S = {
+  view: 'beranda',
+  cameras: [], stats: null, history: null, alerts: [], captures: [],
+  counting: {},          // camId -> {counts,total_in,total_out}
+  grid: '9', wallPage: 0,
+  selCam: null, camCaptures: [], camType: '', camRec: null, camRecFiles: [],
+  alertView: 'list', alertType: '', selAlert: null,
+  setTab: 'ai',
+  liveTiles: [],         // {id, el, ov}
+};
+
+/* ---------------------------- POLLING ---------------------------- */
+const timers = [];
+function every(ms, fn) { const t = setInterval(() => { if (!document.hidden) fn(); }, ms); timers.push(t); fn(); return t; }
+
+/* ---------------------------- NAV ---------------------------- */
+const TITLES = { beranda: 'Beranda', kamera: 'Kamera & rekaman', peringatan: 'Peringatan', analitik: 'Analitik', perangkat: 'Perangkat', peta: 'Peta lokasi', pengaturan: 'Pengaturan' };
+function go(view) {
+  S.view = view;
+  $$('.view').forEach(v => v.classList.toggle('on', v.id === 'v-' + view));
+  $$('.navbtn[data-nav]').forEach(b => b.classList.toggle('on', b.dataset.nav === view));
+  $('#pageTitle').textContent = TITLES[view] || '';
+  stopWall();
+  if (view === 'beranda')   { renderWall(); renderHomePanel(); }
+  if (view === 'kamera')    { renderCamPick(); mountBigCam(); }
+  if (view === 'peringatan'){ loadCaptures().then(renderAlerts); }
+  if (view === 'analitik')  { loadCounting().then(renderAnalitik); loadHistory(); }
+  if (view === 'perangkat') { renderDevices(); }
+  if (view === 'peta')      { renderMap(); }
+  if (view === 'pengaturan'){ renderSettings(); }
+  location.hash = view;
+}
+document.addEventListener('click', e => {
+  const n = e.target.closest('[data-nav]');
+  if (n) { e.preventDefault(); go(n.dataset.nav); }
+});
+
+/* ---------------------------- TOPBAR ---------------------------- */
+function tickClock() { $('#clock').textContent = new Date().toLocaleTimeString('id-ID', { hour12: false }); }
+setInterval(tickClock, 1000); tickClock();
+
+function paintTopbar() {
+  const on = S.cameras.filter(c => c.live_status && c.live_status.open).length;
+  $('#camCount').textContent = on + '/' + S.cameras.length;
+  const st = S.stats;
+  if (st) {
+    const cpu = st.cpu.total_pct;
+    $('#cpuVal').textContent = Math.round(cpu) + '%';
+    const bad = S.cameras.length && on === 0, warn = cpu > 88 || (S.cameras.length && on < S.cameras.length);
+    $('#sysDot').className = 'dot' + (bad ? ' bad' : warn ? ' warn' : '');
+    $('#sysState').textContent = bad ? 'Terputus' : warn ? 'Perhatian' : 'Normal';
+  }
+  $('#alertCount').textContent = S.alerts.length;
+}
+
+/* ---------------------------- LOADERS ---------------------------- */
+function camSig() { return S.cameras.map(c => `${c.id}:${c.enabled}:${c.live_status && c.live_status.open ? 1 : 0}`).join(','); }
+async function loadCameras() {
+  try {
+    const d = await api.get('/api/cameras');
+    const before = camSig();
+    S.cameras = d.cameras || [];
+    if (S.selCam == null && S.cameras.length) S.selCam = S.cameras[0].id;
+    paintTopbar();
+    const changed = camSig() !== before;
+    if (S.view === 'perangkat') renderDevices();
+    if (S.view === 'peta') renderMap();
+    if (changed && S.view === 'beranda') renderWall();
+    if (changed && S.view === 'kamera') { renderCamPick(); mountBigCam(); }
+  } catch (e) { /* diam: dipanggil berulang */ }
+}
+async function loadStats() {
+  try { S.stats = await api.get('/api/stats/system'); paintTopbar(); if (S.view === 'analitik') paintAnKpis(); } catch (e) {}
+}
+async function loadHistory() {
+  try { S.history = await api.get('/api/stats/history?limit=60'); if (S.view === 'analitik') drawChart(); } catch (e) {}
+}
+async function loadAlerts() {
+  try {
+    const d = await api.get('/api/alerts/all');
+    S.alerts = d.alerts || [];
+    paintTopbar();
+    if (S.view === 'beranda') renderHomeAlerts();
+  } catch (e) {}
+}
+async function loadCaptures() {
+  try { const d = await api.get('/api/captures/all?limit=300'); S.captures = d.captures || []; } catch (e) { S.captures = []; }
+}
+async function loadCounting() {
+  const out = {};
+  await Promise.all(S.cameras.map(async c => {
+    const ai = c.live_status && c.live_status.open;
+    if (!ai) return;
+    try { out[c.id] = await api.get('/api/cameras/' + c.id + '/counting/stats'); } catch (e) {}
+  }));
+  S.counting = out;
+  return out;
+}
+function countTotals() {
+  const cat = {}; let people = 0, vehicle = 0, animal = 0;
+  const VEH = ['car', 'motorcycle', 'bus', 'truck', 'bicycle'];
+  Object.values(S.counting).forEach(cs => {
+    Object.entries(cs.counts || {}).forEach(([k, v]) => {
+      const inn = v.in || 0;
+      cat[k] = (cat[k] || 0) + inn;
+      if (k === 'person') people += inn;
+      else if (k === 'animal') animal += inn;
+      else if (VEH.includes(k)) vehicle += inn;
+    });
+  });
+  return { cat, people, vehicle, animal };
+}
+
+/* ==========================================================================
+   BERANDA — dinding kamera
+   ========================================================================== */
+function stopWall() { S.liveTiles.forEach(t => { if (t.el) t.el.removeAttribute('src'); }); S.liveTiles = []; }
+
+function tileHTML(cam) {
+  const open = cam.live_status && cam.live_status.open;
+  const err  = cam.live_status && cam.live_status.error;
+  return `<div class="tile ${open ? 'live' : 'offline'}" data-cam="${cam.id}">
+    <div class="stripes"></div>
+    ${open ? `<img class="feed" alt="${esc(cam.name)}">` : `<div class="ph">${esc(err || 'Kamera tidak aktif')}</div>`}
+    <div class="ov"></div>
+    <div class="clickzone" data-open="${cam.id}"></div>
+    <div class="bar t"><span>${esc(cam.name)}</span><span class="liveTag"><i></i>${open ? 'LIVE' : 'OFF'}</span></div>
+    <div class="bar b"><span data-zone="${cam.id}">${esc(hostOf(cam.rtsp_url))}</span><span data-cnt="${cam.id}">—</span></div>
+  </div>`;
+}
+
+function wallSlots() { return S.grid === '9' ? 9 : S.grid === '4' ? 4 : 6; }
+
+function renderWall() {
+  const wall = $('#wall');
+  const cams = S.cameras.filter(c => c.enabled);
+  const per = wallSlots();
+  const pages = Math.max(1, Math.ceil(cams.length / per));
+  if (S.wallPage >= pages) S.wallPage = 0;
+  const slice = cams.slice(S.wallPage * per, S.wallPage * per + per);
+
+  $('#wallPage').textContent = (S.wallPage + 1) + '/' + pages;
+  $('#wallMeta').textContent = cams.length ? `${cams.length} kamera aktif · menampilkan ${slice.length}` : 'Belum ada kamera';
+  wall.className = 'wall ' + (S.grid === '9' ? 'g9' : S.grid === '4' ? 'g4' : 'gfocus');
+
+  if (!slice.length) {
+    wall.innerHTML = `<div class="empty" style="grid-column:1/-1;align-self:center">Belum ada kamera aktif. Tambahkan lewat menu <b>Perangkat</b>.</div>`;
+    return;
+  }
+  if (S.grid === 'focus') {
+    wall.innerHTML = tileHTML(slice[0]) + `<div class="strip">${slice.slice(1, 6).map(tileHTML).join('')}</div>`;
+  } else {
+    wall.innerHTML = slice.map(tileHTML).join('');
+  }
+  mountFeeds(wall);
+}
+
+function mountFeeds(root) {
+  stopWall();
+  $$('.tile[data-cam]', root).forEach(tile => {
+    const id = +tile.dataset.cam;
+    const img = $('img.feed', tile);
+    if (img) { img.src = '/video_feed/' + id + '?t=' + Date.now(); }
+    S.liveTiles.push({ id, el: img, ov: $('.ov', tile) });
+  });
+}
+
+function drawBoxes(ov, boxes) {
+  if (!ov) return;
+  const keep = new Map();
+  boxes.forEach(b => {
+    const key = b.track_id || (b.type + b.label + b.x1);
+    keep.set(key, b);
+  });
+  // buang box yang hilang
+  $$('.box', ov).forEach(el => { if (!keep.has(el.dataset.k)) el.remove(); });
+  keep.forEach((b, key) => {
+    let el = $(`.box[data-k="${CSS.escape(key)}"]`, ov);
+    if (!el) {
+      el = document.createElement('div');
+      el.dataset.k = key;
+      el.innerHTML = '<b></b>';
+      ov.appendChild(el);
+    }
+    const base = (b.type || '').replace(/^count_.*/, 'count');
+    el.className = 'box ' + base + (b.confirmed === false ? ' pending' : '');
+    el.style.left   = (b.x1 * 100) + '%';
+    el.style.top    = (b.y1 * 100) + '%';
+    el.style.width  = ((b.x2 - b.x1) * 100) + '%';
+    el.style.height = ((b.y2 - b.y1) * 100) + '%';
+    el.firstChild.textContent = b.label || '';
+  });
+}
+
+async function pollWallBoxes() {
+  if (S.view !== 'beranda' || !S.liveTiles.length) return;
+  await Promise.all(S.liveTiles.map(async t => {
+    if (!t.el) return;
+    try {
+      const d = await api.get('/api/cameras/' + t.id + '/detections');
+      drawBoxes(t.ov, d.boxes || []);
+    } catch (e) {}
+  }));
+}
+
+async function pollWallCounts() {
+  if (S.view !== 'beranda') return;
+  await Promise.all(S.liveTiles.map(async t => {
+    try {
+      const d = await api.get('/api/cameras/' + t.id + '/counting/stats');
+      S.counting[t.id] = d;
+      const el = $(`[data-cnt="${t.id}"]`);
+      if (el) el.textContent = d.total_in ? `masuk ${d.total_in} · keluar ${d.total_out}` : '—';
+    } catch (e) {}
+  }));
+  renderHomePanel();
+}
+
+function renderHomePanel() {
+  const { people, vehicle } = countTotals();
+  $('#opPeople').textContent = nf(people);
+  $('#opVehicle').textContent = nf(vehicle);
+
+  const total = S.cameras.length || 1;
+  const bars = Object.keys(AI_LABELS).map(k => {
+    const n = S.cameras.filter(c => c['ai_' + k]).length;
+    return { label: AI_LABELS[k], n, pct: Math.round(n / total * 100) };
+  }).filter(b => b.n > 0).slice(0, 5);
+
+  $('#aiBars').innerHTML = bars.length ? bars.map(b => `
+    <div class="stack8" style="gap:6px">
+      <div style="display:flex;justify-content:space-between;font-size:13px"><span>${esc(b.label)}</span>
+        <span class="mono muted" style="font-size:12px">${b.n}/${S.cameras.length} kamera</span></div>
+      <div class="bar-t"><i style="width:${b.pct}%"></i></div>
+    </div>`).join('')
+    : `<div class="muted" style="font-size:13px">Belum ada fitur analitik yang diaktifkan. Nyalakan per kamera lewat menu Perangkat.</div>`;
+
+  renderHomeAlerts();
+}
+
+function renderHomeAlerts() {
+  const el = $('#homeAlerts');
+  if (!el) return;
+  if (!S.alerts.length) { el.innerHTML = `<div class="muted" style="font-size:13px">Belum ada peringatan sejak server dijalankan.</div>`; return; }
+  el.innerHTML = S.alerts.slice(0, 6).map(a => {
+    const m = meta(a.type);
+    return `<div class="alertItem" style="border-left-color:${m.color}" data-nav="peringatan">
+      <div style="flex:1;min-width:0"><div class="tt">${esc(m.label)}${a.name ? ' · ' + esc(a.name) : ''}</div>
+        <div class="mm">${esc(a.camera_name || '')} · ${m.sev.toLowerCase()}</div></div>
+      <div class="mono muted" style="font-size:11px">${esc(a.time || '')}</div></div>`;
+  }).join('');
+}
+
+$('#gridSeg').addEventListener('click', e => {
+  const b = e.target.closest('[data-grid]'); if (!b) return;
+  S.grid = b.dataset.grid; S.wallPage = 0;
+  $$('#gridSeg button').forEach(x => x.classList.toggle('on', x === b));
+  renderWall();
+});
+$('#wallPrev').onclick = () => { S.wallPage = Math.max(0, S.wallPage - 1); renderWall(); };
+$('#wallNext').onclick = () => { S.wallPage++; renderWall(); };
+document.addEventListener('click', e => {
+  const z = e.target.closest('[data-open]');
+  if (z) { S.selCam = +z.dataset.open; go('kamera'); }
+});
+
+/* ==========================================================================
+   KAMERA — live besar, rekaman, kejadian
+   ========================================================================== */
+function renderCamPick() {
+  const sel = $('#camPick');
+  sel.innerHTML = S.cameras.map(c => `<option value="${c.id}" ${c.id === S.selCam ? 'selected' : ''}>${esc(c.name)}</option>`).join('')
+    || '<option value="">(belum ada kamera)</option>';
+}
+$('#camPick').addEventListener('change', e => { S.selCam = +e.target.value; mountBigCam(); });
+
+function curCam() { return S.cameras.find(c => c.id === S.selCam) || null; }
+
+function mountBigCam() {
+  const cam = curCam(), tile = $('#bigTile');
+  stopWall();
+  $('.ov', tile).innerHTML = '';
+  $$('img.feed', tile).forEach(i => i.remove());
+  if (!cam) { $('#bigName').textContent = '—'; $('.ph', tile).classList.remove('hidden'); return; }
+
+  S.camType = '';
+  $('#bigName').textContent = cam.name;
+  const open = cam.live_status && cam.live_status.open;
+  tile.classList.toggle('offline', !open);
+  const ph = $('.ph', tile);
+  if (open) {
+    ph.classList.add('hidden');
+    const img = document.createElement('img');
+    img.className = 'feed'; img.alt = cam.name;
+    img.src = '/video_feed/' + cam.id + '?t=' + Date.now();
+    tile.insertBefore(img, $('.ov', tile));
+    S.liveTiles = [{ id: cam.id, el: img, ov: $('.ov', tile) }];
+  } else {
+    ph.classList.remove('hidden');
+    ph.textContent = (cam.live_status && cam.live_status.error) || 'Kamera tidak aktif';
+  }
+  const aiOn = Object.keys(AI_LABELS).filter(k => cam['ai_' + k]).map(k => AI_LABELS[k]);
+  $('#camMeta').textContent = hostOf(cam.rtsp_url) + (aiOn.length ? ' · ' + aiOn.join(', ') : ' · tanpa analitik');
+  loadCamSide();
+  loadRecordings();
+  renderPtzPad(cam);
+}
+
+/* ==========================================================================
+   KONTROL PTZ (Pan-Tilt-Zoom) — ditampilkan sbg overlay di siaran langsung
+   utk kamera yg ditambahkan via ONVIF & mendukung PTZ (cam.ptz_supported).
+   ========================================================================== */
+const PTZ_VEC = {
+  n: [0, 1], s: [0, -1], e: [1, 0], w: [-1, 0],
+  ne: [1, 1], nw: [-1, 1], se: [1, -1], sw: [-1, -1],
+};
+const PTZ_SPEED = 0.55;
+
+function renderPtzPad(cam) {
+  const pad = $('#ptzPad');
+  if (!cam || !cam.ptz_supported) { pad.classList.add('hidden'); return; }
+  pad.classList.remove('hidden');
+  loadPtzPresets(cam.id);
+}
+
+async function loadPtzPresets(camId) {
+  const sel = $('#ptzPresetSel');
+  sel.innerHTML = '<option value="">Preset tersimpan…</option>';
+  try {
+    const r = await api.get(`/api/cameras/${camId}/ptz/presets`);
+    (r.presets || []).forEach(p => {
+      const o = document.createElement('option');
+      o.value = p.token; o.textContent = p.name || p.token;
+      sel.appendChild(o);
+    });
+  } catch (e) { /* kamera mungkin sedang offline, biarkan daftar kosong */ }
+}
+
+async function ptzSendMove(camId, pan, tilt, zoom) {
+  try { await api.post(`/api/cameras/${camId}/ptz/move`, { pan, tilt, zoom }); } catch (err) { fail(err); }
+}
+async function ptzSendStop(camId) {
+  try { await api.post(`/api/cameras/${camId}/ptz/stop`); } catch (err) { /* diam2 saja, tombol sudah dilepas */ }
+}
+
+(function bindPtzPad() {
+  const pad = document.getElementById('ptzPad');
+  let heldBtn = null;
+
+  const start = e => {
+    const dirBtn = e.target.closest('[data-ptz]');
+    const zoomBtn = e.target.closest('[data-ptzzoom]');
+    const cam = curCam();
+    if (!cam) return;
+    if (dirBtn) {
+      const dir = dirBtn.dataset.ptz;
+      if (dir === 'home') { api.post(`/api/cameras/${cam.id}/ptz/home`).catch(fail); return; }
+      const v = PTZ_VEC[dir]; if (!v) return;
+      heldBtn = dirBtn; dirBtn.classList.add('active');
+      ptzSendMove(cam.id, v[0] * PTZ_SPEED, v[1] * PTZ_SPEED, 0);
+    } else if (zoomBtn) {
+      heldBtn = zoomBtn; zoomBtn.classList.add('active');
+      ptzSendMove(cam.id, 0, 0, (zoomBtn.dataset.ptzzoom === 'in' ? 1 : -1) * PTZ_SPEED);
+    }
+  };
+  const stop = () => {
+    const cam = curCam();
+    if (heldBtn) { heldBtn.classList.remove('active'); heldBtn = null; if (cam) ptzSendStop(cam.id); }
+  };
+
+  pad.addEventListener('pointerdown', start);
+  pad.addEventListener('pointerup', stop);
+  pad.addEventListener('pointerleave', stop);
+  pad.addEventListener('pointercancel', stop);
+
+  $('#ptzGotoBtn').onclick = async () => {
+    const cam = curCam(), token = $('#ptzPresetSel').value;
+    if (!cam || !token) return toast('Pilih preset dulu.', 'err');
+    try { await api.post(`/api/cameras/${cam.id}/ptz/presets/${token}/goto`); toast('Kamera bergerak ke preset.', 'ok'); } catch (err) { fail(err); }
+  };
+  $('#ptzSaveBtn').onclick = async () => {
+    const cam = curCam();
+    if (!cam) return;
+    const name = prompt('Nama preset baru:');
+    if (!name || !name.trim()) return;
+    try {
+      await api.post(`/api/cameras/${cam.id}/ptz/presets`, { name: name.trim() });
+      toast('Preset disimpan.', 'ok'); await loadPtzPresets(cam.id);
+    } catch (err) { fail(err); }
+  };
+  $('#ptzDelBtn').onclick = async () => {
+    const cam = curCam(), token = $('#ptzPresetSel').value;
+    if (!cam || !token) return toast('Pilih preset dulu.', 'err');
+    if (!confirm('Hapus preset ini?')) return;
+    try {
+      await api.del(`/api/cameras/${cam.id}/ptz/presets/${token}`);
+      toast('Preset dihapus.', 'ok'); await loadPtzPresets(cam.id);
+    } catch (err) { fail(err); }
+  };
+})();
+
+async function pollBigBoxes() {
+  if (S.view !== 'kamera' || !S.liveTiles.length) return;
+  const t = S.liveTiles[0];
+  try {
+    const d = await api.get('/api/cameras/' + t.id + '/detections');
+    drawBoxes(t.ov, d.boxes || []);
+  } catch (e) {}
+  try {
+    const c = await api.get('/api/cameras/' + t.id + '/counting/stats');
+    S.counting[t.id] = c;
+    const parts = Object.entries(c.counts || {}).map(([k, v]) => `${(c.labels && c.labels[k]) || k}: ${v.in || 0}↓ ${v.out || 0}↑`);
+    $('#bigCounts').textContent = parts.length ? parts.join('  ·  ') : 'belum ada hitungan';
+  } catch (e) { $('#bigCounts').textContent = '—'; }
+  const st = S.stats && S.stats.ai.cameras.find(x => x.id === t.id);
+  $('#bigFps').textContent = st ? st.fps.toFixed(1) + ' fps · YOLO ' + Math.round(st.yolo_ms_avg) + ' ms' : '—';
+}
+
+async function loadCamSide() {
+  const cam = curCam(); if (!cam) return;
+  try {
+    const d = await api.get('/api/cameras/' + cam.id + '/captures?limit=120');
+    S.camCaptures = d.captures || [];
+  } catch (e) { S.camCaptures = []; }
+  const types = Array.from(new Set(S.camCaptures.map(c => c.type)));
+  $('#camTypeChips').innerHTML = [`<span class="chip ${S.camType ? '' : 'on'}" data-ctype="">Semua (${S.camCaptures.length})</span>`]
+    .concat(types.map(t => `<span class="chip ${S.camType === t ? 'on' : ''}" data-ctype="${esc(t)}">${esc(meta(t).label)} (${S.camCaptures.filter(c => c.type === t).length})</span>`)).join('');
+  renderCamEvents();
+  drawTimeline();
+}
+
+function renderCamEvents() {
+  const cam = curCam(); if (!cam) return;
+  const list = S.camCaptures.filter(c => !S.camType || c.type === S.camType);
+  $('#camEvents').innerHTML = list.length ? list.slice(0, 60).map(c => `
+    <div class="alertItem" style="border-left-color:${meta(c.type).color}" data-cap="${esc(c.filename)}" data-capcam="${cam.id}">
+      <img class="thumb" loading="lazy" src="/api/cameras/${cam.id}/captures/${encodeURIComponent(c.filename)}" alt="">
+      <div style="flex:1;min-width:0"><div class="tt">${esc(meta(c.type).label)}${c.name ? ' · ' + esc(c.name) : ''}</div>
+        <div class="mm">${esc(tgl(c.created_at))}</div></div>
+      <div class="mono muted" style="font-size:11px">${esc(jam(c.created_at))}</div></div>`).join('')
+    : `<div class="muted" style="font-size:13px">Belum ada kejadian tersimpan untuk kamera ini.</div>`;
+}
+$('#camTypeChips').addEventListener('click', e => {
+  const c = e.target.closest('[data-ctype]'); if (!c) return;
+  S.camType = c.dataset.ctype; loadCamSide();
+});
+
+function drawTimeline() {
+  const host = $('#timeline');
+  $$('.mark', host).forEach(m => m.remove());
+  const now = new Date(), start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  S.camCaptures.forEach(c => {
+    const d = new Date(c.created_at); if (isNaN(d) || d < start) return;
+    const pct = ((d - start) / 86400000) * 100;
+    const m = document.createElement('div');
+    m.className = 'mark';
+    m.style.cssText = `position:absolute;left:${pct}%;top:9px;bottom:9px;width:3px;border-radius:2px;background:${meta(c.type).color}`;
+    m.title = meta(c.type).label + ' · ' + jam(c.created_at);
+    host.appendChild(m);
+  });
+  const nowPct = ((now - start) / 86400000) * 100;
+  const cur = document.createElement('div');
+  cur.className = 'mark';
+  cur.style.cssText = `position:absolute;left:${nowPct}%;top:0;bottom:0;width:2px;background:#fff;opacity:.8`;
+  host.appendChild(cur);
+}
+
+async function loadRecordings() {
+  const cam = curCam(); if (!cam) { $('#recList').innerHTML = ''; return; }
+  try {
+    const [st, files] = await Promise.all([
+      api.get('/api/cameras/' + cam.id + '/recording/settings'),
+      api.get('/api/cameras/' + cam.id + '/recordings'),
+    ]);
+    S.camRec = st; S.camRecFiles = files.files || [];
+    $('#btnRecToggle').textContent = st.recording ? 'Hentikan rekam' : 'Mulai rekam';
+    $('#btnRecToggle').classList.toggle('primary', !!st.recording);
+    $('#btnRecToggle').disabled = !st.ffmpeg_available;
+    $('#recMeta').textContent = `${S.camRecFiles.length} berkas · ${files.total_size_mb} MB · ${st.resolution} · CRF ${st.crf} · segmen ${st.segment_min} mnt · simpan ${st.retention_days} hari`
+      + (st.ffmpeg_available ? '' : ' · ffmpeg tidak ditemukan di server');
+    $('#recList').innerHTML = S.camRecFiles.length ? S.camRecFiles.slice(0, 60).map(f => `
+      <div class="trow"><div style="flex:1" class="mono">${esc(f.filename)}</div>
+        <div style="width:120px" class="muted">${esc(tgl(f.started_at || f.modified_at))}</div>
+        <div style="width:90px" class="mono muted">${f.size_mb} MB</div>
+        <div style="width:200px;display:flex;gap:6px;justify-content:flex-end">
+          <button class="btn sm" data-play="${esc(f.filename)}">Putar</button>
+          <a class="btn sm" style="text-decoration:none" href="/api/cameras/${cam.id}/recordings/${encodeURIComponent(f.filename)}" download>Unduh</a>
+          <button class="btn sm danger" data-delrec="${esc(f.filename)}">Hapus</button>
+        </div></div>`).join('')
+      : `<div class="muted" style="font-size:13px;padding:12px 0">Belum ada berkas rekaman. Klik “Mulai rekam” untuk merekam kamera ini.</div>`;
+  } catch (e) { $('#recMeta').textContent = e.message; }
+}
+
+$('#btnRecToggle').onclick = async () => {
+  const cam = curCam(); if (!cam) return;
+  const on = S.camRec && S.camRec.recording;
+  try {
+    await api.post(`/api/cameras/${cam.id}/recording/${on ? 'stop' : 'start'}`);
+    toast(on ? 'Rekaman dihentikan.' : 'Rekaman dimulai.', 'ok');
+    loadRecordings();
+  } catch (e) { fail(e); }
+};
+$('#btnResetCount').onclick = async () => {
+  const cam = curCam(); if (!cam) return;
+  try { await api.post(`/api/cameras/${cam.id}/counting/reset`); toast('Hitungan direset.', 'ok'); } catch (e) { fail(e); }
+};
+$('#btnCamSettings').onclick = () => { const c = curCam(); if (c) openCamSheet(c.id); };
+
+document.addEventListener('click', async e => {
+  const p = e.target.closest('[data-play]');
+  if (p) {
+    const cam = curCam();
+    openSheet('Putar rekaman', `<video controls autoplay style="width:100%;border-radius:6px;background:#000"
+      src="/api/cameras/${cam.id}/recordings/${encodeURIComponent(p.dataset.play)}"></video>
+      <div class="mono muted" style="font-size:12px">${esc(p.dataset.play)}</div>`, []);
+  }
+  const d = e.target.closest('[data-delrec]');
+  if (d) {
+    const cam = curCam();
+    if (!confirm('Hapus berkas rekaman ' + d.dataset.delrec + '?')) return;
+    try { await api.del(`/api/cameras/${cam.id}/recordings/${encodeURIComponent(d.dataset.delrec)}`); toast('Berkas dihapus.', 'ok'); loadRecordings(); } catch (err) { fail(err); }
+  }
+  const c = e.target.closest('[data-cap]');
+  if (c) openCapture(+c.dataset.capcam, c.dataset.cap);
+});
+
+function openCapture(camId, filename) {
+  const cam = S.cameras.find(x => x.id === camId);
+  openSheet('Cuplikan kejadian',
+    `<img src="/api/cameras/${camId}/captures/${encodeURIComponent(filename)}" style="width:100%;border-radius:6px;background:#000">
+     <div class="mono muted" style="font-size:12px">${esc(cam ? cam.name : 'Kamera ' + camId)} · ${esc(filename)}</div>`,
+    [{ label: 'Hapus cuplikan', cls: 'danger', fn: async () => {
+        try { await api.del(`/api/cameras/${camId}/captures/${encodeURIComponent(filename)}`); toast('Cuplikan dihapus.', 'ok'); closeSheet(); loadCamSide(); loadCaptures().then(renderAlerts); } catch (e) { fail(e); }
+      } }]);
+}
+
+/* ==========================================================================
+   PERINGATAN
+   ========================================================================== */
+$('#alertSeg').addEventListener('click', e => {
+  const b = e.target.closest('[data-av]'); if (!b) return;
+  S.alertView = b.dataset.av;
+  $$('#alertSeg button').forEach(x => x.classList.toggle('on', x === b));
+  renderAlerts();
+});
+$('#alertChips').addEventListener('click', e => {
+  const c = e.target.closest('[data-atype]'); if (!c) return;
+  S.alertType = c.dataset.atype; renderAlerts();
+});
+
+function alertRowsData() {
+  return S.captures.filter(c => !S.alertType || c.type === S.alertType);
+}
+
+function renderAlerts() {
+  const all = S.captures;
+  const kritis = all.filter(c => meta(c.type).sev === 'KRITIS').length;
+  $('#alertMeta').textContent = `${all.length} tersimpan · ${kritis} kritis · ${S.alerts.length} aktif di memori`;
+
+  const types = Array.from(new Set(all.map(c => c.type)));
+  $('#alertChips').innerHTML = [`<span class="chip ${S.alertType ? '' : 'on'}" data-atype="">Semua (${all.length})</span>`]
+    .concat(types.map(t => `<span class="chip ${S.alertType === t ? 'on' : ''}" data-atype="${esc(t)}">${esc(meta(t).label)} (${all.filter(c => c.type === t).length})</span>`)).join('');
+
+  const listMode = S.alertView === 'list';
+  $('#alertListWrap').classList.toggle('hidden', !listMode);
+  $('#alertBoard').classList.toggle('hidden', listMode);
+  listMode ? renderAlertList() : renderAlertBoard();
+}
+
+function renderAlertList() {
+  const rows = alertRowsData();
+  $('#alertRows').innerHTML = rows.length ? rows.slice(0, 200).map((a, i) => {
+    const m = meta(a.type);
+    return `<div class="trow" data-arow="${i}" style="cursor:pointer">
+      <div style="width:4px;height:34px;border-radius:2px;background:${m.color};flex:none"></div>
+      <img class="thumb" loading="lazy" src="/api/cameras/${a.camera_id}/captures/${encodeURIComponent(a.filename)}" alt="">
+      <div style="flex:1;min-width:0"><div style="font-weight:500">${esc(m.label)}${a.name ? ' · ' + esc(a.name) : ''}</div>
+        <div class="muted" style="font-size:12px;margin-top:3px">${esc(a.camera_name)} · ${esc(tgl(a.created_at))}</div></div>
+      <div class="sev">${m.sev}</div>
+      <div class="mono muted" style="font-size:12px;width:60px;text-align:right">${esc(jam(a.created_at))}</div>
+    </div>`;
+  }).join('') : `<div class="empty" style="margin:20px 0">Belum ada kejadian tersimpan. Cuplikan otomatis dibuat saat analitik AI memicu peringatan.</div>`;
+
+  if (!S.selAlert && rows.length) S.selAlert = rows[0];
+  renderAlertDetail();
+}
+
+$('#alertRows').addEventListener('click', e => {
+  const r = e.target.closest('[data-arow]'); if (!r) return;
+  S.selAlert = alertRowsData()[+r.dataset.arow];
+  renderAlertDetail();
+});
+
+function renderAlertDetail() {
+  const a = S.selAlert, box = $('#alertDetail');
+  if (!a) { box.innerHTML = `<div class="muted" style="font-size:13px">Pilih satu kejadian untuk melihat detailnya.</div>`; return; }
+  const m = meta(a.type);
+  box.innerHTML = `
+    <div class="row"><span class="dot" style="background:${m.color}"></span><div class="h2">${esc(m.label)}</div></div>
+    <img src="/api/cameras/${a.camera_id}/captures/${encodeURIComponent(a.filename)}" style="width:100%;border-radius:6px;background:var(--deep)">
+    <div class="stack8" style="font-size:13px">
+      ${[['Kamera', a.camera_name], ['Waktu', tgl(a.created_at)], ['Tingkat', m.sev], ['Label', a.name || '—'], ['Berkas', a.filename]]
+        .map(([k, v]) => `<div style="display:flex;justify-content:space-between;gap:12px"><span class="muted">${k}</span><span style="text-align:right;word-break:break-all">${esc(v)}</span></div>`).join('')}
+    </div>
+    <div class="grow"></div>
+    <div style="display:flex;gap:9px">
+      <button class="btn primary" style="flex:1" data-agoto="${a.camera_id}">Buka kamera</button>
+      <button class="btn danger" style="flex:1" data-adel="1">Hapus</button>
+    </div>`;
+  $('[data-agoto]', box).onclick = () => { S.selCam = a.camera_id; go('kamera'); };
+  $('[data-adel]', box).onclick = async () => {
+    if (!confirm('Hapus cuplikan ini?')) return;
+    try { await api.del(`/api/cameras/${a.camera_id}/captures/${encodeURIComponent(a.filename)}`); S.selAlert = null; toast('Cuplikan dihapus.', 'ok'); await loadCaptures(); renderAlerts(); } catch (e) { fail(e); }
+  };
+}
+
+function renderAlertBoard() {
+  const now = Date.now(), rows = alertRowsData();
+  const cols = [
+    { name: 'Satu jam terakhir', f: d => now - d < 3600e3 },
+    { name: 'Hari ini',          f: d => now - d < 86400e3 && now - d >= 3600e3 },
+    { name: 'Lebih lama',        f: d => now - d >= 86400e3 },
+  ].map(c => ({ ...c, items: rows.filter(r => { const d = new Date(r.created_at).getTime(); return !isNaN(d) && c.f(d); }) }));
+
+  $('#alertBoard').innerHTML = cols.map(c => `
+    <div class="card" style="display:flex;flex-direction:column;overflow:hidden;min-height:0">
+      <div class="row" style="padding:15px 17px;border-bottom:1px solid var(--line)">
+        <div class="h3">${c.name}</div><div class="grow"></div><div class="mono muted" style="font-size:12px">${c.items.length}</div></div>
+      <div class="scrolly" style="padding:13px;display:flex;flex-direction:column;gap:11px">
+        ${c.items.slice(0, 40).map(a => `<div style="background:var(--bg);border:1px solid rgba(255,255,255,.08);border-top:2px solid ${meta(a.type).color};border-radius:6px;padding:12px;display:flex;flex-direction:column;gap:9px;cursor:pointer" data-cap="${esc(a.filename)}" data-capcam="${a.camera_id}">
+            <div style="font:500 13px var(--sans)">${esc(meta(a.type).label)}${a.name ? ' · ' + esc(a.name) : ''}</div>
+            <img loading="lazy" src="/api/cameras/${a.camera_id}/captures/${encodeURIComponent(a.filename)}" style="height:84px;width:100%;object-fit:cover;border-radius:4px;background:var(--deep)">
+            <div style="display:flex;justify-content:space-between;font:400 11px var(--mono);color:rgba(255,255,255,.42)"><span>${esc(a.camera_name)}</span><span>${esc(jam(a.created_at))}</span></div>
+          </div>`).join('') || `<div class="muted" style="font-size:13px">Kosong.</div>`}
+      </div></div>`).join('');
+}
+
+/* ==========================================================================
+   ANALITIK
+   ========================================================================== */
+function paintAnKpis() {
+  const { people, vehicle, animal } = countTotals();
+  const st = S.stats;
+  const kpis = [
+    { label: 'Orang terhitung masuk', value: nf(people), delta: 'sejak hitungan terakhir direset' },
+    { label: 'Kendaraan terhitung',   value: nf(vehicle), delta: animal ? nf(animal) + ' hewan tercatat' : 'mobil, motor, bus, truk, sepeda' },
+    { label: 'Kejadian tersimpan',    value: nf(S.captures.length), delta: S.alerts.length + ' aktif di memori' },
+    { label: 'Total FPS analitik',    value: st ? st.ai.total_fps : '—', delta: st ? `${st.ai.active_ai_cameras}/${st.ai.total_cameras} kamera ber-AI` : '' },
+  ];
+  $('#anKpis').innerHTML = kpis.map(k => `<div class="kpi"><div class="l">${esc(k.label)}</div><div class="v">${esc(k.value)}</div><div class="d">${esc(k.delta)}</div></div>`).join('');
+  $('#anMeta').textContent = st ? `CPU ${Math.round(st.cpu.total_pct)}% · RAM ${st.memory.pct}% · disk ${st.disk.pct}% · ${st.process.threads} thread` : '—';
+}
+
+function drawChart() {
+  const host = $('#chartHost'), h = S.history;
+  if (!h || !h.samples || h.samples.length < 2) { host.innerHTML = `<div class="muted" style="font-size:13px">Mengumpulkan data… grafik muncul setelah beberapa sampel terkumpul.</div>`; return; }
+  const s = h.samples, W = 620, H = 220;
+  const maxFps = Math.max(1, ...s.map(x => x.total_fps));
+  const px = i => (i / (s.length - 1)) * W;
+  const line = (get, max) => s.map((x, i) => `${px(i).toFixed(1)},${(H - (get(x) / max) * H).toFixed(1)}`).join(' ');
+  const cpu = line(x => x.cpu_pct, 100), fps = line(x => x.total_fps, maxFps);
+  host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:100%">
+    ${[1, 2, 3, 4].map(i => `<line x1="0" x2="${W}" y1="${i * H / 5}" y2="${i * H / 5}" stroke="rgba(255,255,255,.07)"/>`).join('')}
+    <polygon points="0,${H} ${cpu} ${W},${H}" fill="rgba(79,195,206,.12)"/>
+    <polyline points="${cpu}" fill="none" stroke="#4fc3ce" stroke-width="2.5"/>
+    <polyline points="${fps}" fill="none" stroke="#e8b96d" stroke-width="2" stroke-dasharray="5 4"/>
+  </svg>
+  <div class="row" style="gap:16px;font-size:12px;margin-top:8px">
+    <span class="row" style="gap:6px"><i style="width:14px;height:2px;background:#4fc3ce;display:block"></i>CPU (0–100%)</span>
+    <span class="row" style="gap:6px"><i style="width:14px;height:2px;background:#e8b96d;display:block"></i>FPS AI (0–${maxFps.toFixed(1)})</span></div>`;
+}
+
+function renderAnalitik() {
+  paintAnKpis(); drawChart();
+  const { cat } = countTotals();
+  const LBL = { person: 'Orang', car: 'Mobil', motorcycle: 'Motor', bus: 'Bus', truck: 'Truk', bicycle: 'Sepeda', animal: 'Hewan' };
+  const keys = Object.keys(LBL).filter(k => cat[k]);
+  const max = Math.max(1, ...keys.map(k => cat[k]));
+  $('#chartBars').innerHTML = keys.length ? keys.map((k, i) => `
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:9px;height:100%">
+      <div class="mono" style="font-size:12px;color:var(--muted2)">${cat[k]}</div>
+      <div style="width:100%;height:${Math.max(4, cat[k] / max * 82)}%;background:rgba(79,195,206,${1 - i * 0.13});border-radius:4px 4px 0 0"></div>
+      <div style="font-size:12px;color:var(--muted2)">${LBL[k]}</div></div>`).join('')
+    : `<div class="muted" style="font-size:13px;align-self:center">Belum ada objek terhitung. Aktifkan “Hitung orang/kendaraan” pada kamera dan atur garis virtualnya.</div>`;
+
+  $('#anRows').innerHTML = S.cameras.map(c => {
+    const cs = S.counting[c.id] || { counts: {} };
+    const sum = ks => ks.reduce((a, k) => a + ((cs.counts[k] || {}).in || 0), 0);
+    const st = S.stats && S.stats.ai.cameras.find(x => x.id === c.id);
+    const ev = S.captures.filter(x => x.camera_id === c.id).length;
+    return `<div class="trow"><div style="flex:2">${esc(c.name)}</div>
+      <div style="flex:1" class="mono">${nf(sum(['person']))}</div>
+      <div style="flex:1" class="mono">${nf(sum(['car', 'motorcycle', 'bus', 'truck', 'bicycle']))}</div>
+      <div style="flex:1" class="mono">${nf(sum(['animal']))}</div>
+      <div style="flex:1" class="mono">${nf(ev)}</div>
+      <div style="flex:1" class="mono muted">${st ? st.fps.toFixed(1) : '—'}</div></div>`;
+  }).join('') || `<div class="muted" style="padding:14px 0;font-size:13px">Belum ada kamera.</div>`;
+}
+
+$('#btnCsv').onclick = () => {
+  const rows = [['kamera', 'orang', 'kendaraan', 'hewan', 'kejadian', 'fps']];
+  S.cameras.forEach(c => {
+    const cs = S.counting[c.id] || { counts: {} };
+    const sum = ks => ks.reduce((a, k) => a + ((cs.counts[k] || {}).in || 0), 0);
+    const st = S.stats && S.stats.ai.cameras.find(x => x.id === c.id);
+    rows.push([c.name, sum(['person']), sum(['car', 'motorcycle', 'bus', 'truck', 'bicycle']), sum(['animal']),
+               S.captures.filter(x => x.camera_id === c.id).length, st ? st.fps.toFixed(1) : '']);
+  });
+  const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+  a.download = 'enpidix-analitik-' + new Date().toISOString().slice(0, 10) + '.csv';
+  a.click();
+};
+$('#btnResetAll').onclick = async () => {
+  if (!confirm('Reset hitungan SEMUA kamera ke nol?')) return;
+  await Promise.all(S.cameras.map(c => api.post(`/api/cameras/${c.id}/counting/reset`).catch(() => {})));
+  toast('Semua hitungan direset.', 'ok');
+  await loadCounting(); renderAnalitik();
+};
+
+/* ==========================================================================
+   MODAL
+   ========================================================================== */
+function openSheet(title, html, buttons, wide) {
+  $('#modalTitle').textContent = title;
+  $('#modalBody').innerHTML = html;
+  const foot = $('#modalFoot');
+  foot.innerHTML = '';
+  (buttons || []).forEach(b => {
+    const el = document.createElement('button');
+    el.className = 'btn ' + (b.cls || '');
+    el.textContent = b.label;
+    el.onclick = () => b.fn(el);
+    el.id = b.id || '';
+    foot.appendChild(el);
+  });
+  $('.sheet').classList.toggle('wide', !!wide);
+  $('#modal').classList.add('on');
+}
+function closeSheet() {
+  if (ceCleanup) ceCleanup();
+  if (peCleanup) peCleanup();
+  syncCamSections = null;
+  $('#modal').classList.remove('on');
+  $('#modalBody').innerHTML = '';
+}
+$('#modalX').onclick = closeSheet;
+$('#modal').addEventListener('mousedown', e => { if (e.target.id === 'modal') closeSheet(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+
+/* ==========================================================================
+   EDITOR VISUAL GARIS / AREA COUNTING
+   Digambar langsung di atas siaran kamera. Arah "masuk" mengikuti rumus sisi
+   garis di server: cross((p2-p1), (titik-p1)) > 0 dihitung sebagai masuk,
+   jadi panah MASUK selalu menunjuk ke sisi yang benar.
+   ========================================================================== */
+let ceCleanup = null;
+let syncCamSections = null;
+
+function mountCountEditor(cam, cfg) {
+  const st = {
+    shape: (cfg && cfg.shape) || 'line',
+    direction: (cfg && cfg.direction) || 'both',
+    style: (cfg && cfg.line_style) || 'rope',
+    thickness: cfg && cfg.line_thickness != null ? +cfg.line_thickness : 2,
+    line: cfg && cfg.line ? { ...cfg.line } : { x1: .1, y1: .5, x2: .9, y2: .5 },
+    poly: ((cfg && cfg.polygon) || []).map(p => [+p[0], +p[1]]),
+  };
+  const wrap = $('#ceWrap'), svg = $('#ceSvg'), hs = $('#ceHandles');
+  const read = $('#ceRead'), hint = $('#ceHint'), tools = $('#ceTools');
+  let W = 1, H = 1;
+
+  const clamp = v => Math.max(0, Math.min(1, v));
+  const pts = () => st.shape === 'line'
+    ? [[st.line.x1, st.line.y1], [st.line.x2, st.line.y2]]
+    : st.poly;
+
+  function setPt(i, x, y) {
+    if (st.shape === 'line') {
+      if (i === 0) { st.line.x1 = x; st.line.y1 = y; } else { st.line.x2 = x; st.line.y2 = y; }
+    } else if (st.poly[i]) { st.poly[i] = [x, y]; }
+  }
+
+  function measure() {
+    const r = wrap.getBoundingClientRect();
+    W = Math.max(1, r.width); H = Math.max(1, r.height);
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  }
+
+  /* --- arah masuk: normal (-dy, dx) dinormalisasi --- */
+  function inNormal() {
+    const dx = (st.line.x2 - st.line.x1) * W, dy = (st.line.y2 - st.line.y1) * H;
+    const len = Math.hypot(dx, dy) || 1;
+    return [-dy / len, dx / len];
+  }
+
+  function arrow(cx, cy, nx, ny, label, color) {
+    const L = 34, hd = 9;
+    const ex = cx + nx * L, ey = cy + ny * L;
+    const px_ = -ny, py_ = nx;
+    return `<line x1="${cx}" y1="${cy}" x2="${ex}" y2="${ey}" stroke="${color}" stroke-width="2.5"/>
+      <polygon points="${ex},${ey} ${ex - nx * hd + px_ * hd * .6},${ey - ny * hd + py_ * hd * .6} ${ex - nx * hd - px_ * hd * .6},${ey - ny * hd - py_ * hd * .6}" fill="${color}"/>
+      <text x="${cx + nx * (L + 16)}" y="${cy + ny * (L + 16)}" fill="${color}" font-family="IBM Plex Mono,monospace"
+        font-size="11" font-weight="500" text-anchor="middle" dominant-baseline="middle">${label}</text>`;
+  }
+
+  function strokeFor(color) {
+    const w = Math.max(2, st.thickness * 1.6);
+    if (st.style === 'dashed') return `stroke="${color}" stroke-width="${w}" stroke-dasharray="${w * 4} ${w * 3}" stroke-linecap="round"`;
+    return `stroke="${color}" stroke-width="${w}" stroke-linecap="round"`;
+  }
+
+  function draw() {
+    measure();
+    const P = pts().map(p => [p[0] * W, p[1] * H]);
+    const parts = [];
+    const AC = '#4fc3ce', OK = '#5bd6a0', BAD = '#e8836d';
+
+    if (st.shape === 'line') {
+      const [a, b] = P;
+      if (st.style === 'rope') {
+        const dx = b[0] - a[0], dy = b[1] - a[1], len = Math.hypot(dx, dy) || 1;
+        const ox = -dy / len * st.thickness * 1.4, oy = dx / len * st.thickness * 1.4;
+        const w = Math.max(1.6, st.thickness * 1.1);
+        parts.push(`<line x1="${a[0] + ox}" y1="${a[1] + oy}" x2="${b[0] + ox}" y2="${b[1] + oy}" stroke="${AC}" stroke-width="${w}" stroke-dasharray="${w * 5} ${w * 5}"/>`);
+        parts.push(`<line x1="${a[0] - ox}" y1="${a[1] - oy}" x2="${b[0] - ox}" y2="${b[1] - oy}" stroke="${AC}" stroke-width="${w}" stroke-dasharray="${w * 5} ${w * 5}" stroke-dashoffset="${w * 5}"/>`);
+      } else {
+        parts.push(`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" ${strokeFor(AC)}/>`);
+      }
+      const cx = (a[0] + b[0]) / 2, cy = (a[1] + b[1]) / 2;
+      const [nx, ny] = inNormal();
+      if (st.direction !== 'out') parts.push(arrow(cx, cy, nx, ny, 'MASUK', OK));
+      if (st.direction !== 'in')  parts.push(arrow(cx, cy, -nx, -ny, 'KELUAR', BAD));
+    } else if (P.length >= 2) {
+      const d = P.map(p => p.join(',')).join(' ');
+      if (P.length >= 3) parts.push(`<polygon points="${d}" fill="rgba(79,195,206,.16)" ${strokeFor(AC)} stroke-linejoin="round"/>`);
+      else parts.push(`<polyline points="${d}" fill="none" ${strokeFor(AC)}/>`);
+      if (P.length >= 3) {
+        const cx = P.reduce((s, p) => s + p[0], 0) / P.length, cy = P.reduce((s, p) => s + p[1], 0) / P.length;
+        parts.push(`<text x="${cx}" y="${cy}" fill="${OK}" font-family="IBM Plex Mono,monospace" font-size="11"
+          text-anchor="middle" dominant-baseline="middle">DI DALAM = MASUK</text>`);
+      }
+    }
+    svg.innerHTML = parts.join('');
+
+    hs.innerHTML = pts().map((p, i) => `<div class="ceH" data-h="${i}" style="left:${p[0] * 100}%;top:${p[1] * 100}%">
+      ${st.shape === 'line' ? (i === 0 ? 'A' : 'B') : (i + 1)}</div>`).join('');
+
+    read.textContent = st.shape === 'line'
+      ? `A ${st.line.x1.toFixed(3)}, ${st.line.y1.toFixed(3)}   ·   B ${st.line.x2.toFixed(3)}, ${st.line.y2.toFixed(3)}`
+      : (st.poly.length ? st.poly.map((p, i) => `${i + 1}: ${p[0].toFixed(2)},${p[1].toFixed(2)}`).join('   ')
+                        : 'Belum ada titik area.');
+
+    hint.textContent = st.shape === 'line'
+      ? 'Seret bulatan A dan B untuk memindahkan garis. Panah hijau menunjukkan sisi mana yang dihitung sebagai masuk — pakai “Balik arah” bila terbalik.'
+      : `Klik gambar untuk menambah titik pada sisi terdekat, seret untuk memindahkan, klik kanan sebuah titik untuk menghapusnya. Minimal 3 titik (sekarang ${st.poly.length}).`;
+
+    tools.innerHTML = st.shape === 'line'
+      ? `<button type="button" class="btn sm" data-ce="h">Horizontal tengah</button>
+         <button type="button" class="btn sm" data-ce="v">Vertikal tengah</button>
+         <button type="button" class="btn sm" data-ce="flip">Balik arah masuk</button>`
+      : `<button type="button" class="btn sm" data-ce="rect">Kotak tengah</button>
+         <button type="button" class="btn sm" data-ce="tri">Segitiga</button>
+         <button type="button" class="btn sm danger" data-ce="clear">Hapus semua titik</button>`;
+  }
+
+  /* --- seret titik --- */
+  let dragging = null;
+  const norm = e => {
+    const r = wrap.getBoundingClientRect();
+    return [clamp((e.clientX - r.left) / r.width), clamp((e.clientY - r.top) / r.height)];
+  };
+  hs.addEventListener('pointerdown', e => {
+    const h = e.target.closest('[data-h]'); if (!h) return;
+    if (e.button === 2) return;
+    dragging = +h.dataset.h; h.setPointerCapture(e.pointerId); e.preventDefault();
+  });
+  hs.addEventListener('pointermove', e => {
+    if (dragging === null) return;
+    const [x, y] = norm(e); setPt(dragging, x, y); draw();
+  });
+  const endDrag = () => { dragging = null; };
+  hs.addEventListener('pointerup', endDrag);
+  hs.addEventListener('pointercancel', endDrag);
+
+  /* --- poligon: tambah / hapus titik --- */
+  wrap.addEventListener('click', e => {
+    if (st.shape !== 'polygon' || e.target.closest('[data-h]')) return;
+    const [x, y] = norm(e);
+    if (st.poly.length < 2) { st.poly.push([x, y]); return draw(); }
+    let best = 0, bd = Infinity;
+    for (let i = 0; i < st.poly.length; i++) {
+      const a = st.poly[i], b = st.poly[(i + 1) % st.poly.length];
+      const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2;
+      const dd = (mx - x) ** 2 + (my - y) ** 2;
+      if (dd < bd) { bd = dd; best = i; }
+    }
+    st.poly.splice(best + 1, 0, [x, y]); draw();
+  });
+  hs.addEventListener('contextmenu', e => {
+    const h = e.target.closest('[data-h]'); if (!h) return;
+    e.preventDefault();
+    if (st.shape !== 'polygon') return;
+    if (st.poly.length <= 3) return toast('Area minimal harus punya 3 titik.', 'err');
+    st.poly.splice(+h.dataset.h, 1); draw();
+  });
+
+  tools.addEventListener('click', e => {
+    const b = e.target.closest('[data-ce]'); if (!b) return;
+    const a = b.dataset.ce;
+    if (a === 'h') st.line = { x1: .08, y1: .5, x2: .92, y2: .5 };
+    if (a === 'v') st.line = { x1: .5, y1: .08, x2: .5, y2: .92 };
+    if (a === 'flip') st.line = { x1: st.line.x2, y1: st.line.y2, x2: st.line.x1, y2: st.line.y1 };
+    if (a === 'rect') st.poly = [[.25, .3], [.75, .3], [.75, .75], [.25, .75]];
+    if (a === 'tri') st.poly = [[.5, .25], [.8, .75], [.2, .75]];
+    if (a === 'clear') st.poly = [];
+    draw();
+  });
+
+  /* --- kontrol di luar kanvas --- */
+  $('#cfShape').addEventListener('change', e => {
+    st.shape = e.target.value;
+    if (st.shape === 'polygon' && st.poly.length < 3) st.poly = [[.25, .3], [.75, .3], [.75, .75], [.25, .75]];
+    draw();
+  });
+  $('#cfDir').addEventListener('change', e => { st.direction = e.target.value; draw(); });
+  $('#cfStyle').addEventListener('change', e => { st.style = e.target.value; draw(); });
+  $('#cfThick').addEventListener('input', e => {
+    st.thickness = Math.max(1, Math.min(6, +e.target.value || 1));
+    $('#cfThickVal').textContent = st.thickness;
+    draw();
+  });
+
+  /* --- siaran langsung sebagai latar --- */
+  const feed = $('#ceFeed');
+  if (feed) {
+    feed.addEventListener('load', () => {
+      if (feed.naturalWidth) wrap.style.aspectRatio = feed.naturalWidth + ' / ' + feed.naturalHeight;
+      draw();
+    });
+    feed.src = '/video_feed/' + cam.id + '?t=' + Date.now();
+  }
+
+  // ResizeObserver tidak ada di WebView lawas — pakai event resize sebagai cadangan
+  let ro = null, onResize = null;
+  if (typeof ResizeObserver === 'function') { ro = new ResizeObserver(() => draw()); ro.observe(wrap); }
+  else { onResize = () => draw(); window.addEventListener('resize', onResize); }
+  draw();
+
+  ceCleanup = () => {
+    if (ro) ro.disconnect();
+    if (onResize) window.removeEventListener('resize', onResize);
+    if (feed) feed.removeAttribute('src');
+    ceCleanup = null;
+  };
+
+  return {
+    redraw: draw,
+    get() {
+      const out = {
+        shape: st.shape, direction: st.direction,
+        line_style: st.style, line_thickness: st.thickness,
+        line: { x1: +st.line.x1, y1: +st.line.y1, x2: +st.line.x2, y2: +st.line.y2 },
+      };
+      if (st.poly.length >= 3) out.polygon = st.poly.map(p => [+p[0], +p[1]]);
+      return out;
+    },
+    valid() {
+      if (st.shape === 'polygon' && st.poly.length < 3) return 'Area penghitung butuh minimal 3 titik.';
+      if (st.shape === 'line' && st.line.x1 === st.line.x2 && st.line.y1 === st.line.y2) return 'Titik A dan B tidak boleh di posisi yang sama.';
+      return null;
+    },
+  };
+}
+
+/* ==========================================================================
+   EDITOR AREA PARKIR — banyak poligon slot per kamera
+   Perubahan ditahan di memori dan baru dikirim (POST/PUT/DELETE) saat tombol
+   "Simpan perubahan" ditekan, supaya menggeser titik tidak membanjiri server.
+   ========================================================================== */
+let peCleanup = null;
+
+function mountParkingEditor(cam) {
+  const wrap = $('#peWrap'), svg = $('#peSvg'), hs = $('#peHandles');
+  const list = $('#peList'), hint = $('#peHint');
+  let slots = [], removed = [], sel = 0, W = 1, H = 1, loaded = false;
+
+  const clamp = v => Math.max(0, Math.min(1, v));
+  const cur = () => slots[sel] || null;
+
+  function measure() {
+    const r = wrap.getBoundingClientRect();
+    W = Math.max(1, r.width); H = Math.max(1, r.height);
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  }
+
+  function draw() {
+    measure();
+    const parts = [];
+    slots.forEach((s, i) => {
+      if (s.polygon.length < 2) return;
+      const P = s.polygon.map(p => [p[0] * W, p[1] * H]);
+      const on = i === sel;
+      const occ = s.occupied;
+      const col = on ? '#4fc3ce' : occ === true ? '#e8836d' : occ === false ? '#5bd6a0' : 'rgba(255,255,255,.35)';
+      const d = P.map(p => p.join(',')).join(' ');
+      if (P.length >= 3) {
+        parts.push(`<polygon points="${d}" fill="${on ? 'rgba(79,195,206,.20)' : 'rgba(255,255,255,.06)'}"
+          stroke="${col}" stroke-width="${on ? 2.6 : 1.8}" stroke-linejoin="round"/>`);
+      } else {
+        parts.push(`<polyline points="${d}" fill="none" stroke="${col}" stroke-width="2"/>`);
+      }
+      const cx = P.reduce((a, p) => a + p[0], 0) / P.length, cy = P.reduce((a, p) => a + p[1], 0) / P.length;
+      parts.push(`<text x="${cx}" y="${cy}" fill="${col}" font-family="IBM Plex Mono,monospace" font-size="11"
+        font-weight="500" text-anchor="middle" dominant-baseline="middle">${esc(s.label || 'Slot')}${
+        occ === true ? ' · terisi' : occ === false ? ' · kosong' : ''}</text>`);
+    });
+    svg.innerHTML = parts.join('');
+
+    const c = cur();
+    hs.innerHTML = c ? c.polygon.map((p, i) =>
+      `<div class="ceH" data-h="${i}" style="left:${p[0] * 100}%;top:${p[1] * 100}%">${i + 1}</div>`).join('') : '';
+
+    list.innerHTML = slots.length ? slots.map((s, i) => `
+      <div class="peRow ${i === sel ? 'on' : ''}" data-sel="${i}">
+        <span class="mono muted" style="width:20px">${i + 1}</span>
+        <input type="text" value="${esc(s.label || '')}" placeholder="Nama slot" data-lbl="${i}" style="flex:1">
+        <span class="mono muted" style="font-size:11px;width:58px">${s.polygon.length} titik</span>
+        <span class="sev" style="width:64px;text-align:center;${s.occupied === true ? 'color:var(--bad)' : s.occupied === false ? 'color:var(--ok)' : ''}">${
+          s.occupied === true ? 'TERISI' : s.occupied === false ? 'KOSONG' : '—'}</span>
+        <button type="button" class="btn sm danger" data-del="${i}">Hapus</button>
+      </div>`).join('')
+      : `<div class="muted" style="font-size:13px">Belum ada slot parkir. Klik “Tambah slot” lalu geser titik-titiknya menutupi satu petak parkir.</div>`;
+
+    hint.textContent = slots.length
+      ? `Slot terpilih: ${cur() ? (cur().label || 'tanpa nama') : '—'}. Klik gambar untuk menambah titik, seret untuk memindahkan, klik kanan titik untuk menghapus. Minimal 3 titik per slot.`
+      : 'Setiap slot digambar sebagai satu poligon. Kendaraan yang titik tengahnya jatuh di dalam poligon dihitung sebagai slot terisi.';
+  }
+
+  /* --- seret titik --- */
+  let dragging = null;
+  const norm = e => {
+    const r = wrap.getBoundingClientRect();
+    return [clamp((e.clientX - r.left) / r.width), clamp((e.clientY - r.top) / r.height)];
+  };
+  hs.addEventListener('pointerdown', e => {
+    const h = e.target.closest('[data-h]'); if (!h || e.button === 2) return;
+    dragging = +h.dataset.h; h.setPointerCapture(e.pointerId); e.preventDefault();
+  });
+  hs.addEventListener('pointermove', e => {
+    if (dragging === null || !cur()) return;
+    const [x, y] = norm(e);
+    cur().polygon[dragging] = [x, y]; cur().dirty = true; draw();
+  });
+  const endDrag = () => { dragging = null; };
+  hs.addEventListener('pointerup', endDrag);
+  hs.addEventListener('pointercancel', endDrag);
+
+  wrap.addEventListener('click', e => {
+    if (e.target.closest('[data-h]')) return;
+    const c = cur(); if (!c) return;
+    const [x, y] = norm(e);
+    if (c.polygon.length < 2) { c.polygon.push([x, y]); c.dirty = true; return draw(); }
+    let best = 0, bd = Infinity;
+    for (let i = 0; i < c.polygon.length; i++) {
+      const a = c.polygon[i], b = c.polygon[(i + 1) % c.polygon.length];
+      const dd = ((a[0] + b[0]) / 2 - x) ** 2 + ((a[1] + b[1]) / 2 - y) ** 2;
+      if (dd < bd) { bd = dd; best = i; }
+    }
+    c.polygon.splice(best + 1, 0, [x, y]); c.dirty = true; draw();
+  });
+  hs.addEventListener('contextmenu', e => {
+    const h = e.target.closest('[data-h]'); if (!h) return;
+    e.preventDefault();
+    const c = cur(); if (!c) return;
+    if (c.polygon.length <= 3) return toast('Slot parkir minimal harus punya 3 titik.', 'err');
+    c.polygon.splice(+h.dataset.h, 1); c.dirty = true; draw();
+  });
+
+  list.addEventListener('click', e => {
+    const del = e.target.closest('[data-del]');
+    if (del) {
+      const i = +del.dataset.del;
+      if (slots[i].id) removed.push(slots[i].id);
+      slots.splice(i, 1);
+      sel = Math.max(0, Math.min(sel, slots.length - 1));
+      return draw();
+    }
+    const row = e.target.closest('[data-sel]');
+    if (row) { sel = +row.dataset.sel; draw(); }
+  });
+  list.addEventListener('input', e => {
+    const l = e.target.closest('[data-lbl]'); if (!l) return;
+    slots[+l.dataset.lbl].label = l.value;
+    slots[+l.dataset.lbl].dirty = true;
+  });
+
+  $('#peAdd').addEventListener('click', () => {
+    const k = slots.length, off = (k % 4) * 0.06, offy = Math.floor(k / 4) * 0.08;
+    slots.push({
+      id: null, label: 'Slot ' + (k + 1), occupied: null, isNew: true, dirty: true,
+      polygon: [[.16 + off, .28 + offy], [.42 + off, .28 + offy], [.42 + off, .58 + offy], [.16 + off, .58 + offy]],
+    });
+    sel = slots.length - 1;
+    draw();
+  });
+
+  async function load() {
+    try {
+      const d = await api.get(`/api/cameras/${cam.id}/parking/slots`);
+      slots = (d.slots || []).map(s => ({
+        id: s.id, label: s.label, polygon: (s.polygon || []).map(p => [+p[0], +p[1]]),
+        occupied: s.occupied, isNew: false, dirty: false,
+      }));
+      loaded = true;
+    } catch (e) { slots = []; toast('Slot parkir tidak bisa dimuat: ' + e.message, 'err'); }
+    sel = 0; draw();
+  }
+
+  const feed = $('#peFeed');
+  if (feed) feed.addEventListener('load', () => {
+    if (feed.naturalWidth) wrap.style.aspectRatio = feed.naturalWidth + ' / ' + feed.naturalHeight;
+    draw();
+  });
+
+  let ro = null, onResize = null;
+  if (typeof ResizeObserver === 'function') { ro = new ResizeObserver(() => draw()); ro.observe(wrap); }
+  else { onResize = () => draw(); window.addEventListener('resize', onResize); }
+
+  peCleanup = () => {
+    if (ro) ro.disconnect();
+    if (onResize) window.removeEventListener('resize', onResize);
+    if (feed) feed.removeAttribute('src');
+    peCleanup = null;
+  };
+
+  return {
+    async activate() {
+      if (!loaded) await load();
+      if (feed && !feed.getAttribute('src') && cam.live_status && cam.live_status.open) {
+        feed.src = '/video_feed/' + cam.id + '?t=' + Date.now();
+      }
+      draw();
+    },
+    valid() {
+      const bad = slots.find(s => s.polygon.length < 3);
+      return bad ? `Slot “${bad.label || 'tanpa nama'}” baru punya ${bad.polygon.length} titik — minimal 3.` : null;
+    },
+    dirty() { return removed.length > 0 || slots.some(s => s.isNew || s.dirty); },
+    async save() {
+      for (const id of removed) await api.del(`/api/cameras/${cam.id}/parking/slots/${id}`);
+      removed = [];
+      for (const s of slots) {
+        const body = { label: (s.label || '').trim(), polygon: s.polygon.map(p => [+p[0], +p[1]]) };
+        if (s.isNew) {
+          const r = await api.post(`/api/cameras/${cam.id}/parking/slots`, body);
+          const made = (r.slots || []).slice(-1)[0];
+          if (made) s.id = made.id;
+          s.isNew = false; s.dirty = false;
+        } else if (s.dirty) {
+          await api.req(`/api/cameras/${cam.id}/parking/slots/${s.id}`, {
+            method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+          });
+          s.dirty = false;
+        }
+      }
+      loaded = false;
+    },
+  };
+}
+
+/* ==========================================================================
+   PERANGKAT
+   ========================================================================== */
+$('#devSearch').addEventListener('input', renderDevices);
+
+async function renderDevices() {
+  const q = ($('#devSearch').value || '').toLowerCase();
+  const cams = S.cameras.filter(c => !q || c.name.toLowerCase().includes(q) || (c.rtsp_url || '').toLowerCase().includes(q));
+  const online = S.cameras.filter(c => c.live_status && c.live_status.open).length;
+  const offline = S.cameras.length - online;
+  $('#devMeta').textContent = `${S.cameras.length} kamera · ${offline} bermasalah`;
+
+  let disk = null;
+  try { disk = await api.get('/api/recordings/disk_usage'); } catch (e) {}
+  const retensi = S.cameras.length ? Math.max(...S.cameras.map(c => c.record_retention_days || 14)) : '—';
+  $('#devStats').innerHTML = [
+    { l: 'Online', v: online, c: 'var(--ok)' },
+    { l: 'Offline', v: offline, c: offline ? 'var(--bad)' : 'var(--muted)' },
+    { l: 'Rekaman tersimpan', v: disk ? (disk.grand_total_mb / 1024).toFixed(1) + ' GB' : '—', c: '' },
+    { l: 'Retensi terpanjang', v: retensi + ' hari', c: '' },
+  ].map(x => `<div class="kpi"><div class="l">${x.l}</div><div class="v" style="font-size:24px;${x.c ? 'color:' + x.c : ''}">${x.v}</div></div>`).join('');
+
+  $('#devRows').innerHTML = cams.map(c => {
+    const open = c.live_status && c.live_status.open;
+    const st = S.stats && S.stats.ai.cameras.find(x => x.id === c.id);
+    const aiOn = Object.keys(AI_LABELS).filter(k => c['ai_' + k]).map(k => AI_LABELS[k]);
+    const color = !c.enabled ? 'var(--muted)' : open ? 'var(--ok)' : 'var(--bad)';
+    const label = !c.enabled ? 'Dinonaktifkan' : open ? 'Online' : 'Offline';
+    return `<div class="trow">
+      <div style="width:130px;display:flex;align-items:center;gap:8px"><span class="dot" style="background:${color}"></span><span class="muted2">${label}</span></div>
+      <div style="flex:1.4" class="mono">${esc(c.name)}</div>
+      <div style="flex:1.3" class="muted" title="${esc(c.rtsp_url)}">${esc(hostOf(c.rtsp_url))}</div>
+      <div style="width:80px" class="mono muted">${st ? st.fps.toFixed(1) : '—'}</div>
+      <div style="flex:1.4" class="muted">${aiOn.length ? esc(aiOn.join(', ')) : '—'}</div>
+      <div style="width:180px;display:flex;gap:6px;justify-content:flex-end">
+        <button class="btn sm" data-enable="${c.id}" data-to="${c.enabled ? 0 : 1}">${c.enabled ? 'Nonaktifkan' : 'Aktifkan'}</button>
+        <button class="btn sm" data-camset="${c.id}">Atur</button>
+        <button class="btn sm danger" data-camdel="${c.id}">Hapus</button>
+      </div></div>`;
+  }).join('') || `<div class="muted" style="padding:16px 0;font-size:13px">Tidak ada kamera yang cocok.</div>`;
+}
+
+document.addEventListener('click', async e => {
+  const en = e.target.closest('[data-enable]');
+  if (en) {
+    try { await api.post(`/api/cameras/${en.dataset.enable}/toggle_enabled?enabled=${en.dataset.to === '1'}`); await loadCameras(); renderDevices(); toast('Status kamera diperbarui.', 'ok'); } catch (err) { fail(err); }
+  }
+  const del = e.target.closest('[data-camdel]');
+  if (del) {
+    const cam = S.cameras.find(c => c.id === +del.dataset.camdel);
+    if (!confirm(`Hapus kamera “${cam.name}”? Berkas rekaman lama tetap tersimpan di disk.`)) return;
+    try { await api.del('/api/cameras/' + cam.id); toast('Kamera dihapus.', 'ok'); if (S.selCam === cam.id) S.selCam = null; await loadCameras(); renderDevices(); } catch (err) { fail(err); }
+  }
+  const set = e.target.closest('[data-camset]');
+  if (set) openCamSheet(+set.dataset.camset);
+});
+
+/* ------------ Tambah kamera (RTSP manual ATAU otomatis via ONVIF) ------------ */
+let ncTab = 'manual';          // tab aktif di modal tambah kamera
+let ovProbeResult = null;      // hasil terakhir /api/onvif/probe
+let ovSelectedProfile = null;  // {token, rtsp_url, ptz_supported} yg dipilih user
+
+function ncSwitchTab(tab) {
+  ncTab = tab;
+  $$('#ncTabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === tab));
+  $('#ncManual').classList.toggle('hidden', tab !== 'manual');
+  $('#ncOnvif').classList.toggle('hidden', tab !== 'onvif');
+  $('#btnNcTest').style.display = tab === 'manual' ? '' : 'none';
+}
+
+$('#btnAddCam').onclick = () => {
+  ncTab = 'manual'; ovProbeResult = null; ovSelectedProfile = null;
+  openSheet('Tambah kamera', `
+    <div class="seg" id="ncTabs">
+      <button type="button" data-tab="manual" class="on">RTSP manual</button>
+      <button type="button" data-tab="onvif">ONVIF (otomatis)</button>
+    </div>
+    <div class="grid2">
+      <label class="f">Nama kamera<input type="text" id="ncName" placeholder="mis. Lobi Utama"></label>
+      <label class="f">ID kamera NX (opsional)<input type="text" id="ncNx" placeholder="uuid dari NX Witness"></label>
+    </div>
+
+    <div id="ncManual">
+      <label class="f">Alamat RTSP<input type="text" id="ncUrl" placeholder="rtsp://user:sandi@192.168.1.10:554/Streaming/Channels/101"></label>
+      <div id="ncPrev"></div>
+      <div class="muted" style="font-size:12px">Tes koneksi dulu supaya kesalahan alamat, sandi, atau channel ketahuan sebelum kamera disimpan.</div>
+    </div>
+
+    <div id="ncOnvif" class="hidden">
+      <div class="muted" style="font-size:12px;margin-bottom:8px">Kamera akan dihubungi lewat protokol <b>ONVIF</b> — alamat RTSP &amp; dukungan PTZ diambil otomatis dari kamera, berlaku untuk berbagai merk (Hikvision, Dahua, Uniview, Axis, Bosch, Hanwha, TP-Link/VIGI, Reolink, dll).</div>
+      <div class="row" style="gap:8px;margin-bottom:8px">
+        <button class="btn sm" type="button" id="ovDiscoverBtn">🔎 Cari kamera di jaringan</button>
+        <div class="muted" id="ovDiscoverMeta" style="font-size:12px"></div>
+      </div>
+      <div id="ovFoundList"></div>
+      <div class="grid2">
+        <label class="f">Alamat IP kamera<input type="text" id="ovHost" placeholder="192.168.1.64"></label>
+        <label class="f">Port ONVIF<input type="number" id="ovPort" value="80"></label>
+      </div>
+      <div class="grid2">
+        <label class="f">Username ONVIF<input type="text" id="ovUser" placeholder="admin"></label>
+        <label class="f">Password ONVIF<input type="password" id="ovPass"></label>
+      </div>
+      <div class="row" style="gap:8px;margin:4px 0 8px">
+        <button class="btn sm primary" type="button" id="ovProbeBtn">Hubungkan &amp; ambil profil</button>
+      </div>
+      <div id="ovResult"></div>
+    </div>`,
+    [
+      { label: 'Tes koneksi', id: 'btnNcTest', fn: async btn => {
+          const url = $('#ncUrl').value.trim();
+          if (!url) return toast('Alamat RTSP masih kosong.', 'err');
+          btn.disabled = true; btn.textContent = 'Menguji…';
+          try {
+            const r = await api.post('/api/cameras/test_rtsp', { name: $('#ncName').value || 'tes', rtsp_url: url });
+            $('#ncPrev').innerHTML = `<img src="${r.preview}" style="width:100%;border-radius:6px"><div style="color:var(--ok);font-size:12px;margin-top:6px">Koneksi berhasil.</div>`;
+          } catch (err) { $('#ncPrev').innerHTML = `<div style="color:var(--bad);font-size:12px">${esc(err.message)}</div>`; }
+          btn.disabled = false; btn.textContent = 'Tes koneksi';
+        } },
+      { label: 'Simpan kamera', cls: 'primary', fn: async () => {
+          const name = $('#ncName').value.trim();
+          if (!name) return toast('Nama kamera wajib diisi.', 'err');
+
+          if (ncTab === 'manual') {
+            const rtsp_url = $('#ncUrl').value.trim();
+            if (!rtsp_url) return toast('Alamat RTSP wajib diisi.', 'err');
+            try {
+              await api.post('/api/cameras', { name, rtsp_url, nx_camera_id: $('#ncNx').value.trim(), brand: '' });
+              closeSheet(); toast('Kamera ditambahkan.', 'ok'); await loadCameras(); renderDevices();
+            } catch (err) { fail(err); }
+          } else {
+            if (!ovProbeResult) return toast('Klik "Hubungkan & ambil profil" dulu.', 'err');
+            if (!ovSelectedProfile) return toast('Pilih salah satu profil/stream kamera dulu.', 'err');
+            try {
+              await api.post('/api/cameras/onvif', {
+                name, nx_camera_id: $('#ncNx').value.trim(),
+                brand: ovProbeResult.manufacturer || '',
+                host: $('#ovHost').value.trim(), port: +($('#ovPort').value || 80),
+                username: $('#ovUser').value.trim(), password: $('#ovPass').value,
+                profile_token: ovSelectedProfile.token, rtsp_url: ovSelectedProfile.rtsp_url,
+                ptz_supported: !!ovSelectedProfile.ptz_supported,
+              });
+              closeSheet(); toast('Kamera ONVIF ditambahkan.', 'ok'); await loadCameras(); renderDevices();
+            } catch (err) { fail(err); }
+          }
+        } },
+    ], true);
+
+  $$('#ncTabs button').forEach(b => b.onclick = () => ncSwitchTab(b.dataset.tab));
+
+  $('#ovDiscoverBtn').onclick = async btn => {
+    btn.disabled = true; btn.textContent = 'Mencari…';
+    $('#ovDiscoverMeta').textContent = 'Memindai jaringan lokal (±4 detik)…';
+    try {
+      const r = await api.post('/api/onvif/discover', { timeout: 4 });
+      const devs = r.devices || [];
+      $('#ovDiscoverMeta').textContent = `${devs.length} perangkat ONVIF ditemukan.`;
+      $('#ovFoundList').innerHTML = devs.length ? devs.map(d => `
+        <div class="trow" data-pick-onvif="${esc(d.host)}" data-port="${d.port}" style="cursor:pointer">
+          <div style="flex:1" class="mono">${esc(d.host)}:${d.port}</div>
+          <div class="muted" style="font-size:12px">${d.is_camera_hint ? 'kemungkinan kamera' : 'perangkat ONVIF'}</div>
+        </div>`).join('') : `<div class="muted" style="font-size:12px;padding:6px 0">Tidak ada perangkat ditemukan. Isi IP kamera manual di bawah (mungkin beda subnet/VLAN dari server).</div>`;
+    } catch (err) { $('#ovDiscoverMeta').textContent = ''; fail(err); }
+    btn.disabled = false; btn.textContent = '🔎 Cari kamera di jaringan';
+  };
+
+  document.getElementById('modalBody').addEventListener('click', e => {
+    const pick = e.target.closest('[data-pick-onvif]');
+    if (pick) { $('#ovHost').value = pick.dataset.pickOnvif; $('#ovPort').value = pick.dataset.port; toast('IP kamera diisi otomatis.', 'ok'); }
+  });
+
+  $('#ovProbeBtn').onclick = async btn => {
+    const host = $('#ovHost').value.trim();
+    if (!host) return toast('Isi alamat IP kamera dulu.', 'err');
+    btn.disabled = true; btn.textContent = 'Menghubungkan…';
+    ovProbeResult = null; ovSelectedProfile = null;
+    $('#ovResult').innerHTML = '';
+    try {
+      const r = await api.post('/api/onvif/probe', {
+        host, port: +($('#ovPort').value || 80),
+        username: $('#ovUser').value.trim(), password: $('#ovPass').value,
+      });
+      ovProbeResult = r;
+      const info = [r.manufacturer, r.model].filter(Boolean).join(' ') || 'Kamera ONVIF';
+      $('#ovResult').innerHTML = `
+        <div class="muted" style="font-size:13px;margin:6px 0">
+          <b style="color:var(--txt)">${esc(info)}</b>${r.firmware ? ' · fw ' + esc(r.firmware) : ''}
+          ${r.ptz_supported ? ' · <span style="color:var(--ok)">mendukung PTZ ✓</span>' : ' · tidak ada PTZ'}
+        </div>
+        <div class="h3" style="margin-top:4px">Pilih stream</div>
+        <div class="stack" style="gap:8px" id="ovProfiles">
+          ${(r.profiles || []).map((p, i) => `
+            <label style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;cursor:pointer">
+              <input type="radio" name="ovProfileRadio" value="${i}" ${i === 0 ? 'checked' : ''}>
+              <div style="flex:1">
+                <div style="font-weight:600">${esc(p.name || p.token)}</div>
+                <div class="muted" style="font-size:12px">${esc(p.resolution || '')}${p.ptz_supported ? ' · PTZ ✓' : ''}${!p.rtsp_url ? ' · <span style="color:var(--bad)">stream URI gagal diambil</span>' : ''}</div>
+              </div>
+            </label>`).join('')}
+        </div>`;
+      const radios = $$('input[name="ovProfileRadio"]');
+      const selectByIndex = i => {
+        const p = r.profiles[i];
+        ovSelectedProfile = p && p.rtsp_url ? { token: p.token, rtsp_url: p.rtsp_url, ptz_supported: p.ptz_supported } : null;
+      };
+      radios.forEach(rad => rad.onchange = () => selectByIndex(+rad.value));
+      if (radios.length) selectByIndex(+radios[0].value);
+    } catch (err) { fail(err); }
+    btn.disabled = false; btn.textContent = 'Hubungkan & ambil profil';
+  };
+};
+
+/* ------------ Atur kamera ------------ */
+async function openCamSheet(camId) {
+  const cam = S.cameras.find(c => c.id === camId);
+  if (!cam) return;
+  let cfg = null, rec = null;
+  try { cfg = await api.get(`/api/cameras/${camId}/counting/config`); } catch (e) {}
+  try { rec = await api.get(`/api/cameras/${camId}/recording/settings`); } catch (e) {}
+
+  const toggles = Object.keys(AI_LABELS).map(k => `
+    <div class="toggleRow" data-ai="${k}"><div><div class="tl">${AI_LABELS[k]}</div></div>
+      <div class="sw ${cam['ai_' + k] ? 'on' : ''}"><i></i></div></div>`).join('');
+
+  const camOpen = !!(cam.live_status && cam.live_status.open);
+  let editor = null, parkEditor = null;
+  openSheet(`Atur ${cam.name}`, `
+    <div class="h3">Analitik AI</div>
+    <div class="stack" style="gap:11px" id="aiToggles">${toggles}</div>
+    <div style="height:1px;background:var(--line)"></div>
+    <div id="secCount">
+    <div class="h3">Garis / area penghitung</div>
+    <div class="secOff hidden" id="countOff">Aktifkan <b>Hitung orang</b>, <b>Hitung kendaraan</b>, atau <b>Hitung hewan</b> di atas untuk mengatur garis atau area penghitungnya.</div>
+    <div id="countBody">
+    <div class="grid2">
+      <label class="f">Bentuk<select id="cfShape">
+        <option value="line" ${cfg && cfg.shape === 'line' ? 'selected' : ''}>Garis virtual (2 titik)</option>
+        <option value="polygon" ${cfg && cfg.shape === 'polygon' ? 'selected' : ''}>Area poligon</option></select></label>
+      <label class="f">Arah dihitung<select id="cfDir">
+        <option value="both" ${cfg && cfg.direction === 'both' ? 'selected' : ''}>Masuk &amp; keluar</option>
+        <option value="in" ${cfg && cfg.direction === 'in' ? 'selected' : ''}>Masuk saja</option>
+        <option value="out" ${cfg && cfg.direction === 'out' ? 'selected' : ''}>Keluar saja</option></select></label>
+      <label class="f">Gaya garis<select id="cfStyle">
+        ${['rope', 'dashed', 'solid'].map(v => `<option value="${v}" ${cfg && cfg.line_style === v ? 'selected' : ''}>${{ rope: 'Tali', dashed: 'Putus-putus', solid: 'Solid' }[v]}</option>`).join('')}</select></label>
+      <label class="f">Ketebalan <span class="mono" id="cfThickVal">${cfg ? cfg.line_thickness : 2}</span>
+        <input type="range" id="cfThick" min="1" max="6" step="0.5" value="${cfg ? cfg.line_thickness : 2}"></label>
+    </div>
+    <div id="ceTools"></div>
+    <div id="ceWrap">
+      <div class="stripes"></div>
+      ${camOpen ? `<img id="ceFeed" alt="">` : `<div class="ceOff">Kamera sedang tidak aktif — garis tetap bisa diatur di atas bidang kosong ini.</div>`}
+      <svg id="ceSvg" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div id="ceHandles"></div>
+    </div>
+    <div id="ceRead"></div>
+    <div id="ceHint"></div>
+    </div></div>
+
+    <div style="height:1px;background:var(--line)"></div>
+    <div id="secPark">
+      <div class="h3">Area slot parkir</div>
+      <div class="secOff hidden" id="parkOff">Aktifkan <b>Deteksi parkir</b> di atas untuk menggambar petak-petak slot parkirnya.</div>
+      <div id="parkBody" class="stack" style="gap:14px;margin-top:14px">
+        <div id="peTools">
+          <button type="button" class="btn sm primary" id="peAdd">Tambah slot</button>
+          <span class="muted" style="font-size:12px">Satu poligon = satu petak parkir.</span>
+        </div>
+        <div id="peWrap">
+          <div class="stripes"></div>
+          ${camOpen ? `<img id="peFeed" alt="">` : `<div class="ceOff">Kamera sedang tidak aktif — petak parkir tetap bisa digambar di atas bidang kosong ini.</div>`}
+          <svg id="peSvg" xmlns="http://www.w3.org/2000/svg"></svg>
+          <div id="peHandles"></div>
+        </div>
+        <div id="peList"></div>
+        <div id="peHint"></div>
+      </div>
+    </div>
+    <div style="height:1px;background:var(--line)"></div>
+    <div class="h3">Perekaman</div>
+    ${rec ? `<div class="grid4">
+      <label class="f">Resolusi<select id="rcRes">${(rec.resolution_options || []).map(o => `<option ${rec.resolution === o ? 'selected' : ''}>${o}</option>`).join('')}</select></label>
+      <label class="f">CRF (besar = hemat disk)<input type="number" id="rcCrf" min="0" max="51" value="${rec.crf}"></label>
+      <label class="f">Panjang segmen (menit)<input type="number" id="rcSeg" min="1" max="180" value="${rec.segment_min}"></label>
+      <label class="f">Simpan (hari)<input type="number" id="rcRet" min="1" max="365" value="${rec.retention_days}"></label>
+    </div>
+    <div class="toggleRow" id="rcEnable"><div><div class="tl">Rekam otomatis saat server hidup</div>
+      <div class="ts">${rec.ffmpeg_available ? 'ffmpeg terdeteksi' : 'ffmpeg TIDAK ditemukan — perekaman tidak bisa jalan'}</div></div>
+      <div class="sw ${rec.record_enabled ? 'on' : ''}"><i></i></div></div>`
+    : `<div class="muted" style="font-size:13px">Setelan perekaman tidak bisa dimuat.</div>`}
+    <div style="height:1px;background:var(--line)"></div>
+    <label class="f">Alamat RTSP (hanya baca)<input type="text" value="${esc(cam.rtsp_url)}" readonly></label>`,
+    [{ label: 'Simpan perubahan', cls: 'primary', fn: async () => {
+        try {
+          const ai = {};
+          $$('#modalBody [data-ai]').forEach(r => { ai[r.dataset.ai] = $('.sw', r).classList.contains('on'); });
+          await api.post(`/api/cameras/${camId}/ai_toggle`, ai);
+          const bad = (editor && editor.valid()) || (parkEditor && parkEditor.valid());
+          if (bad) return toast(bad, 'err');
+          if (editor) await api.post(`/api/cameras/${camId}/counting/config`, editor.get());
+          if (parkEditor && parkEditor.dirty()) await parkEditor.save();
+          if (rec) {
+            await api.post(`/api/cameras/${camId}/recording/settings`, {
+              record_enabled: $('.sw', $('#rcEnable')).classList.contains('on'),
+              resolution: $('#rcRes').value, crf: +$('#rcCrf').value,
+              segment_min: +$('#rcSeg').value, retention_days: +$('#rcRet').value,
+            });
+          }
+          closeSheet(); toast('Pengaturan kamera disimpan.', 'ok');
+          await loadCameras();
+          if (S.view === 'perangkat') renderDevices();
+          if (S.view === 'kamera') mountBigCam();
+        } catch (e) { fail(e); }
+      } }], true);
+  editor = mountCountEditor(cam, cfg);
+  parkEditor = mountParkingEditor(cam);
+
+  // Seksi editor ikut menyala/mati mengikuti toggle AI di atasnya, tanpa perlu
+  // menutup dan membuka ulang panel ini.
+  const isOn = k => {
+    const row = $(`#modalBody [data-ai="${k}"]`);
+    return !!(row && $('.sw', row).classList.contains('on'));
+  };
+  syncCamSections = () => {
+    const counting = isOn('people_counting') || isOn('vehicle_counting') || isOn('animal_counting');
+    $('#countBody').classList.toggle('hidden', !counting);
+    $('#countOff').classList.toggle('hidden', counting);
+    if (counting && editor) editor.redraw();
+
+    const parking = isOn('parking_detection');
+    $('#parkBody').classList.toggle('hidden', !parking);
+    $('#parkOff').classList.toggle('hidden', parking);
+    if (parking && parkEditor) parkEditor.activate();
+  };
+  $('#aiToggles').addEventListener('click', () => setTimeout(syncCamSections, 0));
+  syncCamSections();
+}
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('.toggleRow');
+  if (t) { const sw = $('.sw', t); if (sw) sw.classList.toggle('on'); }
+});
+
+/* ==========================================================================
+   PETA
+   ========================================================================== */
+const MAPKEY = 'enpidix.map.v1';
+function mapStore() { try { return JSON.parse(localStorage.getItem(MAPKEY)) || { plan: '', pins: {} }; } catch (e) { return { plan: '', pins: {} }; } }
+function mapSave(v) { try { localStorage.setItem(MAPKEY, JSON.stringify(v)); } catch (e) {} }
+
+function renderMap() {
+  const st = mapStore(), stage = $('#mapStage');
+  $$('.pin', stage).forEach(p => p.remove());
+  if (st.plan) { $('#mapPlan').src = st.plan; $('#mapPlan').classList.remove('hidden'); $('#mapHint').classList.add('hidden'); }
+  else { $('#mapPlan').classList.add('hidden'); $('#mapHint').classList.remove('hidden'); }
+
+  S.cameras.forEach((c, i) => {
+    const pos = st.pins[c.id] || { x: 12 + (i % 6) * 14, y: 18 + Math.floor(i / 6) * 16 };
+    const open = c.live_status && c.live_status.open;
+    const color = !c.enabled ? 'rgba(255,255,255,.3)' : open ? 'var(--ok)' : 'var(--bad)';
+    const pin = document.createElement('div');
+    pin.className = 'pin';
+    pin.style.left = pos.x + '%'; pin.style.top = pos.y + '%'; pin.style.borderColor = color;
+    pin.dataset.cam = c.id;
+    pin.innerHTML = `<span class="dot" style="background:${color}"></span><span>${esc(c.name)}</span>`;
+    stage.appendChild(pin);
+  });
+  renderMapCams();
+}
+
+function renderMapCams() {
+  const el = $('#mapCams'); if (!el) return;
+  el.innerHTML = S.cameras.map(c => {
+    const open = c.live_status && c.live_status.open;
+    const color = !c.enabled ? 'rgba(255,255,255,.3)' : open ? 'var(--ok)' : 'var(--bad)';
+    return `<div class="alertItem" style="border-left-color:${color}" data-open="${c.id}">
+      <div style="flex:1;min-width:0"><div class="tt mono" style="font-size:12px">${esc(c.name)}</div>
+        <div class="mm">${esc(hostOf(c.rtsp_url))}</div></div>
+      <span class="dot" style="background:${color}"></span></div>`;
+  }).join('') || `<div class="muted" style="font-size:13px">Belum ada kamera.</div>`;
+}
+
+(function mapDrag() {
+  let cur = null;
+  $('#mapStage').addEventListener('mousedown', e => {
+    const pin = e.target.closest('.pin'); if (!pin) return;
+    cur = pin; pin.classList.add('drag'); e.preventDefault();
+  });
+  window.addEventListener('mousemove', e => {
+    if (!cur) return;
+    const r = $('#mapStage').getBoundingClientRect();
+    const x = Math.max(2, Math.min(98, (e.clientX - r.left) / r.width * 100));
+    const y = Math.max(3, Math.min(97, (e.clientY - r.top) / r.height * 100));
+    cur.style.left = x + '%'; cur.style.top = y + '%';
+  });
+  window.addEventListener('mouseup', () => {
+    if (!cur) return;
+    const st = mapStore();
+    st.pins[cur.dataset.cam] = { x: parseFloat(cur.style.left), y: parseFloat(cur.style.top) };
+    mapSave(st); cur.classList.remove('drag'); cur = null;
+  });
+})();
+
+$('#btnMapPlan').onclick = () => {
+  const st = mapStore();
+  const url = prompt('URL gambar denah (bisa juga path di server, mis. /static/denah.png):', st.plan || '');
+  if (url === null) return;
+  st.plan = url.trim(); mapSave(st); renderMap();
+};
+$('#btnMapReset').onclick = () => { const st = mapStore(); st.pins = {}; mapSave(st); renderMap(); toast('Tata letak penanda disusun ulang.', 'ok'); };
+
+/* ==========================================================================
+   PENGATURAN
+   ========================================================================== */
+$('.setnav').addEventListener('click', e => {
+  const b = e.target.closest('[data-set]'); if (!b) return;
+  S.setTab = b.dataset.set;
+  $$('.setnav button').forEach(x => x.classList.toggle('on', x === b));
+  renderSettings();
+});
+
+async function renderSettings() {
+  // Ganti node supaya listener panel sebelumnya ikut terbuang (tidak menumpuk)
+  const old = $('#setPane');
+  const fresh = old.cloneNode(false);
+  old.replaceWith(fresh);
+  const p = fresh;
+  p.innerHTML = `<div class="muted" style="font-size:13px">Memuat…</div>`;
+  try {
+    if (S.setTab === 'ai')       return setAI(p);
+    if (S.setTab === 'rekaman')  return setRekaman(p);
+    if (S.setTab === 'storage')  return setStorage(p);
+    if (S.setTab === 'wajah')    return setWajah(p);
+    if (S.setTab === 'nx')       return setNX(p);
+    if (S.setTab === 'fleet')    return setFleet(p);
+    if (S.setTab === 'sistem')   return setSistem(p);
+  } catch (e) { p.innerHTML = `<div class="empty">${esc(e.message)}</div>`; }
+}
+
+const num = (id, label, val, min, max, step, hint) => `
+  <label class="f">${label}<input type="number" id="${id}" value="${val}" min="${min}" max="${max}" step="${step || 1}">
+    ${hint ? `<span style="font-size:11px;color:var(--muted)">${hint}</span>` : ''}</label>`;
+
+const txt = (id, label, val, placeholder, type) => `
+  <label class="f">${label}<input type="${type || 'text'}" id="${id}" value="${esc(val ?? '')}" placeholder="${esc(placeholder || '')}"></label>`;
+
+async function setAI(p) {
+  const s = await api.get('/api/settings/ai');
+  p.innerHTML = `
+    <div class="row"><div class="h1">Aturan analitik</div><div class="grow"></div>
+      <button class="btn primary" id="saveAI">Simpan aturan</button></div>
+    <div class="muted" style="font-size:12px">Berlaku untuk semua kamera dan langsung aktif tanpa perlu me-restart server.</div>
+    <div class="card pad18 stack">
+      <div class="h3">Beban inferensi</div>
+      <div class="grid3">
+        ${num('aiYolo', 'YOLO tiap N frame', s.yolo_every_n_frames, 1, 60, 1, 'Makin besar = makin ringan, deteksi makin lambat')}
+        ${num('aiFace', 'Wajah tiap N frame', s.face_every_n_frames, 1, 60, 1, '')}
+        ${num('aiFps', 'Target FPS siaran', s.target_stream_fps, 1, 30, 1, '')}
+      </div>
+    </div>
+    <div class="card pad18 stack">
+      <div class="h3">Kualitas gambar live stream</div>
+      <div class="muted" style="font-size:12px">Kalau gambar terasa patah-patah/pecah, coba naikkan lebar minimum dulu (paling berpengaruh ke ketajaman), baru kualitas JPEG kalau bandwidth masih cukup.</div>
+      <div class="grid3">
+        ${num('aiJpegQ', 'Kualitas JPEG (30–95)', s.stream_jpeg_quality, 30, 95, 1, 'Makin besar = makin halus, file makin besar')}
+        ${num('aiStreamW', 'Lebar minimum tampilan (px)', s.stream_min_width, 320, 1920, 20, 'Frame AI di-upscale halus ke lebar ini sebelum dikirim')}
+      </div>
+      <div class="muted" style="font-size:12px">Transport RTSP saat ini: <span class="mono">${esc((s.rtsp_transport || 'tcp').toUpperCase())}</span> (di-set via env var <span class="mono">RTSP_TRANSPORT</span> di server, butuh restart untuk ganti — TCP direkomendasikan untuk mengurangi patah-patah akibat packet loss di WiFi).</div>
+    </div>
+    <div class="card pad18 stack">
+      <div class="h3">Pengenalan wajah</div>
+      <div class="grid3">
+        ${num('aiConf', 'Ambang kemiripan LBPH', s.recognition_confidence_threshold, 0, 150, 1, 'Makin kecil = makin ketat')}
+      </div>
+    </div>
+    <div class="card pad18 stack">
+      <div class="h3">Api &amp; asap</div>
+      <div class="grid4">
+        ${num('aiFireSens', 'Sensitivitas warna (1–10)', s.fire_sensitivity, 1, 10, 1, '')}
+        ${num('aiFireArea', 'Luas minimum (%)', s.fire_min_area_pct, 0.05, 10, 0.05, '')}
+        ${num('aiFireConf', 'Frame konfirmasi', s.fire_confirm_frames, 1, 20, 1, '')}
+        ${num('aiFireN', 'Periksa tiap N frame', s.fire_every_n_frames, 1, 60, 1, '')}
+      </div>
+    </div>
+    <div class="card pad18 stack">
+      <div class="h3">Merokok &amp; perilaku</div>
+      <div class="grid3">
+        ${num('aiSmokeZone', 'Zona kepala (%)', s.smoking_head_zone_pct, 10, 80, 1, '')}
+        ${num('aiSmokeConf', 'Frame konfirmasi merokok', s.smoking_confirm_frames, 1, 20, 1, '')}
+        ${num('aiBehConf', 'Frame konfirmasi jatuh', s.behavior_confirm_frames, 1, 20, 1, '')}
+      </div>
+    </div>
+    <div class="card pad18 stack">
+      <div class="h3">Kondisi mesin</div>
+      <div class="grid4">
+        ${[['Model', s.yolo_model], ['Ukuran citra YOLO', s.yolo_img_size + ' px'], ['Inti CPU', s.cpu_cores],
+           ['Mode hemat daya', s.low_power_mode ? 'aktif' : 'nonaktif'], ['Maks thread AI', s.max_concurrent_ai_threads]]
+          .map(([k, v]) => `<div><div class="l muted" style="font-size:12px">${k}</div><div class="mono" style="margin-top:5px">${esc(v)}</div></div>`).join('')}
+      </div>
+    </div>`;
+  $('#saveAI').onclick = async () => {
+    try {
+      await api.post('/api/settings/ai', {
+        yolo_every_n_frames: +$('#aiYolo').value, face_every_n_frames: +$('#aiFace').value,
+        target_stream_fps: +$('#aiFps').value, recognition_confidence_threshold: +$('#aiConf').value,
+        stream_jpeg_quality: +$('#aiJpegQ').value, stream_min_width: +$('#aiStreamW').value,
+        fire_sensitivity: +$('#aiFireSens').value, fire_min_area_pct: +$('#aiFireArea').value,
+        fire_confirm_frames: +$('#aiFireConf').value, fire_every_n_frames: +$('#aiFireN').value,
+        smoking_head_zone_pct: +$('#aiSmokeZone').value, smoking_confirm_frames: +$('#aiSmokeConf').value,
+        behavior_confirm_frames: +$('#aiBehConf').value,
+      });
+      toast('Aturan analitik disimpan.', 'ok');
+    } catch (e) { fail(e); }
+  };
+}
+
+async function setRekaman(p) {
+  const rows = await Promise.all(S.cameras.map(async c => {
+    try { return { c, r: await api.get(`/api/cameras/${c.id}/recording/settings`) }; } catch (e) { return { c, r: null }; }
+  }));
+  const disk = await api.get('/api/recordings/disk_usage').catch(() => null);
+  p.innerHTML = `
+    <div class="row"><div class="h1">Perekaman &amp; retensi</div><div class="grow"></div>
+      <div class="muted" style="font-size:12px">${disk ? `${(disk.grand_total_mb / 1024).toFixed(1)} GB terpakai · sisa ${disk.disk_free_gb ?? '—'} GB` : ''}</div></div>
+    <div class="card" style="padding:0 18px">
+      <div class="thead"><div style="flex:1.4">KAMERA</div><div style="width:110px">STATUS</div><div style="width:110px">RESOLUSI</div>
+        <div style="width:70px">CRF</div><div style="width:110px">SEGMEN</div><div style="width:100px">RETENSI</div>
+        <div style="width:110px">UKURAN</div><div style="width:180px;text-align:right">AKSI</div></div>
+      ${rows.map(({ c, r }) => {
+        const sz = disk && disk.per_camera.find(x => x.camera_id === c.id);
+        return `<div class="trow"><div style="flex:1.4" class="mono">${esc(c.name)}</div>
+          <div style="width:110px">${r ? (r.recording ? '<span style="color:var(--ok)">Merekam</span>' : (r.record_enabled ? '<span style="color:var(--warn)">Menunggu</span>' : '<span class="muted">Nonaktif</span>')) : '—'}</div>
+          <div style="width:110px" class="mono muted">${r ? esc(r.resolution) : '—'}</div>
+          <div style="width:70px" class="mono muted">${r ? r.crf : '—'}</div>
+          <div style="width:110px" class="mono muted">${r ? r.segment_min + ' mnt' : '—'}</div>
+          <div style="width:100px" class="mono muted">${r ? r.retention_days + ' hr' : '—'}</div>
+          <div style="width:110px" class="mono muted">${sz ? (sz.size_mb / 1024).toFixed(2) + ' GB' : '0 GB'}</div>
+          <div style="width:180px;display:flex;gap:6px;justify-content:flex-end">
+            <button class="btn sm" data-recgo="${c.id}" data-on="${r && r.recording ? 1 : 0}">${r && r.recording ? 'Hentikan' : 'Rekam'}</button>
+            <button class="btn sm" data-camset="${c.id}">Atur</button></div></div>`;
+      }).join('') || `<div class="muted" style="padding:16px 0;font-size:13px">Belum ada kamera.</div>`}
+    </div>
+    ${disk && disk.storage_paths ? `<div class="card pad18 stack"><div class="h3">Distribusi berkas per lokasi</div>
+      ${disk.storage_paths.map(sp => `<div class="row" style="font-size:13px"><span class="mono">${esc(sp.path)}</span>
+        <div class="grow"></div><span class="muted mono">${sp.free_gb ?? '—'} GB sisa</span>
+        ${sp.is_active ? '<span class="sev" style="color:var(--ok)">AKTIF</span>' : ''}</div>`).join('')}</div>` : ''}`;
+  p.addEventListener('click', async e => {
+    const b = e.target.closest('[data-recgo]'); if (!b) return;
+    try { await api.post(`/api/cameras/${b.dataset.recgo}/recording/${b.dataset.on === '1' ? 'stop' : 'start'}`); renderSettings(); } catch (err) { fail(err); }
+  });
+}
+
+async function setStorage(p) {
+  const [st, disks] = await Promise.all([api.get('/api/storage/paths'), api.get('/api/storage/disks').catch(() => ({ disks: [] }))]);
+  p.innerHTML = `
+    <div class="row"><div class="h1">Penyimpanan</div><div class="grow"></div>
+      <button class="btn" id="stAdd">Tambah lokasi</button>
+      <button class="btn primary" id="stSave">Simpan urutan</button></div>
+    <div class="muted" style="font-size:12px">Urutan menentukan prioritas: lokasi paling atas dipakai selama sehat, sisanya jadi cadangan otomatis saat penuh atau gagal tulis.</div>
+    <div class="card pad18 stack" id="stList"></div>
+    <div class="card pad18 stack"><div class="h3">Drive terdeteksi di server</div>
+      ${(disks.disks || []).length ? `<div class="grid3">${disks.disks.map(d => `
+        <div style="background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:12px">
+          <div class="mono" style="font-size:13px">${esc(d.mountpoint)}</div>
+          <div class="muted" style="font-size:11px;margin-top:4px">${esc(d.fstype)} · ${d.free_gb} GB sisa dari ${d.total_gb} GB</div>
+          <div class="bar-t" style="margin-top:8px"><i style="width:${d.used_pct}%;background:${d.used_pct > 85 ? 'var(--bad)' : 'var(--acc)'}"></i></div>
+          <button class="btn sm" style="margin-top:9px" data-usedisk="${esc(d.mountpoint)}">Pakai drive ini</button>
+        </div>`).join('')}</div>` : `<div class="muted" style="font-size:13px">psutil tidak tersedia — isi path lokasi secara manual.</div>`}
+    </div>
+    ${st.event_log && st.event_log.length ? `<div class="card pad18 stack"><div class="h3">Riwayat failover</div>
+      ${st.event_log.map(ev => `<div class="mono muted" style="font-size:12px">${esc(JSON.stringify(ev))}</div>`).join('')}</div>` : ''}`;
+
+  let paths = (st.paths || []).map(x => ({ path: x.path, label: x.label || '', free_gb: x.free_gb, healthy: x.healthy, reason: x.reason, is_active: x.is_active }));
+  function paintPaths() {
+    $('#stList').innerHTML = paths.map((x, i) => `
+      <div class="row" style="gap:10px">
+        <span class="mono muted" style="width:24px">${i + 1}</span>
+        <span class="dot ${x.healthy ? '' : 'bad'}"></span>
+        <input type="text" value="${esc(x.path)}" data-pi="${i}" data-pf="path" style="flex:2">
+        <input type="text" value="${esc(x.label)}" placeholder="label" data-pi="${i}" data-pf="label" style="flex:1">
+        <span class="mono muted" style="width:110px;font-size:12px">${x.free_gb != null ? x.free_gb + ' GB sisa' : (x.reason || '')}</span>
+        ${x.is_active ? '<span class="sev" style="color:var(--ok)">AKTIF</span>' : '<span style="width:52px"></span>'}
+        <button class="btn sm" data-pup="${i}" ${i === 0 ? 'disabled' : ''}>↑</button>
+        <button class="btn sm" data-pdown="${i}" ${i === paths.length - 1 ? 'disabled' : ''}>↓</button>
+        <button class="btn sm" data-ptest="${i}">Tes</button>
+        <button class="btn sm danger" data-prm="${i}">Hapus</button>
+      </div>`).join('') || `<div class="muted" style="font-size:13px">Belum ada lokasi penyimpanan.</div>`;
+  }
+  paintPaths();
+
+  p.addEventListener('input', e => {
+    const t = e.target.closest('[data-pi]'); if (!t) return;
+    paths[+t.dataset.pi][t.dataset.pf] = t.value;
+  });
+  p.addEventListener('click', async e => {
+    const up = e.target.closest('[data-pup]'), dn = e.target.closest('[data-pdown]');
+    const rm = e.target.closest('[data-prm]'), ts = e.target.closest('[data-ptest]');
+    const ud = e.target.closest('[data-usedisk]');
+    if (up) { const i = +up.dataset.pup; [paths[i - 1], paths[i]] = [paths[i], paths[i - 1]]; paintPaths(); }
+    if (dn) { const i = +dn.dataset.pdown; [paths[i + 1], paths[i]] = [paths[i], paths[i + 1]]; paintPaths(); }
+    if (rm) { paths.splice(+rm.dataset.prm, 1); paintPaths(); }
+    if (ud) { paths.push({ path: ud.dataset.usedisk.replace(/[\\/]$/, '') + '/enpidix_recordings', label: '' }); paintPaths(); }
+    if (ts) {
+      const x = paths[+ts.dataset.ptest];
+      try { const r = await api.post('/api/storage/paths/test', { path: x.path });
+        toast(r.healthy ? `Bisa ditulis · sisa ${r.free_gb} GB` : `Tidak bisa dipakai: ${r.reason}`, r.healthy ? 'ok' : 'err'); } catch (err) { fail(err); }
+    }
+  });
+  $('#stAdd').onclick = () => { paths.push({ path: '', label: '' }); paintPaths(); };
+  $('#stSave').onclick = async () => {
+    const clean = paths.filter(x => x.path && x.path.trim());
+    if (!clean.length) return toast('Minimal satu lokasi harus diisi.', 'err');
+    try { await api.post('/api/storage/paths', { paths: clean.map(x => ({ path: x.path.trim(), label: x.label || '' })) });
+      toast('Lokasi penyimpanan disimpan.', 'ok'); renderSettings(); } catch (e) { fail(e); }
+  };
+}
+
+async function setWajah(p) {
+  const d = await api.get('/api/faces');
+  p.innerHTML = `
+    <div class="row"><div class="h1">Wajah terdaftar</div>
+      <div class="muted" style="font-size:12px">${d.faces.length} wajah dipakai model LBPH</div><div class="grow"></div></div>
+    <div class="card pad18 stack">
+      <div class="h3">Daftarkan wajah baru</div>
+      <div class="grid2">
+        <label class="f">Nama orang<input type="text" id="fcName" placeholder="mis. Budi Santoso"></label>
+        <label class="f">Foto wajah (bisa beberapa)<input type="file" id="fcFiles" accept="image/*" multiple
+          style="padding:8px;background:var(--deep);border:1px solid var(--line2);border-radius:6px"></label>
+      </div>
+      <div class="row"><button class="btn primary" id="fcUpload">Unggah &amp; latih ulang</button>
+        <span class="muted" style="font-size:12px">Wajah paling jelas di tiap foto yang akan dipakai. Model dilatih ulang otomatis.</span></div>
+    </div>
+    <div class="card pad18 stack"><div class="h3">Ambil dari kamera</div>
+      <div class="row"><select id="fcCam" style="width:240px">${S.cameras.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select>
+        <input type="text" id="fcCamName" placeholder="Nama orang" style="width:220px">
+        <button class="btn" id="fcCapture">Ambil wajah dari siaran</button></div>
+      <div id="fcPrev"></div></div>
+    <div class="card pad18 stack"><div class="h3">Sudah terdaftar</div>
+      <div class="grid4">${d.faces.map(f => `
+        <div style="background:var(--bg);border:1px solid var(--line);border-radius:6px;overflow:hidden">
+          <img src="${esc(f.image_url)}" style="width:100%;height:120px;object-fit:cover;background:var(--deep)">
+          <div style="padding:10px"><div style="font-size:13px">${esc(f.name)}</div>
+            <div class="muted" style="font-size:11px;margin-top:3px">${esc(tgl(f.created_at))}</div>
+            <button class="btn sm danger" style="margin-top:8px;width:100%" data-facedel="${f.id}">Hapus</button></div>
+        </div>`).join('') || `<div class="muted" style="font-size:13px">Belum ada wajah terdaftar.</div>`}</div></div>`;
+
+  $('#fcUpload').onclick = async () => {
+    const name = $('#fcName').value.trim(), files = $('#fcFiles').files;
+    if (!name || !files.length) return toast('Nama dan minimal satu foto wajib diisi.', 'err');
+    const fd = new FormData(); fd.append('name', name);
+    Array.from(files).forEach(f => fd.append('files', f));
+    try { const r = await api.form('/api/faces/register/upload', fd); toast(`Tersimpan ${(r.saved||[]).length} foto` + ((r.failed||[]).length ? `, ${r.failed.length} gagal` : '') + '.', 'ok'); renderSettings(); } catch (e) { fail(e); }
+  };
+  $('#fcCapture').onclick = async () => {
+    const id = $('#fcCam').value, name = $('#fcCamName').value.trim();
+    if (!id) return toast('Pilih kamera dulu.', 'err');
+    try {
+      const r = await api.post(`/api/cameras/${id}/register/capture`);
+      if (!r.preview) return toast('Tidak ada wajah terdeteksi. Coba lagi.', 'err');
+      $('#fcPrev').innerHTML = `<img src="${r.preview}" style="max-width:220px;border-radius:6px;margin-top:10px">`;
+      if (!name) return toast('Wajah terambil. Isi nama lalu klik lagi untuk menyimpan.', 'ok');
+      const fd = new FormData(); fd.append('name', name); fd.append('token', r.token);
+      await api.form(`/api/cameras/${id}/register/save`, fd);
+      toast('Wajah tersimpan dan model dilatih ulang.', 'ok'); renderSettings();
+    } catch (e) { fail(e); }
+  };
+  p.addEventListener('click', async e => {
+    const b = e.target.closest('[data-facedel]'); if (!b) return;
+    if (!confirm('Hapus wajah ini dari model?')) return;
+    try { await api.del('/api/faces/' + b.dataset.facedel); toast('Wajah dihapus.', 'ok'); renderSettings(); } catch (err) { fail(err); }
+  });
+}
+
+async function setNX(p) {
+  const st = await api.get('/api/status');
+  const nx = st.nx || {};
+  p.innerHTML = `
+    <div class="row"><div class="h1">Integrasi NX Witness</div><div class="grow"></div>
+      <button class="btn" id="nxTest">Tes koneksi</button>
+      <button class="btn" id="nxDiag">Diagnosa</button>
+      <button class="btn primary" id="nxCams">Ambil daftar kamera NX</button></div>
+    <div class="card pad18 grid3">
+      ${[['Server', nx.server], ['Plugin ID', nx.plugin_id], ['Kredensial', nx.configured ? 'terisi' : 'belum diisi'],
+         ['Terjangkau', nx.reachable ? 'ya' : 'tidak'], ['Sejak', tgl(nx.since)], ['Cek terakhir', tgl(nx.last_checked_at)]]
+        .map(([k, v]) => `<div><div class="muted" style="font-size:12px">${k}</div><div class="mono" style="margin-top:5px;word-break:break-all">${esc(v || '—')}</div></div>`).join('')}
+    </div>
+    ${nx.last_error ? `<div class="card pad18"><div class="h3" style="color:var(--bad)">Galat terakhir</div>
+      <div class="mono muted" style="font-size:12px;margin-top:8px;word-break:break-all">${esc(nx.last_error)}</div></div>` : ''}
+    <div id="nxOut"></div>`;
+  const out = html => { $('#nxOut').innerHTML = `<div class="card pad18"><pre class="mono" style="font-size:12px;white-space:pre-wrap;word-break:break-all">${esc(html)}</pre></div>`; };
+  $('#nxTest').onclick = async () => { try { out(JSON.stringify(await api.get('/api/nx/test'), null, 2)); } catch (e) { out(e.message); } };
+  $('#nxDiag').onclick = async () => { try { out(JSON.stringify(await api.get('/api/nx/diagnose'), null, 2)); } catch (e) { out(e.message); } };
+  $('#nxCams').onclick = async () => { try { out(JSON.stringify(await api.get('/api/nx/cameras'), null, 2)); } catch (e) { out(e.message); } };
+}
+
+async function setFleet(p) {
+  const [cfg, st] = await Promise.all([
+    api.get('/api/fleet/config'),
+    api.get('/api/fleet/status').catch(() => null),
+  ]);
+  const patches = (st && st.patches) || {};
+  const tel = (st && st.telemetry) || {};
+  p.innerHTML = `
+    <div class="row"><div class="h1">Fleet &amp; Regional</div><div class="grow"></div>
+      <button class="btn" id="flTest">Tes koneksi</button>
+      <button class="btn" id="flFlush">Kirim antrean sekarang</button>
+      <button class="btn primary" id="flSave">Simpan</button></div>
+    <div class="muted" style="font-size:12px">Menghubungkan mesin ini (Edge Node) ke server regional pada arsitektur 3-tier ENPIDIX Fleet. Begitu aktif, seluruh kejadian AI (api/asap, merokok, wajah, hitung, parkir) otomatis diteruskan ke regional. Kalau WAN putus, kejadian tetap tersimpan di antrean lokal dan dikirim ulang begitu koneksi pulih — tidak ada yang hilang.</div>
+
+    <div class="card pad18 stack">
+      <div class="h3">Identitas mesin</div>
+      <div class="grid3">
+        ${txt('flEngine', 'Engine ID', cfg.engine_id, 'mis. edge-jetson-01')}
+        ${txt('flSite', 'Site ID', cfg.site_id, 'mis. site-jakarta-01')}
+        ${txt('flSiteName', 'Nama lokasi', cfg.site_name, 'mis. Gudang Jakarta Utara')}
+      </div>
+      <div class="muted" style="font-size:12px">Model perangkat keras: <span class="mono">${esc(cfg.hw_model || tel.model || '(tidak terdeteksi)')}</span>${tel.jetpack ? ` · <span class="mono">${esc(tel.jetpack)}</span>` : ''}</div>
+    </div>
+
+    <div class="card pad18 stack">
+      <div class="h3">Koneksi ke server regional</div>
+      <div class="grid2">
+        ${txt('flUrl', 'URL regional', cfg.regional_url, 'https://regional.contoh.com')}
+        ${txt('flKey', 'API key', cfg.regional_key, 'kosongkan untuk pakai yang tersimpan', 'password')}
+      </div>
+      <div class="toggleRow" id="flEnable"><div><div class="tl">Aktifkan pengiriman ke regional</div>
+        <div class="ts">Kalau nonaktif, semua fitur lokal tetap jalan normal, cuma tidak ada yang diteruskan ke regional.</div></div>
+        <div class="sw ${cfg.enabled ? 'on' : ''}"><i></i></div></div>
+    </div>
+
+    <div class="card pad18 grid4">
+      ${[['Status', st ? (st.connected ? 'Terhubung' : 'Terputus') : '—'],
+         ['Antrean tertunda', st ? nf(st.spool_pending) : '—'],
+         ['Terkirim (sesi ini)', st ? nf(st.sent_total) : '—'],
+         ['Sukses terakhir', st && st.last_success ? tgl(new Date(st.last_success * 1000).toISOString()) : '—']]
+        .map(([k, v]) => `<div><div class="muted" style="font-size:12px">${k}</div><div class="mono" style="margin-top:5px">${esc(v)}</div></div>`).join('')}
+    </div>
+    ${st && st.last_error ? `<div class="card pad18"><div class="h3" style="color:var(--bad)">Galat terakhir</div>
+      <div class="mono muted" style="font-size:12px;margin-top:8px;word-break:break-all">${esc(st.last_error)}</div></div>` : ''}
+
+    <div class="card pad18 stack">
+      <div class="h3">Patch performa (Jetson)</div>
+      <div class="muted" style="font-size:12px">Nyalakan satu per satu, lihat FPS &amp; CPU di tab Sistem &amp; jaringan, baru lanjut ke berikutnya — kalau semua dinyalakan sekaligus lalu ada regresi, susah tahu penyebabnya yang mana.</div>
+      <div class="toggleRow" data-patch="patch_nvdec"><div><div class="tl">Dekode video via NVDEC (GPU)</div>
+        <div class="ts">Status saat ini: <span class="mono">${esc(patches.nvdec || patches.decoder || '—')}</span></div></div>
+        <div class="sw ${cfg.patch_nvdec ? 'on' : ''}"><i></i></div></div>
+      <div class="toggleRow" data-patch="patch_streamcopy"><div><div class="tl">Rekaman stream-copy (tanpa re-encode)</div>
+        <div class="ts">Status saat ini: <span class="mono">${esc(patches.stream_copy || '—')}</span></div></div>
+        <div class="sw ${cfg.patch_streamcopy ? 'on' : ''}"><i></i></div></div>
+      <div class="toggleRow" data-patch="patch_parallel_ai"><div><div class="tl">Inferensi AI paralel</div>
+        <div class="ts">Status saat ini: <span class="mono">${esc(patches.parallel_ai || '—')}</span></div></div>
+        <div class="sw ${cfg.patch_parallel_ai ? 'on' : ''}"><i></i></div></div>
+      <div class="grid3">${num('flSlots', 'Slot paralel AI', cfg.ai_slots || 3, 1, 8, 1, 'Hanya berlaku kalau "Inferensi AI paralel" di atas aktif')}</div>
+    </div>
+    <div id="flOut"></div>`;
+
+  const out = html => { $('#flOut').innerHTML = `<div class="card pad18"><pre class="mono" style="font-size:12px;white-space:pre-wrap;word-break:break-all">${esc(html)}</pre></div>`; };
+
+  $('#flTest').onclick = async () => {
+    try { out(JSON.stringify(await api.post('/api/fleet/test'), null, 2)); } catch (e) { out(e.message); }
+  };
+  $('#flFlush').onclick = async () => {
+    try { const r = await api.post('/api/fleet/flush'); toast(`Antrean dikirim — sisa ${r.spool_pending}.`, 'ok'); renderSettings(); } catch (e) { fail(e); }
+  };
+  $('#flSave').onclick = async () => {
+    try {
+      await api.post('/api/fleet/config', {
+        engine_id: $('#flEngine').value.trim(),
+        site_id: $('#flSite').value.trim(),
+        site_name: $('#flSiteName').value.trim(),
+        regional_url: $('#flUrl').value.trim(),
+        regional_key: $('#flKey').value,
+        enabled: $('#flEnable .sw').classList.contains('on') ? 1 : 0,
+        patch_nvdec: $('[data-patch="patch_nvdec"] .sw').classList.contains('on') ? 1 : 0,
+        patch_streamcopy: $('[data-patch="patch_streamcopy"] .sw').classList.contains('on') ? 1 : 0,
+        patch_parallel_ai: $('[data-patch="patch_parallel_ai"] .sw').classList.contains('on') ? 1 : 0,
+        ai_slots: +$('#flSlots').value,
+      });
+      toast('Pengaturan fleet disimpan.', 'ok');
+      renderSettings();
+    } catch (e) { fail(e); }
+  };
+}
+
+async function setSistem(p) {
+  const [st, net, sys] = await Promise.all([api.get('/api/status'), api.get('/api/system/network'), api.get('/api/stats/system')]);
+  p.innerHTML = `
+    <div class="h1">Sistem &amp; jaringan</div>
+    <div class="grid4">
+      ${[['CPU', Math.round(sys.cpu.total_pct) + '%'], ['RAM', sys.memory.pct + '% (' + sys.memory.used_gb + '/' + sys.memory.total_gb + ' GB)'],
+         ['Disk sistem', sys.disk.pct + '%'], ['Proses VMS', sys.process.cpu_pct + '% · ' + sys.process.mem_mb + ' MB']]
+        .map(([k, v]) => `<div class="kpi"><div class="l">${k}</div><div class="v" style="font-size:22px">${esc(v)}</div></div>`).join('')}
+    </div>
+    <div class="card pad18 stack"><div class="h3">Inti CPU</div>
+      <div class="grid4">${(sys.cpu.per_core_pct || []).map((v, i) => `
+        <div><div class="muted" style="font-size:11px">Inti ${i + 1} · ${Math.round(v)}%</div>
+          <div class="bar-t" style="margin-top:5px"><i style="width:${v}%;background:${v > 85 ? 'var(--bad)' : 'var(--acc)'}"></i></div></div>`).join('')
+        || '<div class="muted" style="font-size:13px">psutil tidak tersedia.</div>'}</div>
+      <div class="muted mono" style="font-size:12px">Load average: ${sys.cpu.load_avg['1m'].toFixed(2)} / ${sys.cpu.load_avg['5m'].toFixed(2)} / ${sys.cpu.load_avg['15m'].toFixed(2)} · ${sys.process.threads} thread</div>
+    </div>
+    <div class="card pad18 stack"><div class="h3">Akses jarak jauh</div>
+      <div class="grid2">
+        <div><div class="muted" style="font-size:12px">Nama host</div><div class="mono" style="margin-top:5px">${esc(net.hostname)}</div></div>
+        <div><div class="muted" style="font-size:12px">Port</div><div class="mono" style="margin-top:5px">${net.port}</div></div>
+        <div><div class="muted" style="font-size:12px">Alamat IP terdeteksi</div><div class="mono" style="margin-top:5px">${(net.detected_ips || []).map(esc).join('<br>') || '—'}</div></div>
+        <div><div class="muted" style="font-size:12px">Tailscale</div><div class="mono" style="margin-top:5px;color:${net.tailscale_detected ? 'var(--ok)' : 'var(--muted)'}">${net.tailscale_detected ? esc(net.tailscale_ip) : 'tidak terdeteksi'}</div></div>
+      </div>
+      <div class="muted" style="font-size:12px">${esc(net.hint)}</div>
+    </div>
+    <div class="card pad18 stack"><div class="h3">Ringkasan layanan</div>
+      <div class="grid3">
+        ${[['Kamera terdaftar', st.total_cameras], ['Wajah terdaftar', st.registered_faces],
+           ['Kamera ber-AI aktif', sys.ai.active_ai_cameras + '/' + sys.ai.total_cameras],
+           ['Total FPS AI', sys.ai.total_fps], ['Model deteksi', sys.ai.yolo_model],
+           ['YOLO tiap N frame', sys.ai.yolo_every_n_frames]]
+          .map(([k, v]) => `<div><div class="muted" style="font-size:12px">${k}</div><div class="mono" style="margin-top:5px">${esc(v)}</div></div>`).join('')}
+      </div>
+      ${sys.gpu && sys.gpu.length ? `<div class="muted mono" style="font-size:12px">GPU: ${sys.gpu.map(g => esc(g.name) + ' ' + g.load_pct + '%').join(' · ')}</div>`
+        : `<div class="muted" style="font-size:12px">Tidak ada GPU terdeteksi — inferensi berjalan di CPU.</div>`}
+    </div>
+    <div class="row"><a class="btn" href="/parking" style="text-decoration:none">Buka editor slot parkir</a>
+      <a class="btn" href="/health" target="_blank" style="text-decoration:none">Cek kesehatan server</a>
+      <a class="btn danger" href="/logout" style="text-decoration:none">Keluar dari sesi</a></div>`;
+}
+
+/* ==========================================================================
+   BOOTSTRAP
+   ========================================================================== */
+async function boot() {
+  try { const n = await api.get('/api/system/network'); $('#hostLabel').textContent = n.hostname; } catch (e) {}
+  await loadCameras();
+  await Promise.all([loadStats(), loadAlerts(), loadCaptures()]);
+  const start = (location.hash || '').replace('#', '');
+  go(TITLES[start] ? start : 'beranda');
+
+  every(4000,  loadStats);
+  every(6000,  loadCameras);
+  every(5000,  loadAlerts);
+  every(20000, () => { loadCaptures().then(() => { if (S.view === 'peringatan') renderAlerts(); }); });
+  every(15000, loadHistory);
+  every(1200,  pollWallBoxes);
+  every(600,   pollBigBoxes);
+  every(8000,  pollWallCounts);
+  every(10000, () => { if (S.view === 'kamera') loadRecordings(); });
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) { stopWall(); }
+  else { if (S.view === 'beranda') renderWall(); if (S.view === 'kamera') mountBigCam(); }
+});
+window.addEventListener('hashchange', () => {
+  const h = (location.hash || '').replace('#', '');
+  if (TITLES[h] && h !== S.view) go(h);
+});
+
+boot();
+
+</script>
+</body>
+</html>
